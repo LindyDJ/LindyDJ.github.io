@@ -19,18 +19,20 @@
     <meta name="description" content="Vue2.x响应式原理： vue创建一个实例时，首先会遍历data属性。采用数据劫持结合发布者订阅者的方式。使用es5的object.defindeproperty 方法将他们转化成getter，setter，并在内部追踪相关依赖。在属性被访问和修改时通知变化。也就是observer使用object.defindproerty来监听数据的读写。读取数据时，调用get方法通知dep去收集订阅者">
 <meta property="og:type" content="article">
 <meta property="og:title" content="vue响应式原理">
-<meta property="og:url" content="http://example.com/2014/05/25/vue%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8E%9F%E7%90%86/index.html">
+<meta property="og:url" content="http://example.com/2014/05/27/vue%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8E%9F%E7%90%86/index.html">
 <meta property="og:site_name" content="zhaoShuoLin的博客">
 <meta property="og:description" content="Vue2.x响应式原理： vue创建一个实例时，首先会遍历data属性。采用数据劫持结合发布者订阅者的方式。使用es5的object.defindeproperty 方法将他们转化成getter，setter，并在内部追踪相关依赖。在属性被访问和修改时通知变化。也就是observer使用object.defindproerty来监听数据的读写。读取数据时，调用get方法通知dep去收集订阅者">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/img/vuejs.png">
-<meta property="article:published_time" content="2014-05-25T12:57:43.000Z">
-<meta property="article:modified_time" content="2022-05-26T01:36:50.980Z">
+<meta property="article:published_time" content="2014-05-27T12:57:43.000Z">
+<meta property="article:modified_time" content="2014-05-28T13:57:43.000Z">
 <meta property="article:author" content="赵硕林">
 <meta property="article:tag" content="vue原理">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="http://example.com/img/vuejs.png">
   
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
   
   
   <title>vue响应式原理 - zhaoShuoLin的博客</title>
@@ -212,8 +214,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2014-05-25 20:57" pubdate>
-          2014年5月25日 晚上
+        <time datetime="2014-05-27 20:57" pubdate>
+          2014年5月27日 晚上
         </time>
       </span>
     
@@ -275,12 +277,20 @@
             <!-- SEO header -->
             <h1 style="display: none">vue响应式原理</h1>
             
+              <p class="note note-info">
+                
+                  
+                    本文最后更新于：2014年5月28日 晚上
+                  
+                
+              </p>
+            
             <div class="markdown-body">
               
-              <p> <img src="/2014/05/25/vue%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8E%9F%E7%90%86/15.png" srcset="/img/loading.gif" lazyload alt="img"> </p>
+              <p> <img src="/2014/05/27/vue%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8E%9F%E7%90%86/15.png" srcset="/img/loading.gif" lazyload alt="img"> </p>
 <p>Vue2.x响应式原理：</p>
 <p>vue创建一个实例时，首先会遍历data属性。采用数据劫持结合发布者订阅者的方式。使用es5的object.defindeproperty 方法将他们转化成getter，setter，并在内部追踪相关依赖。在属性被访问和修改时通知变化。也就是observer使用object.defindproerty来监听数据的读写。读取数据时，调用get方法通知dep去收集订阅者（watcher）。添加到道dep的一个属性subs数理。 dep有很多属性，其中就有一个subsadd添加订阅者的方法。修改1数据时，调用set方法，通知dep数据发生了改变。使用dep.notify方法遍历subs数组里面的每个watcher。调用watcher的update（）方法。创建出一个新的dom树，与原来旧的dom树作对比，根据差异性，从而更新视图。</p>
-<p> <img src="/2014/05/25/vue%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8E%9F%E7%90%86/vue.jpeg" srcset="/img/loading.gif" lazyload alt="img"> </p>
+<p> <img src="/2014/05/27/vue%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8E%9F%E7%90%86/vue.jpeg" srcset="/img/loading.gif" lazyload alt="img"> </p>
 <p> **Object.defineProperty()**，那么它的用法是什么，以及优缺点是什么呢？ </p>
 <ul>
 <li>可以检测对象中数据发生的修改</li>
@@ -383,7 +393,7 @@
   <div class="license-box my-3">
     <div class="license-title">
       <div>vue响应式原理</div>
-      <div>http://example.com/2014/05/25/vue响应式原理/</div>
+      <div>http://example.com/2014/05/27/vue响应式原理/</div>
     </div>
     <div class="license-meta">
       
@@ -395,9 +405,14 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2014年5月25日</div>
+          <div>2014年5月27日</div>
         </div>
       
+      
+        <div class="license-meta-item license-meta-date">
+          <div>更新于</div>
+          <div>2014年5月28日</div>
+        </div>
       
       <div class="license-meta-item">
         <div>许可协议</div>
@@ -425,18 +440,12 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2014/05/25/jsonp%E5%8E%9F%E7%90%86%E5%8F%8A%E5%AE%9E%E7%8E%B0/" title="jsonp原理及实现">
-                        <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">jsonp原理及实现</span>
-                        <span class="visible-mobile">上一篇</span>
-                      </a>
-                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2014/05/17/lin-first-blog/" title="面试题总结">
-                        <span class="hidden-mobile">面试题总结</span>
+                      <a href="/2014/05/25/jsonp%E5%8E%9F%E7%90%86%E5%8F%8A%E5%AE%9E%E7%8E%B0/" title="jsonp原理及实现">
+                        <span class="hidden-mobile">jsonp原理及实现</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -447,6 +456,12 @@
             </div>
 
             
+  <article id="comments" lazyload>
+    
+
+  </article>
+
+
           </article>
         </div>
       </div>
@@ -538,6 +553,30 @@
        <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <div>欧皇的博客 | 记录学习成长的过程</div> 
     </div>
   
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
   
   
   
@@ -725,7 +764,13 @@
 
   <script  src="/js/local-search.js" ></script>
 
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
 
+
+
+
+  
+<script src="https://cdn.jsdelivr.net/gh/bynotes/texiao/source/js/xiaoxuehua.js"></script>
 
 
 
