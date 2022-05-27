@@ -221,23 +221,23 @@
     
     
       <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2014/06/06/vue3-0%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%8F%8A%E4%BC%98%E5%8C%96/" target="_self">
-          <img src="/img/vuejs.png" srcset="/img/loading.gif" lazyload alt="vue3.x设计目标及优化">
+        <a href="/2021/06/08/vue3%E4%BD%BF%E7%94%A8proxy%E4%BB%A3%E6%9B%BFdefindproerty/" target="_self">
+          <img src="/img/vuejs.png" srcset="/img/loading.gif" lazyload alt="vue3使用proxy代替defindproerty">
         </a>
       </div>
     
     <article class="col-12 col-md-8 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2014/06/06/vue3-0%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%8F%8A%E4%BC%98%E5%8C%96/" target="_self">
-          vue3.x设计目标及优化
+        <a href="/2021/06/08/vue3%E4%BD%BF%E7%94%A8proxy%E4%BB%A3%E6%9B%BFdefindproerty/" target="_self">
+          vue3使用proxy代替defindproerty
         </a>
       </h1>
 
-      <a class="index-excerpt" href="/2014/06/06/vue3-0%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%8F%8A%E4%BC%98%E5%8C%96/" target="_self">
+      <a class="index-excerpt" href="/2021/06/08/vue3%E4%BD%BF%E7%94%A8proxy%E4%BB%A3%E6%9B%BFdefindproerty/" target="_self">
         <div>
           
-          vue3.0的设计目标是什么？做了那些优化？ 设计目标：   打包体积更小： vue3移除一些不常用的API，将无用的模块“剪辑”掉，仅打包需要的，使打包体积更小了。 速度更快：   diff算法优化，静态提升。 更灵活的代码组织能力：    推出composition  API，大大增加了代码的逻辑组织能力和代码复用能力。  优化方案：  源码 使用ts语法，源码的优化。   性能 体积，编译，
+          Vue3.0里为什么要用 Proxy API 替代 defineProperty API ？  proxy的性能本来比defindproerty好，proxy可以拦截属性的访问，赋值，删除等操作，不需要初始化的时候遍历所有属性。另外如果是多层嵌套的对象，只有访问某个属性的时候，才会递归处理下一级的属性。 object.defineproperty():  检测不到对象属性的添加和删除 不能根据数组
         </div>
       </a>
 
@@ -245,8 +245,8 @@
         
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
-            <time datetime="2014-06-06 08:30" pubdate>
-              2014-06-06
+            <time datetime="2021-06-08 09:15" pubdate>
+              2021-06-08
             </time>
           </div>
         
@@ -261,7 +261,74 @@
     
       <span class="category-chain">
         
-  <a href="/categories/vue/" class="category-chain-item">vue</a>
+  <a href="/categories/vue3/" class="category-chain-item">vue3</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/proxy-defindproerty/">#proxy,defindproerty</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2021/06/06/vue3-0%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%8F%8A%E4%BC%98%E5%8C%96/" target="_self">
+          <img src="/img/vuejs.png" srcset="/img/loading.gif" lazyload alt="vue3.x设计目标及优化">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/06/06/vue3-0%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%8F%8A%E4%BC%98%E5%8C%96/" target="_self">
+          vue3.x设计目标及优化
+        </a>
+      </h1>
+
+      <a class="index-excerpt" href="/2021/06/06/vue3-0%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%8F%8A%E4%BC%98%E5%8C%96/" target="_self">
+        <div>
+          
+          vue3.0的设计目标是什么？做了那些优化？ 设计目标：   打包体积更小： vue3移除一些不常用的API，将无用的模块“剪辑”掉，仅打包需要的，使打包体积更小了。 速度更快：   diff算法优化，静态提升。 更灵活的代码组织能力：    推出composition  API，大大增加了代码的逻辑组织能力和代码复用能力。  优化方案：  源码 使用ts语法，源码的优化。   性能 体积，编译，
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-06-06 08:30" pubdate>
+              2021-06-06
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/vue3/" class="category-chain-item">vue3</a>
   
   
 
@@ -395,7 +462,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/vue/" class="category-chain-item">vue</a>
+  <a href="/categories/vue2/" class="category-chain-item">vue2</a>
   
   
 

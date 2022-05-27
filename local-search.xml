@@ -4,16 +4,41 @@
   
   
   <entry>
-    <title>vue3.x设计目标及优化</title>
-    <link href="/2014/06/06/vue3-0%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%8F%8A%E4%BC%98%E5%8C%96/"/>
-    <url>/2014/06/06/vue3-0%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%8F%8A%E4%BC%98%E5%8C%96/</url>
+    <title>vue3使用proxy代替defindproerty</title>
+    <link href="/2021/06/08/vue3%E4%BD%BF%E7%94%A8proxy%E4%BB%A3%E6%9B%BFdefindproerty/"/>
+    <url>/2021/06/08/vue3%E4%BD%BF%E7%94%A8proxy%E4%BB%A3%E6%9B%BFdefindproerty/</url>
     
-    <content type="html"><![CDATA[<h4 id="vue3-0的设计目标是什么？做了那些优化？"><a href="#vue3-0的设计目标是什么？做了那些优化？" class="headerlink" title="vue3.0的设计目标是什么？做了那些优化？"></a>vue3.0的设计目标是什么？做了那些优化？</h4><hr>设计目标：<ul><li>打包体积更小： vue3移除一些不常用的API，将无用的模块“剪辑”掉，仅打包需要的，使打包体积更小了。</li><li>速度更快：   diff算法优化，静态提升。</li><li>更灵活的代码组织能力：    推出composition  API，大大增加了代码的逻辑组织能力和代码复用能力。</li></ul><p>优化方案：</p><ul><li>源码<ul><li>使用ts语法，源码的优化。</li></ul></li><li>性能<ul><li>体积，编译，数据劫持优化。</li></ul></li><li>语法 API<ul><li><p>组合式API，根据相关逻辑组织代码。</p><p><img src="/2014/06/06/vue3-0%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%8F%8A%E4%BC%98%E5%8C%96/tt.png"></p></li></ul></li></ul><br><p>参考文献:</p><hr>>- https://juejin.cn/post/6850418112878575629#heading-5<blockquote><ul><li><a href="https://vue3js.cn/docs/zh">https://vue3js.cn/docs/zh</a></li></ul></blockquote>]]></content>
+    <content type="html"><![CDATA[<h4 id="Vue3-0里为什么要用-Proxy-API-替代-defineProperty-API-？"><a href="#Vue3-0里为什么要用-Proxy-API-替代-defineProperty-API-？" class="headerlink" title="Vue3.0里为什么要用 Proxy API 替代 defineProperty API ？"></a>Vue3.0里为什么要用 Proxy API 替代 defineProperty API ？</h4><hr><p>proxy的性能本来比defindproerty好，proxy可以拦截属性的访问，赋值，删除等操作，不需要初始化的时候遍历所有属性。另外如果是多层嵌套的对象，只有访问某个属性的时候，才会递归处理下一级的属性。</p><p>object.defineproperty():</p><ul><li>检测不到对象属性的添加和删除</li><li>不能根据数组索引来修改值</li><li>需要遍历每个属性进行遍历监听，如果是嵌套对象的话，就需要深层监听，造成性能问题。</li></ul><p>proxy：</p><ul><li>可以直接监听整个对象</li><li>可以直接监听数组的变化</li><li>有多达13种拦截方法，不限于apply，has等等，是defindproerty不具备的</li><li>返回一个新的对象，只操作新的对象就能达到目的。</li></ul><br><h4 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h4><hr><blockquote><ul><li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty">https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty</a></li></ul></blockquote><blockquote><ul><li><a href="https://vue3js.cn/interview/vue3/proxy.html#%E4%B8%80%E3%80%81object-defineproperty">https://vue3js.cn/interview/vue3/proxy.html#%E4%B8%80%E3%80%81object-defineproperty</a></li></ul></blockquote>]]></content>
     
     
     <categories>
       
-      <category>vue</category>
+      <category>vue3</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>proxy,defindproerty</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>vue3.x设计目标及优化</title>
+    <link href="/2021/06/06/vue3-0%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%8F%8A%E4%BC%98%E5%8C%96/"/>
+    <url>/2021/06/06/vue3-0%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%8F%8A%E4%BC%98%E5%8C%96/</url>
+    
+    <content type="html"><![CDATA[<h4 id="vue3-0的设计目标是什么？做了那些优化？"><a href="#vue3-0的设计目标是什么？做了那些优化？" class="headerlink" title="vue3.0的设计目标是什么？做了那些优化？"></a>vue3.0的设计目标是什么？做了那些优化？</h4><hr>设计目标：<ul><li>打包体积更小： vue3移除一些不常用的API，将无用的模块“剪辑”掉，仅打包需要的，使打包体积更小了。</li><li>速度更快：   diff算法优化，静态提升。</li><li>更灵活的代码组织能力：    推出composition  API，大大增加了代码的逻辑组织能力和代码复用能力。</li></ul><p>优化方案：</p><ul><li>源码<ul><li>使用ts语法，源码的优化。</li></ul></li><li>性能<ul><li>体积，编译，数据劫持优化。</li></ul></li><li>语法 API<ul><li><p>组合式API，根据相关逻辑组织代码。</p><p><img src="/2021/06/06/vue3-0%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%8F%8A%E4%BC%98%E5%8C%96/tt.png"></p></li></ul></li></ul><br><h4 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献:"></a>参考文献:</h4><hr><blockquote><ul><li><a href="https://juejin.cn/post/6850418112878575629#heading-5">https://juejin.cn/post/6850418112878575629#heading-5</a></li></ul></blockquote><blockquote><ul><li><a href="https://vue3js.cn/docs/zh">https://vue3js.cn/docs/zh</a></li></ul></blockquote>]]></content>
+    
+    
+    <categories>
+      
+      <category>vue3</category>
       
     </categories>
     
@@ -63,7 +88,7 @@
     
     <categories>
       
-      <category>vue</category>
+      <category>vue2</category>
       
     </categories>
     
