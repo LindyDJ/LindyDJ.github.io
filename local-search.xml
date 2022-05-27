@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>vue3.x设计目标及优化</title>
+    <link href="/2014/06/06/vue3-0%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%8F%8A%E4%BC%98%E5%8C%96/"/>
+    <url>/2014/06/06/vue3-0%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%8F%8A%E4%BC%98%E5%8C%96/</url>
+    
+    <content type="html"><![CDATA[<h4 id="vue3-0的设计目标是什么？做了那些优化？"><a href="#vue3-0的设计目标是什么？做了那些优化？" class="headerlink" title="vue3.0的设计目标是什么？做了那些优化？"></a>vue3.0的设计目标是什么？做了那些优化？</h4><hr>设计目标：<ul><li>打包体积更小： vue3移除一些不常用的API，将无用的模块“剪辑”掉，仅打包需要的，使打包体积更小了。</li><li>速度更快：   diff算法优化，静态提升。</li><li>更灵活的代码组织能力：    推出composition  API，大大增加了代码的逻辑组织能力和代码复用能力。</li></ul><p>优化方案：</p><ul><li>源码<ul><li>使用ts语法，源码的优化。</li></ul></li><li>性能<ul><li>体积，编译，数据劫持优化。</li></ul></li><li>语法 API<ul><li><p>组合式API，根据相关逻辑组织代码。</p><p><img src="/2014/06/06/vue3-0%E7%9A%84%E8%AE%BE%E8%AE%A1%E5%8F%8A%E4%BC%98%E5%8C%96/tt.png"></p></li></ul></li></ul><br><p>参考文献:</p><hr>>- https://juejin.cn/post/6850418112878575629#heading-5<blockquote><ul><li><a href="https://vue3js.cn/docs/zh">https://vue3js.cn/docs/zh</a></li></ul></blockquote>]]></content>
+    
+    
+    <categories>
+      
+      <category>vue</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>设计</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>防抖与节流</title>
     <link href="/2014/06/05/%E9%98%B2%E6%8A%96%E4%B8%8E%E8%8A%82%E6%B5%81/"/>
     <url>/2014/06/05/%E9%98%B2%E6%8A%96%E4%B8%8E%E8%8A%82%E6%B5%81/</url>
