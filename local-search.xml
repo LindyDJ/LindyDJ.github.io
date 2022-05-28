@@ -131,6 +131,31 @@
   
   
   <entry>
+    <title>介绍TreeShaking</title>
+    <link href="/2019/04/08/%E4%BB%8B%E7%BB%8DTreeShaking/"/>
+    <url>/2019/04/08/%E4%BB%8B%E7%BB%8DTreeShaking/</url>
+    
+    <content type="html"><![CDATA[<h4 id="介绍一下tree-shaking"><a href="#介绍一下tree-shaking" class="headerlink" title="介绍一下tree-shaking"></a>介绍一下tree-shaking</h4><h5 id="作用："><a href="#作用：" class="headerlink" title="作用："></a><strong>作用：</strong></h5><p> 它表示在打包的时候会去除一些无用的代码 </p><h5 id="原理："><a href="#原理：" class="headerlink" title="原理："></a><strong>原理</strong>：</h5><ul><li><code>ES6</code>的模块引入是静态分析的，所以在编译时能正确判断到底加载了哪些模块</li><li>分析程序流，判断哪些变量未被使用、引用，进而删除此代码</li></ul><h5 id="特点："><a href="#特点：" class="headerlink" title="特点："></a><strong>特点：</strong></h5><ul><li>在生产模式下它是默认开启的，但是由于经过<code>babel</code>编译全部模块被封装成<code>IIFE</code>，它存在副作用无法被<code>tree-shaking</code>掉</li><li>可以在<code>package.json</code>中配置<code>sideEffects</code>来指定哪些文件是有副作用的。它有两种值，一个是布尔类型，如果是<code>false</code>则表示所有文件都没有副作用；如果是一个数组的话，数组里的文件路径表示改文件有副作用</li><li><code>rollup</code>和<code>webpack</code>中对<code>tree-shaking</code>的层度不同，例如对<code>babel</code>转译后的<code>class</code>，如果<code>babel</code>的转译是宽松模式下的话(也就是<code>loose</code>为<code>true</code>)，<code>webpack</code>依旧会认为它有副作用不会<code>tree-shaking</code>掉，而<code>rollup</code>会。这是因为<code>rollup</code>有程序流分析的功能，可以更好的判断代码是否真正会产生副作用。</li></ul><h5 id="原理"><a href="#原理" class="headerlink" title="原理"></a><strong>原理</strong></h5><ul><li><code>ES6 Module</code> 引入进行静态分析，故而编译的时候正确判断到底加载了那些模块</li><li>静态分析程序流，判断那些模块和变量未被使用或者引用，进而删除对应代码</li></ul><blockquote><p>依赖于<code>import/export</code> </p></blockquote><p> 通过导入所有的包后再进行条件获取。如下： </p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">import</span> foo <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;foo&quot;</span>;<br><span class="hljs-keyword">import</span> bar <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;bar&quot;</span>;<br><br><span class="hljs-keyword">if</span>(condition) &#123;<br>    <span class="hljs-comment">// foo.xxxx</span><br>&#125; <span class="hljs-keyword">else</span> &#123;<br>    <span class="hljs-comment">// bar.xxx</span><br>&#125;<br></code></pre></td></tr></table></figure><blockquote><p>ES6的import语法完美可以使用tree shaking，因为可以在代码不运行的情况下就能分析出不需要的代码 </p></blockquote><p> <strong>CommonJS的动态特性模块意味着tree shaking不适用</strong>。因为它是不可能确定哪些模块实际运行之前是需要的或者是不需要的。在ES6中，进入了完全静态的导入语法：import。这也意味着下面的导入是不可行的： </p><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// 不可行，ES6 的import是完全静态的</span><br><span class="hljs-keyword">if</span>(condition) &#123;<br>    myDynamicModule = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;foo&quot;</span>);<br>&#125; <span class="hljs-keyword">else</span> &#123;<br>    myDynamicModule = <span class="hljs-built_in">require</span>(<span class="hljs-string">&quot;bar&quot;</span>);<br>&#125;<br></code></pre></td></tr></table></figure>]]></content>
+    
+    
+    <categories>
+      
+      <category>webpack</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Three_Shaking</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>webpack层面如何做优化</title>
     <link href="/2019/04/06/webpack%E5%B1%82%E9%9D%A2%E5%A6%82%E4%BD%95%E5%81%9A%E4%BC%98%E5%8C%96/"/>
     <url>/2019/04/06/webpack%E5%B1%82%E9%9D%A2%E5%A6%82%E4%BD%95%E5%81%9A%E4%BC%98%E5%8C%96/</url>
