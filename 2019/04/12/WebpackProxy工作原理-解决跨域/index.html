@@ -16,18 +16,18 @@
   <meta name="author" content="温酒斩华雄">
   <meta name="keywords" content="">
   
-    <meta name="description" content="介绍一下 webpack 的构建流程核心概念 entry：入口配置。webpack从入口开始根据模块间依赖关系递归解析和处理所有资源文件。 output：出口配置。经打包后的文件写入的位置。 loader：模块转换器。纯文件转换。因为webpack默认只认识js，json文件。 plugin：扩展插件。插件可以扩展 Webpack 的功能。 module：模块。除了js范畴内的es module、">
+    <meta name="description" content="Webpack Proxy工作原理？为什么能解决跨域？1. 是什么webpack proxy，即webpack提供的代理服务 基本行为就是接收客户端发送的请求后转发给其他服务器 其目的是为了便于开发者在开发模式下解决跨域问题（浏览器安全策略限制） 想要实现代理首先需要一个中间服务器，webpack中提供服务器的工具为webpack-dev-server 2. webpack-dev-serverw">
 <meta property="og:type" content="article">
-<meta property="og:title" content="webpack构建流程">
-<meta property="og:url" content="http://example.com/2019/03/28/webpack%E6%9E%84%E5%BB%BA%E6%B5%81%E7%A8%8B/index.html">
+<meta property="og:title" content="WebpackProxy工作原理,解决跨域">
+<meta property="og:url" content="http://example.com/2019/04/12/WebpackProxy%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86-%E8%A7%A3%E5%86%B3%E8%B7%A8%E5%9F%9F/index.html">
 <meta property="og:site_name" content="zhaoShuoLin的博客">
-<meta property="og:description" content="介绍一下 webpack 的构建流程核心概念 entry：入口配置。webpack从入口开始根据模块间依赖关系递归解析和处理所有资源文件。 output：出口配置。经打包后的文件写入的位置。 loader：模块转换器。纯文件转换。因为webpack默认只认识js，json文件。 plugin：扩展插件。插件可以扩展 Webpack 的功能。 module：模块。除了js范畴内的es module、">
+<meta property="og:description" content="Webpack Proxy工作原理？为什么能解决跨域？1. 是什么webpack proxy，即webpack提供的代理服务 基本行为就是接收客户端发送的请求后转发给其他服务器 其目的是为了便于开发者在开发模式下解决跨域问题（浏览器安全策略限制） 想要实现代理首先需要一个中间服务器，webpack中提供服务器的工具为webpack-dev-server 2. webpack-dev-serverw">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/img/webpack.png">
-<meta property="article:published_time" content="2019-03-28T09:43:35.000Z">
-<meta property="article:modified_time" content="2019-03-28T09:43:35.000Z">
+<meta property="article:published_time" content="2019-04-12T07:32:12.000Z">
+<meta property="article:modified_time" content="2019-04-12T07:32:12.000Z">
 <meta property="article:author" content="温酒斩华雄">
-<meta property="article:tag" content="webpack">
+<meta property="article:tag" content="webpack_proxy原理，跨域">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="http://example.com/img/webpack.png">
   
@@ -35,7 +35,7 @@
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>webpack构建流程 - zhaoShuoLin的博客</title>
+  <title>WebpackProxy工作原理,解决跨域 - zhaoShuoLin的博客</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -198,7 +198,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="webpack构建流程"></span>
+            <span id="subtitle" data-typed-text="WebpackProxy工作原理,解决跨域"></span>
           
         </div>
 
@@ -214,8 +214,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2019-03-28 17:43" pubdate>
-          2019年3月28日 下午
+        <time datetime="2019-04-12 15:32" pubdate>
+          2019年4月12日 下午
         </time>
       </span>
     
@@ -226,7 +226,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          888 字
+          1.7k 字
         
       </span>
     
@@ -237,7 +237,7 @@
         
         
         
-          8 分钟
+          15 分钟
         
       </span>
     
@@ -283,46 +283,53 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">webpack构建流程</h1>
+            <h1 style="display: none">WebpackProxy工作原理,解决跨域</h1>
             
               <p class="note note-info">
                 
                   
-                    本文最后更新于：2019年3月28日 下午
+                    本文最后更新于：2019年4月12日 下午
                   
                 
               </p>
             
             <div class="markdown-body">
               
-              <h4 id="介绍一下-webpack-的构建流程"><a href="#介绍一下-webpack-的构建流程" class="headerlink" title="介绍一下 webpack 的构建流程"></a>介绍一下 webpack 的构建流程</h4><h5 id="核心概念"><a href="#核心概念" class="headerlink" title="核心概念"></a><strong>核心概念</strong></h5><ul>
-<li><code>entry</code>：入口配置。webpack从入口开始根据模块间依赖关系递归解析和处理所有资源文件。</li>
-<li><code>output</code>：出口配置。经打包后的文件写入的位置。</li>
-<li><code>loader</code>：模块转换器。纯文件转换。因为webpack默认只认识js，json文件。</li>
-<li><code>plugin</code>：扩展插件。插件可以扩展 Webpack 的功能。</li>
-<li><code>module</code>：模块。除了js范畴内的<code>es module、commonJs、AMD</code>等，<code>css @import、url(...)</code>、图片、字体等在webpack中都被视为模块。</li>
-</ul>
-<h5 id="打包流程"><a href="#打包流程" class="headerlink" title="打包流程"></a>打包流程</h5><ul>
-<li>初始化参数：从配置文件和 Shell 语句中读取并合并参数，得出最终的配置参数。</li>
-<li>开始编译：从上一步得到的参数初始化 <code>Compiler</code> 对象，加载所有配置的插件，执行对象的 <code>run</code> 方法开始执行编译。</li>
-<li>确定入口：根scope据配置中的 <code>entry</code> 找出所有的入口文件。</li>
-<li>编译模块：从入口文件出发，调用所有配置的 <code>loader</code> 对模块进行翻译，再找出该模块依赖的模块，这个步骤是递归执行的，直至所有入口依赖的模块文件都经过本步骤的处理。</li>
-<li>完成模块编译：经过第 4 步使用 loader 翻译完所有模块后，得到了每个模块被翻译后的最终内容以及它们之间的依赖关系。</li>
-<li>输出资源：根据入口和模块之间的依赖关系，组装成一个个包含多个模块的 <code>chunk</code>，再把每个 <code>chunk</code> 转换成一个单独的文件加入到输出列表，这一步是可以修改输出内容的最后机会。</li>
-<li>输出完成：在确定好输出内容后，根据配置确定输出的路径和文件名，把文件内容写入到文件系统。</li>
-</ul>
-<p><img src="/2019/03/28/webpack%E6%9E%84%E5%BB%BA%E6%B5%81%E7%A8%8B/tt.png" srcset="/img/loading.gif" lazyload></p>
-<br>
+              <h4 id="Webpack-Proxy工作原理？为什么能解决跨域？"><a href="#Webpack-Proxy工作原理？为什么能解决跨域？" class="headerlink" title="Webpack Proxy工作原理？为什么能解决跨域？"></a>Webpack Proxy工作原理？为什么能解决跨域？</h4><h5 id="1-是什么"><a href="#1-是什么" class="headerlink" title="1. 是什么"></a><strong>1. 是什么</strong></h5><p><code>webpack proxy</code>，即<code>webpack</code>提供的代理服务</p>
+<p>基本行为就是接收客户端发送的请求后转发给其他服务器</p>
+<p>其目的是为了便于开发者在开发模式下解决跨域问题（浏览器安全策略限制）</p>
+<p>想要实现代理首先需要一个中间服务器，<code>webpack</code>中提供服务器的工具为<code>webpack-dev-server</code></p>
+<h5 id="2-webpack-dev-server"><a href="#2-webpack-dev-server" class="headerlink" title="2. webpack-dev-server"></a><strong>2. webpack-dev-server</strong></h5><p><code>webpack-dev-server</code>是 <code>webpack</code> 官方推出的一款开发工具，将自动编译和自动刷新浏览器等一系列对开发友好的功能全部集成在了一起</p>
+<p>目的是为了提高开发者日常的开发效率，「只适用在开发阶段」</p>
+<p>关于配置方面，在<code>webpack</code>配置对象属性中通过<code>devServer</code>属性提供，如下：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// ./webpack.config.js</span><br><span class="hljs-keyword">const</span> path = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;path&#x27;</span>)<br><br><span class="hljs-variable language_">module</span>.<span class="hljs-property">exports</span> = &#123;<br>    <span class="hljs-comment">// ...</span><br>    <span class="hljs-attr">devServer</span>: &#123;<br>        <span class="hljs-attr">contentBase</span>: path.<span class="hljs-title function_">join</span>(__dirname, <span class="hljs-string">&#x27;dist&#x27;</span>),<br>        <span class="hljs-attr">compress</span>: <span class="hljs-literal">true</span>,<br>        <span class="hljs-attr">port</span>: <span class="hljs-number">9000</span>,<br>        <span class="hljs-attr">proxy</span>: &#123;<br>            <span class="hljs-string">&#x27;/api&#x27;</span>: &#123;<br>                <span class="hljs-attr">target</span>: <span class="hljs-string">&#x27;https://api.github.com&#x27;</span><br>            &#125;<br>        &#125;<br>        <span class="hljs-comment">// ...</span><br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
-
-
-<p>从配置文件中读取所需要的参数，初始化compiler对象，并且加载所有的插件，执行run方法开始编译。找到entry入口文件。调用loader对模板进行递归解析翻译。等确定每个模块的依赖关系后，将他们组装成一个个包含多个模块的chunk。确定好内容后，根据出口配置将打包后的文件写入到具体位置。</p>
-<h5 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h5><hr>
-
-<blockquote>
+<p><code>devServetr</code>里面<code>proxy</code>则是关于代理的配置，该属性为对象的形式，对象中每一个属性就是一个代理的规则匹配</p>
+<p>属性的名称是需要被代理的请求路径前缀，一般为了辨别都会设置前缀为<code>/api</code>，值为对应的代理匹配规则，对应如下：</p>
 <ul>
-<li><a target="_blank" rel="noopener" href="https://interview2.poetries.top/docs/simply.html#_10-%E7%A7%BB%E5%8A%A8%E7%AB%AF%E4%BC%98%E5%8C%96">https://interview2.poetries.top/docs/simply.html#_10-%E7%A7%BB%E5%8A%A8%E7%AB%AF%E4%BC%98%E5%8C%96</a></li>
+<li><code>target</code>：表示的是代理到的目标地址</li>
+<li><code>pathRewrite</code>：默认情况下，我们的 <code>/api-hy</code> 也会被写入到URL中，如果希望删除，可以使用<code>pathRewrite</code></li>
+<li><code>secure</code>：默认情况下不接收转发到<code>https</code>的服务器上，如果希望支持，可以设置为<code>false</code></li>
+<li><code>changeOrigin</code>：它表示是否更新代理后请求的 <code>headers</code> 中<code>host</code>地址</li>
 </ul>
+<p> <strong>2. 工作原理</strong> </p>
+<blockquote>
+<p><code>proxy</code>工作原理实质上是利用<code>http-proxy-middleware</code> 这个<code>http</code>代理中间件，实现请求转发给其他服务器 </p>
+</blockquote>
+<p>举个例子：</p>
+<p>在开发阶段，本地地址为<code>http://localhost:3000</code>，该浏览器发送一个前缀带有<code>/api</code>标识的请求到服务端获取数据，但响应这个请求的服务器只是将请求转发到另一台服务器中</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> express = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;express&#x27;</span>);<br><span class="hljs-keyword">const</span> proxy = <span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;http-proxy-middleware&#x27;</span>);<br><br><span class="hljs-keyword">const</span> app = <span class="hljs-title function_">express</span>();<br><br>app.<span class="hljs-title function_">use</span>(<span class="hljs-string">&#x27;/api&#x27;</span>, <span class="hljs-title function_">proxy</span>(&#123;<span class="hljs-attr">target</span>: <span class="hljs-string">&#x27;http://www.example.org&#x27;</span>, <span class="hljs-attr">changeOrigin</span>: <span class="hljs-literal">true</span>&#125;));<br>app.<span class="hljs-title function_">listen</span>(<span class="hljs-number">3000</span>);<br><br><span class="hljs-comment">// http://localhost:3000/api/foo/bar -&gt; http://www.example.org/api/foo/bar</span><br></code></pre></td></tr></table></figure>
+
+<h5 id="3-跨域"><a href="#3-跨域" class="headerlink" title="3. 跨域"></a><strong>3. 跨域</strong></h5><blockquote>
+<p>在开发阶段， <code>webpack-dev-server</code> 会启动一个本地开发服务器，所以我们的应用在开发阶段是独立运行在 <code>localhost</code>的一个端口上，而后端服务又是运行在另外一个地址上 </p>
+</blockquote>
+<p>所以在开发阶段中，由于浏览器同源策略的原因，当本地访问后端就会出现跨域请求的问题</p>
+<p>通过设置<code>webpack proxy</code>实现代理请求后，相当于浏览器与服务端中添加一个代理者</p>
+<p>当本地发送请求的时候，代理服务器响应该请求，并将请求转发到目标服务器，目标服务器响应数据后再将数据返回给代理服务器，最终再由代理服务器将数据响应给本地</p>
+<p><img src="/2019/04/12/WebpackProxy%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86-%E8%A7%A3%E5%86%B3%E8%B7%A8%E5%9F%9F/tt.png" srcset="/img/loading.gif" lazyload></p>
+<p> 在代理服务器传递数据给本地浏览器的过程中，两者同源，并不存在跨域行为，这时候浏览器就能正常接收数据 </p>
+<blockquote>
+<p>注意：<code>「服务器与服务器之间请求数据并不会存在跨域行为，跨域行为是浏览器安全策略限制」</code> </p>
 </blockquote>
 
               
@@ -356,7 +363,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/webpack/">#webpack</a>
+        <a href="/tags/webpack-proxy%E5%8E%9F%E7%90%86%EF%BC%8C%E8%B7%A8%E5%9F%9F/">#webpack_proxy原理，跨域</a>
       
     </div>
   
@@ -368,8 +375,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>webpack构建流程</div>
-      <div>http://example.com/2019/03/28/webpack构建流程/</div>
+      <div>WebpackProxy工作原理,解决跨域</div>
+      <div>http://example.com/2019/04/12/WebpackProxy工作原理-解决跨域/</div>
     </div>
     <div class="license-meta">
       
@@ -381,13 +388,13 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2019年3月28日</div>
+          <div>2019年4月12日</div>
         </div>
       
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2019年3月28日</div>
+          <div>2019年4月12日</div>
         </div>
       
       <div class="license-meta-item">
@@ -416,9 +423,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2019/03/29/%E4%BB%8B%E7%BB%8Dwebpack-Loader/" title="介绍webpack_Loader">
+                      <a href="/2020/02/19/Pandas%E7%BB%9F%E8%AE%A1%E5%88%86%E6%9E%90/" title="Pandas统计分析">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">介绍webpack_Loader</span>
+                        <span class="hidden-mobile">Pandas统计分析</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -426,8 +433,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2016/03/28/var-let-const%E7%9A%84%E5%8C%BA%E5%88%AB/" title="var,let,const的区别">
-                        <span class="hidden-mobile">var,let,const的区别</span>
+                      <a href="/2019/04/10/%E4%BB%8B%E7%BB%8Dbabel%E5%8E%9F%E7%90%86/" title="介绍babel原理">
+                        <span class="hidden-mobile">介绍babel原理</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
