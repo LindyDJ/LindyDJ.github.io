@@ -131,6 +131,31 @@
   
   
   <entry>
+    <title>介绍babel原理</title>
+    <link href="/2019/04/10/%E4%BB%8B%E7%BB%8Dbabel%E5%8E%9F%E7%90%86/"/>
+    <url>/2019/04/10/%E4%BB%8B%E7%BB%8Dbabel%E5%8E%9F%E7%90%86/</url>
+    
+    <content type="html"><![CDATA[<h4 id="介绍一下-webpack-scope-hosting"><a href="#介绍一下-webpack-scope-hosting" class="headerlink" title="介绍一下 webpack scope hosting"></a>介绍一下 webpack scope hosting</h4><p> 作用域提升，将分散的模块划分到同一个作用域中，避免了代码的重复引入，有效减少打包后的代码体积和运行时的内存损耗； </p><br><h4 id="介绍一下-babel原理"><a href="#介绍一下-babel原理" class="headerlink" title="介绍一下 babel原理"></a>介绍一下 babel原理</h4><blockquote><p><code>babel</code> 的编译过程分为三个阶段：<strong>parsing</strong>、<strong>transforming</strong>、<strong>generating</strong>，以 ES6 编译为 ES5 作为例子： </p></blockquote><ol><li><code>ES6</code> 代码输入；</li><li><code>babylon</code> 进行解析得到 AST；</li><li><code>plugin</code> 用 <code>babel-traverse</code> 对 <code>AST</code>树进行遍历编译，得到新的 <code>AST</code>树；</li><li>用 <code>babel-generator</code> 通过 <code>AST</code>树生成 <code>ES5</code> 代码。</li></ol>]]></content>
+    
+    
+    <categories>
+      
+      <category>webpack</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>babel</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>介绍TreeShaking</title>
     <link href="/2019/04/08/%E4%BB%8B%E7%BB%8DTreeShaking/"/>
     <url>/2019/04/08/%E4%BB%8B%E7%BB%8DTreeShaking/</url>
