@@ -4,25 +4,6 @@
   
   
   <entry>
-    <title>webpack构建流程</title>
-    <link href="/2022/05/28/webpack%E6%9E%84%E5%BB%BA%E6%B5%81%E7%A8%8B/"/>
-    <url>/2022/05/28/webpack%E6%9E%84%E5%BB%BA%E6%B5%81%E7%A8%8B/</url>
-    
-    <content type="html"><![CDATA[<h4 id="介绍一下-webpack-的构建流程"><a href="#介绍一下-webpack-的构建流程" class="headerlink" title="介绍一下 webpack 的构建流程"></a>介绍一下 webpack 的构建流程</h4><h5 id="核心概念"><a href="#核心概念" class="headerlink" title="核心概念"></a><strong>核心概念</strong></h5><ul><li><code>entry</code>：入口配置。webpack从入口开始根据模块间依赖关系递归解析和处理所有资源文件。</li><li><code>output</code>：出口配置。经打包后的文件写入的位置。</li><li><code>loader</code>：模块转换器。纯文件转换。因为webpack默认只认识js，json文件。</li><li><code>plugin</code>：扩展插件。插件可以扩展 Webpack 的功能。</li><li><code>module</code>：模块。除了js范畴内的<code>es module、commonJs、AMD</code>等，<code>css @import、url(...)</code>、图片、字体等在webpack中都被视为模块。</li></ul><h5 id="打包流程"><a href="#打包流程" class="headerlink" title="打包流程"></a>打包流程</h5><ul><li>初始化参数：从配置文件和 Shell 语句中读取并合并参数，得出最终的配置参数。</li><li>开始编译：从上一步得到的参数初始化 <code>Compiler</code> 对象，加载所有配置的插件，执行对象的 <code>run</code> 方法开始执行编译。</li><li>确定入口：根scope据配置中的 <code>entry</code> 找出所有的入口文件。</li><li>编译模块：从入口文件出发，调用所有配置的 <code>loader</code> 对模块进行翻译，再找出该模块依赖的模块，这个步骤是递归执行的，直至所有入口依赖的模块文件都经过本步骤的处理。</li><li>完成模块编译：经过第 4 步使用 loader 翻译完所有模块后，得到了每个模块被翻译后的最终内容以及它们之间的依赖关系。</li><li>输出资源：根据入口和模块之间的依赖关系，组装成一个个包含多个模块的 <code>chunk</code>，再把每个 <code>chunk</code> 转换成一个单独的文件加入到输出列表，这一步是可以修改输出内容的最后机会。</li><li>输出完成：在确定好输出内容后，根据配置确定输出的路径和文件名，把文件内容写入到文件系统。</li></ul><p><img src="/2022/05/28/webpack%E6%9E%84%E5%BB%BA%E6%B5%81%E7%A8%8B/tt.png"></p><br><p>从配置文件中读取所需要的参数，初始化compiler对象，并且加载所有的插件，执行run方法开始编译。找到entry入口文件。调用loader对模板进行递归解析翻译。等确定每个模块的依赖关系后，将他们组装成一个个包含多个模块的chunk。确定好内容后，根据出口配置将打包后的文件写入到具体位置。</p><p>参考文献</p><blockquote><ul><li><a href="https://interview2.poetries.top/docs/simply.html#_10-%E7%A7%BB%E5%8A%A8%E7%AB%AF%E4%BC%98%E5%8C%96">https://interview2.poetries.top/docs/simply.html#_10-%E7%A7%BB%E5%8A%A8%E7%AB%AF%E4%BC%98%E5%8C%96</a></li></ul></blockquote>]]></content>
-    
-    
-    <categories>
-      
-      <category>webpack</category>
-      
-    </categories>
-    
-    
-  </entry>
-  
-  
-  
-  <entry>
     <title>vue3和vue2 API的区别</title>
     <link href="/2021/06/09/vue3%E5%92%8Cvue2-API%E7%9A%84%E5%8C%BA%E5%88%AB/"/>
     <url>/2021/06/09/vue3%E5%92%8Cvue2-API%E7%9A%84%E5%8C%BA%E5%88%AB/</url>
@@ -142,6 +123,56 @@
     <tags>
       
       <tag>数据分析</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>介绍webpack_Loader</title>
+    <link href="/2019/03/29/%E4%BB%8B%E7%BB%8Dwebpack-Loader/"/>
+    <url>/2019/03/29/%E4%BB%8B%E7%BB%8Dwebpack-Loader/</url>
+    
+    <content type="html"><![CDATA[<h4 id="介绍webpack中的loader？"><a href="#介绍webpack中的loader？" class="headerlink" title="介绍webpack中的loader？"></a>介绍webpack中的loader？</h4><p>webpack默认情况下，只支持对js，json文件打包。像css，less，png图片啊这些类型文件，webpack需要采用相对应的loader（模块加载器）进行解析转换。</p><h5 id="loader配置（module-rules）："><a href="#loader配置（module-rules）：" class="headerlink" title="loader配置（module.rules）："></a>loader配置（module.rules）：</h5><ul><li>rules是一个数组的形式，因此我们可以配置多个loader。</li><li>每一个loader对应一个对象形式，属性test为匹配的规则，一般情况下为正则表达式。</li><li>属性use针对匹配到文件类型，调用对应的loader进行处理。</li></ul><br><h5 id="常见的loader："><a href="#常见的loader：" class="headerlink" title="常见的loader："></a>常见的loader：</h5><p>style-loader：将css添加到dom的内联样式标签style中。</p><p>css-loader： 允许css文件通过import和url,引用css文件对应的资源。</p><p>sass-loader / less-loader：css预处理器，提高了开发效率。</p><p>babel-loader： 用babel将es6/es7 代码转换成es5。</p><p>file-loader： 加载文件资源，如 字体/图片 等。</p><p>url-loader：对于图片格式的模块，可以选择性的把图片转成base64格式的字符串，并打包到js中，对小体积的图片比较合适，大图片不合适。</p><p><strong>编写原则:</strong></p><ul><li>单一原则: 每个 Loader 只做一件事；</li><li>链式调用: Webpack 会按顺序链式调用每个 Loader；</li><li>统一原则: 遵循 Webpack制定的设计规则和结构，输入与输出均为字符串，各个 Loader 完全独立，即插即用；</li></ul><h5 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h5><blockquote><ul><li><a href="https://interview2.poetries.top/docs/simply.html#_2-%E4%BB%8B%E7%BB%8D-loader">https://interview2.poetries.top/docs/simply.html#_2-%E4%BB%8B%E7%BB%8D-loader</a></li></ul></blockquote>]]></content>
+    
+    
+    <categories>
+      
+      <category>webpack</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>Loader</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>webpack构建流程</title>
+    <link href="/2019/03/28/webpack%E6%9E%84%E5%BB%BA%E6%B5%81%E7%A8%8B/"/>
+    <url>/2019/03/28/webpack%E6%9E%84%E5%BB%BA%E6%B5%81%E7%A8%8B/</url>
+    
+    <content type="html"><![CDATA[<h4 id="介绍一下-webpack-的构建流程"><a href="#介绍一下-webpack-的构建流程" class="headerlink" title="介绍一下 webpack 的构建流程"></a>介绍一下 webpack 的构建流程</h4><h5 id="核心概念"><a href="#核心概念" class="headerlink" title="核心概念"></a><strong>核心概念</strong></h5><ul><li><code>entry</code>：入口配置。webpack从入口开始根据模块间依赖关系递归解析和处理所有资源文件。</li><li><code>output</code>：出口配置。经打包后的文件写入的位置。</li><li><code>loader</code>：模块转换器。纯文件转换。因为webpack默认只认识js，json文件。</li><li><code>plugin</code>：扩展插件。插件可以扩展 Webpack 的功能。</li><li><code>module</code>：模块。除了js范畴内的<code>es module、commonJs、AMD</code>等，<code>css @import、url(...)</code>、图片、字体等在webpack中都被视为模块。</li></ul><h5 id="打包流程"><a href="#打包流程" class="headerlink" title="打包流程"></a>打包流程</h5><ul><li>初始化参数：从配置文件和 Shell 语句中读取并合并参数，得出最终的配置参数。</li><li>开始编译：从上一步得到的参数初始化 <code>Compiler</code> 对象，加载所有配置的插件，执行对象的 <code>run</code> 方法开始执行编译。</li><li>确定入口：根scope据配置中的 <code>entry</code> 找出所有的入口文件。</li><li>编译模块：从入口文件出发，调用所有配置的 <code>loader</code> 对模块进行翻译，再找出该模块依赖的模块，这个步骤是递归执行的，直至所有入口依赖的模块文件都经过本步骤的处理。</li><li>完成模块编译：经过第 4 步使用 loader 翻译完所有模块后，得到了每个模块被翻译后的最终内容以及它们之间的依赖关系。</li><li>输出资源：根据入口和模块之间的依赖关系，组装成一个个包含多个模块的 <code>chunk</code>，再把每个 <code>chunk</code> 转换成一个单独的文件加入到输出列表，这一步是可以修改输出内容的最后机会。</li><li>输出完成：在确定好输出内容后，根据配置确定输出的路径和文件名，把文件内容写入到文件系统。</li></ul><p><img src="/2019/03/28/webpack%E6%9E%84%E5%BB%BA%E6%B5%81%E7%A8%8B/tt.png"></p><br><p>从配置文件中读取所需要的参数，初始化compiler对象，并且加载所有的插件，执行run方法开始编译。找到entry入口文件。调用loader对模板进行递归解析翻译。等确定每个模块的依赖关系后，将他们组装成一个个包含多个模块的chunk。确定好内容后，根据出口配置将打包后的文件写入到具体位置。</p><p>参考文献</p><blockquote><ul><li><a href="https://interview2.poetries.top/docs/simply.html#_10-%E7%A7%BB%E5%8A%A8%E7%AB%AF%E4%BC%98%E5%8C%96">https://interview2.poetries.top/docs/simply.html#_10-%E7%A7%BB%E5%8A%A8%E7%AB%AF%E4%BC%98%E5%8C%96</a></li></ul></blockquote>]]></content>
+    
+    
+    <categories>
+      
+      <category>webpack</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>webpack</tag>
       
     </tags>
     
