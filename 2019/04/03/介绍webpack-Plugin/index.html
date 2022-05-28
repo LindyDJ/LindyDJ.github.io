@@ -16,18 +16,18 @@
   <meta name="author" content="温酒斩华雄">
   <meta name="keywords" content="">
   
-    <meta name="description" content="介绍一下 webpack 的构建流程核心概念 entry：入口配置。webpack从入口开始根据模块间依赖关系递归解析和处理所有资源文件。 output：出口配置。经打包后的文件写入的位置。 loader：模块转换器。纯文件转换。因为webpack默认只认识js，json文件。 plugin：扩展插件。插件可以扩展 Webpack 的功能。 module：模块。除了js范畴内的es module、">
+    <meta name="description" content="介绍webpack中的plugin？plugin是插件，对于webpack本身的扩展，是一个扩展器。 配置方式：写在plugins属性中传入new实例对象，他是个数组，可以写多个插件。  UglifyJsPlugin: 压缩、混淆代码； CommonsChunkPlugin: 代码分割； ProvidePlugin: 自动加载模块； html-webpack-plugin: 加载 html 文件，">
 <meta property="og:type" content="article">
-<meta property="og:title" content="webpack构建流程">
-<meta property="og:url" content="http://example.com/2019/03/28/webpack%E6%9E%84%E5%BB%BA%E6%B5%81%E7%A8%8B/index.html">
+<meta property="og:title" content="介绍webpack_Plugin">
+<meta property="og:url" content="http://example.com/2019/04/03/%E4%BB%8B%E7%BB%8Dwebpack-Plugin/index.html">
 <meta property="og:site_name" content="zhaoShuoLin的博客">
-<meta property="og:description" content="介绍一下 webpack 的构建流程核心概念 entry：入口配置。webpack从入口开始根据模块间依赖关系递归解析和处理所有资源文件。 output：出口配置。经打包后的文件写入的位置。 loader：模块转换器。纯文件转换。因为webpack默认只认识js，json文件。 plugin：扩展插件。插件可以扩展 Webpack 的功能。 module：模块。除了js范畴内的es module、">
+<meta property="og:description" content="介绍webpack中的plugin？plugin是插件，对于webpack本身的扩展，是一个扩展器。 配置方式：写在plugins属性中传入new实例对象，他是个数组，可以写多个插件。  UglifyJsPlugin: 压缩、混淆代码； CommonsChunkPlugin: 代码分割； ProvidePlugin: 自动加载模块； html-webpack-plugin: 加载 html 文件，">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/img/webpack.png">
-<meta property="article:published_time" content="2019-03-28T09:43:35.000Z">
-<meta property="article:modified_time" content="2019-03-28T09:43:35.000Z">
+<meta property="article:published_time" content="2019-04-03T10:44:39.000Z">
+<meta property="article:modified_time" content="2019-04-03T10:44:39.000Z">
 <meta property="article:author" content="温酒斩华雄">
-<meta property="article:tag" content="webpack">
+<meta property="article:tag" content="Plugin">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:image" content="http://example.com/img/webpack.png">
   
@@ -35,7 +35,7 @@
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>webpack构建流程 - zhaoShuoLin的博客</title>
+  <title>介绍webpack_Plugin - zhaoShuoLin的博客</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -198,7 +198,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="webpack构建流程"></span>
+            <span id="subtitle" data-typed-text="介绍webpack_Plugin"></span>
           
         </div>
 
@@ -214,8 +214,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2019-03-28 17:43" pubdate>
-          2019年3月28日 下午
+        <time datetime="2019-04-03 18:44" pubdate>
+          2019年4月3日 晚上
         </time>
       </span>
     
@@ -226,7 +226,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          888 字
+          1.3k 字
         
       </span>
     
@@ -237,7 +237,7 @@
         
         
         
-          8 分钟
+          11 分钟
         
       </span>
     
@@ -283,45 +283,75 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">webpack构建流程</h1>
+            <h1 style="display: none">介绍webpack_Plugin</h1>
             
               <p class="note note-info">
                 
                   
-                    本文最后更新于：2019年3月28日 下午
+                    本文最后更新于：2019年4月3日 晚上
                   
                 
               </p>
             
             <div class="markdown-body">
               
-              <h4 id="介绍一下-webpack-的构建流程"><a href="#介绍一下-webpack-的构建流程" class="headerlink" title="介绍一下 webpack 的构建流程"></a>介绍一下 webpack 的构建流程</h4><h5 id="核心概念"><a href="#核心概念" class="headerlink" title="核心概念"></a><strong>核心概念</strong></h5><ul>
-<li><code>entry</code>：入口配置。webpack从入口开始根据模块间依赖关系递归解析和处理所有资源文件。</li>
-<li><code>output</code>：出口配置。经打包后的文件写入的位置。</li>
-<li><code>loader</code>：模块转换器。纯文件转换。因为webpack默认只认识js，json文件。</li>
-<li><code>plugin</code>：扩展插件。插件可以扩展 Webpack 的功能。</li>
-<li><code>module</code>：模块。除了js范畴内的<code>es module、commonJs、AMD</code>等，<code>css @import、url(...)</code>、图片、字体等在webpack中都被视为模块。</li>
+              <h4 id="介绍webpack中的plugin？"><a href="#介绍webpack中的plugin？" class="headerlink" title="介绍webpack中的plugin？"></a>介绍webpack中的plugin？</h4><p>plugin是插件，对于webpack本身的扩展，是一个扩展器。</p>
+<p>配置方式：写在plugins属性中传入new实例对象，他是个数组，可以写多个插件。</p>
+<ul>
+<li>UglifyJsPlugin: 压缩、混淆代码；</li>
+<li>CommonsChunkPlugin: 代码分割；</li>
+<li>ProvidePlugin: 自动加载模块；</li>
+<li>html-webpack-plugin: 加载 html 文件，并引入 css / js 文件；</li>
+<li>extract-text-webpack-plugin / mini-css-extract-plugin: 抽离样式，生成 css 文件； DefinePlugin: 定义全局变量；</li>
+<li>optimize-css-assets-webpack-plugin: CSS 代码去重；</li>
+<li>webpack-bundle-analyzer: 代码分析；</li>
+<li>compression-webpack-plugin: 使用 gzip 压缩 js 和 css；</li>
+<li>happypack: 使用多进程，加速代码构建；</li>
+<li>EnvironmentPlugin: 定义环境变量；</li>
 </ul>
-<h5 id="打包流程"><a href="#打包流程" class="headerlink" title="打包流程"></a>打包流程</h5><ul>
-<li>初始化参数：从配置文件和 Shell 语句中读取并合并参数，得出最终的配置参数。</li>
-<li>开始编译：从上一步得到的参数初始化 <code>Compiler</code> 对象，加载所有配置的插件，执行对象的 <code>run</code> 方法开始执行编译。</li>
-<li>确定入口：根scope据配置中的 <code>entry</code> 找出所有的入口文件。</li>
-<li>编译模块：从入口文件出发，调用所有配置的 <code>loader</code> 对模块进行翻译，再找出该模块依赖的模块，这个步骤是递归执行的，直至所有入口依赖的模块文件都经过本步骤的处理。</li>
-<li>完成模块编译：经过第 4 步使用 loader 翻译完所有模块后，得到了每个模块被翻译后的最终内容以及它们之间的依赖关系。</li>
-<li>输出资源：根据入口和模块之间的依赖关系，组装成一个个包含多个模块的 <code>chunk</code>，再把每个 <code>chunk</code> 转换成一个单独的文件加入到输出列表，这一步是可以修改输出内容的最后机会。</li>
-<li>输出完成：在确定好输出内容后，根据配置确定输出的路径和文件名，把文件内容写入到文件系统。</li>
+<h5 id="下面介绍几个常用的插件用法："><a href="#下面介绍几个常用的插件用法：" class="headerlink" title="下面介绍几个常用的插件用法："></a>下面介绍几个常用的插件用法：</h5><ul>
+<li>HtmlWebpackPlugin<ul>
+<li> ⾃动生成⼀个 <code>html</code> ⽂文件，并把打包生成的<code>js</code> 模块引⼊到该 <code>html</code> 中 </li>
 </ul>
-<p><img src="/2019/03/28/webpack%E6%9E%84%E5%BB%BA%E6%B5%81%E7%A8%8B/tt.png" srcset="/img/loading.gif" lazyload></p>
-<br>
+</li>
+<li>clean-webpack-plugin<ul>
+<li> 删除（清理）构建目录 </li>
+</ul>
+</li>
+<li>mini-css-extract-plugin<ul>
+<li>提取css到一个单独文件中</li>
+</ul>
+</li>
+<li>copy-webpack-plugin<ul>
+<li>复制文件或目录到执行区域。</li>
+</ul>
+</li>
+</ul>
+<h5 id="loader和plugin的区别？"><a href="#loader和plugin的区别？" class="headerlink" title="loader和plugin的区别？"></a>loader和plugin的区别？</h5><ul>
+<li>对于loader，它是一个转换器，将A文件进行编译形成B文件，这里操作的是文件，比如将A.scss转换为A.css，单纯的文件转换过程。</li>
+<li>plugin是一个插件，在webpack中相当于一个扩展器。是对现有webpack功能的一个扩展。针对于loader结束后，在webpack打包过程中并不是直接进行操作的，而是遵循事件机制工作的。会监听webpack打包过程中的某些节点，执行广泛的任务。</li>
+</ul>
+<h5 id="一个最简单的-plugin-是这样的"><a href="#一个最简单的-plugin-是这样的" class="headerlink" title="一个最简单的 plugin 是这样的:"></a><strong>一个最简单的 plugin 是这样的:</strong></h5><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">class</span> <span class="hljs-title class_">Plugin</span>&#123;<br>  	<span class="hljs-comment">// 注册插件时，会调用 apply 方法</span><br>  	<span class="hljs-comment">// apply 方法接收 compiler 对象</span><br>  	<span class="hljs-comment">// 通过 compiler 上提供的 Api，可以对事件进行监听，执行相应的操作</span><br>  	<span class="hljs-title function_">apply</span>(<span class="hljs-params">compiler</span>)&#123;<br>  		<span class="hljs-comment">// compilation 是监听每次编译循环</span><br>  		<span class="hljs-comment">// 每次文件变化，都会生成新的 compilation 对象并触发该事件</span><br>    	compiler.<span class="hljs-title function_">plugin</span>(<span class="hljs-string">&#x27;compilation&#x27;</span>,<span class="hljs-keyword">function</span>(<span class="hljs-params">compilation</span>) &#123;&#125;)<br>  	&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 
 
-<p>从配置文件中读取所需要的参数，初始化compiler对象，并且加载所有的插件，执行run方法开始编译。找到entry入口文件。调用loader对模板进行递归解析翻译。等确定每个模块的依赖关系后，将他们组装成一个个包含多个模块的chunk。确定好内容后，根据出口配置将打包后的文件写入到具体位置。</p>
+<p> <strong>注册插件:</strong> </p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">// webpack.config.js</span><br><span class="hljs-variable language_">module</span>.<span class="hljs-property">export</span> = &#123;<br>	<span class="hljs-attr">plugins</span>:[<br>		<span class="hljs-keyword">new</span> <span class="hljs-title class_">Plugin</span>(options),<br>	]<br>&#125;<br></code></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+
+
 <h5 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h5><hr>
+
 
 <blockquote>
 <ul>
-<li><a target="_blank" rel="noopener" href="https://interview2.poetries.top/docs/simply.html#_10-%E7%A7%BB%E5%8A%A8%E7%AB%AF%E4%BC%98%E5%8C%96">https://interview2.poetries.top/docs/simply.html#_10-%E7%A7%BB%E5%8A%A8%E7%AB%AF%E4%BC%98%E5%8C%96</a></li>
+<li><a target="_blank" rel="noopener" href="https://interview2.poetries.top/docs/simply.html#_3-%E4%BB%8B%E7%BB%8D-plugin">https://interview2.poetries.top/docs/simply.html#_3-%E4%BB%8B%E7%BB%8D-plugin</a></li>
 </ul>
 </blockquote>
 
@@ -356,7 +386,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/webpack/">#webpack</a>
+        <a href="/tags/Plugin/">#Plugin</a>
       
     </div>
   
@@ -368,8 +398,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>webpack构建流程</div>
-      <div>http://example.com/2019/03/28/webpack构建流程/</div>
+      <div>介绍webpack_Plugin</div>
+      <div>http://example.com/2019/04/03/介绍webpack-Plugin/</div>
     </div>
     <div class="license-meta">
       
@@ -381,13 +411,13 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2019年3月28日</div>
+          <div>2019年4月3日</div>
         </div>
       
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2019年3月28日</div>
+          <div>2019年4月3日</div>
         </div>
       
       <div class="license-meta-item">
@@ -416,9 +446,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2019/03/29/%E4%BB%8B%E7%BB%8Dwebpack-Loader/" title="介绍webpack_Loader">
+                      <a href="/2020/02/19/Pandas%E7%BB%9F%E8%AE%A1%E5%88%86%E6%9E%90/" title="Pandas统计分析">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">介绍webpack_Loader</span>
+                        <span class="hidden-mobile">Pandas统计分析</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -426,8 +456,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2016/03/28/var-let-const%E7%9A%84%E5%8C%BA%E5%88%AB/" title="var,let,const的区别">
-                        <span class="hidden-mobile">var,let,const的区别</span>
+                      <a href="/2019/03/29/%E4%BB%8B%E7%BB%8Dwebpack-Loader/" title="介绍webpack_Loader">
+                        <span class="hidden-mobile">介绍webpack_Loader</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
