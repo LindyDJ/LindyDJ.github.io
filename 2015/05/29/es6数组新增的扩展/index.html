@@ -226,7 +226,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          2.6k 字
+          2.7k 字
         
       </span>
     
@@ -237,7 +237,7 @@
         
         
         
-          22 分钟
+          23 分钟
         
       </span>
     
@@ -299,11 +299,12 @@
 <li><p>主要用于函数调用，将一个数组变为参数序列。</p>
 <figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">function</span> <span class="hljs-title function_">push</span>(<span class="hljs-params">array, ...items</span>) &#123;<br>  array.<span class="hljs-title function_">push</span>(...items);<br>&#125;<br><br><span class="hljs-keyword">function</span> <span class="hljs-title function_">add</span>(<span class="hljs-params">x, y</span>) &#123;<br>  <span class="hljs-keyword">return</span> x + y;<br>&#125;<br><br><span class="hljs-keyword">const</span> numbers = [<span class="hljs-number">4</span>, <span class="hljs-number">38</span>];<br><span class="hljs-title function_">add</span>(...numbers) <span class="hljs-comment">// 42</span><br></code></pre></td></tr></table></figure></li>
 <li><p>能够更简单的实现数组复制。也可进行数组合并。可以将字符串转化为真正的数组。</p>
-</li>
-<li><p>```js<br>//数组复制<br>const a1 = [1, 2];<br>const […a2] = a1;<br>// [1,2]</p>
-<p>//数组合并<br>const arr1 = [‘a’, ‘b’];<br>const arr2 = [‘c’];<br>const arr3 = [‘d’, ‘e’];<br>[…arr1, …arr2, …arr3]<br>// [ ‘a’, ‘b’, ‘c’, ‘d’, ‘e’ ]</p>
-<p>[…’hello’]<br>// [ “h”, “e”, “l”, “l”, “o” ]</p>
-<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs actionscript"><br>注意：<br><br>- 如果将扩展运算符用于数组赋值，只能放在参数的最后一位，否则报错。<br><br>  ```js<br>  <span class="hljs-keyword">const</span> [...butLast, last] = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>];<br>  <span class="hljs-comment">// 报错</span><br>  <br>  <span class="hljs-keyword">const</span> [first, ...middle, last] = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>];<br>  <span class="hljs-comment">// 报错</span><br></code></pre></td></tr></table></figure></li>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-comment">//数组复制</span><br><span class="hljs-keyword">const</span> a1 = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>];<br><span class="hljs-keyword">const</span> [...a2] = a1;<br><span class="hljs-comment">// [1,2]</span><br><br><span class="hljs-comment">//数组合并</span><br><span class="hljs-keyword">const</span> arr1 = [<span class="hljs-string">&#x27;a&#x27;</span>, <span class="hljs-string">&#x27;b&#x27;</span>];<br><span class="hljs-keyword">const</span> arr2 = [<span class="hljs-string">&#x27;c&#x27;</span>];<br><span class="hljs-keyword">const</span> arr3 = [<span class="hljs-string">&#x27;d&#x27;</span>, <span class="hljs-string">&#x27;e&#x27;</span>];<br>[...arr1, ...arr2, ...arr3]<br><span class="hljs-comment">// [ &#x27;a&#x27;, &#x27;b&#x27;, &#x27;c&#x27;, &#x27;d&#x27;, &#x27;e&#x27; ]</span><br><br><br>[...<span class="hljs-string">&#x27;hello&#x27;</span>]<br><span class="hljs-comment">// [ &quot;h&quot;, &quot;e&quot;, &quot;l&quot;, &quot;l&quot;, &quot;o&quot; ]	</span><br></code></pre></td></tr></table></figure></li>
+</ul>
+<p>注意：</p>
+<ul>
+<li><p>如果将扩展运算符用于数组赋值，只能放在参数的最后一位，否则报错。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-keyword">const</span> [...butLast, last] = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>];<br><span class="hljs-comment">// 报错</span><br><br><span class="hljs-keyword">const</span> [first, ...middle, last] = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>];<br><span class="hljs-comment">// 报错</span><br></code></pre></td></tr></table></figure></li>
 </ul>
 <h5 id="构造函数新增的方法"><a href="#构造函数新增的方法" class="headerlink" title="构造函数新增的方法"></a>构造函数新增的方法</h5><ul>
 <li><p>Array.from()</p>
@@ -383,8 +384,6 @@
 </ul>
 <h5 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h5><hr>
 
-
-
 <blockquote>
 <ul>
 <li><a target="_blank" rel="noopener" href="https://es6.ruanyifeng.com/#docs/array">https://es6.ruanyifeng.com/#docs/array</a></li>
@@ -407,7 +406,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/webpack/" class="category-chain-item">webpack</a>
+  <a href="/categories/javascript/" class="category-chain-item">javascript</a>
   
   
 
@@ -482,9 +481,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2016/03/28/var-let-const%E7%9A%84%E5%8C%BA%E5%88%AB/" title="var,let,const的区别">
+                      <a href="/2015/05/30/es6%E5%AF%B9%E8%B1%A1%E6%96%B0%E5%A2%9E%E7%9A%84%E6%89%A9%E5%B1%95/" title="es6对象新增的扩展">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">var,let,const的区别</span>
+                        <span class="hidden-mobile">es6对象新增的扩展</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
