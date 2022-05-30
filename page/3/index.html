@@ -221,6 +221,73 @@
     
     
       <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2019/04/04/webpack%E7%83%AD%E6%9B%B4%E6%96%B0%E5%8E%9F%E7%90%86/" target="_self">
+          <img src="/img/webpack.png" srcset="/img/loading.gif" lazyload alt="webpack热更新原理">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2019/04/04/webpack%E7%83%AD%E6%9B%B4%E6%96%B0%E5%8E%9F%E7%90%86/" target="_self">
+          webpack热更新原理
+        </a>
+      </h1>
+
+      <a class="index-excerpt" href="/2019/04/04/webpack%E7%83%AD%E6%9B%B4%E6%96%B0%E5%8E%9F%E7%90%86/" target="_self">
+        <div>
+          
+          HMR 的基本流程图  当修改了一个或多个文件； 文件系统接收更改并通知 webpack； webpack 重新编译构建一个或多个模块，并通知 HMR 服务器进行更新； HMR Server 使用 webSocket 通知 HMR runtime 需要更新，HMR 运行时通过 HTTP 请求更新 jsonp HMR 运行时替换更新中的模块，如果确定这些模块无法更新，则触发整个页面刷新  参考文献
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2019-04-04 10:21" pubdate>
+              2019-04-04
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/webpack/" class="category-chain-item">webpack</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E7%83%AD%E6%9B%B4%E6%96%B0/">#热更新</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
         <a href="/2019/04/03/%E4%BB%8B%E7%BB%8Dwebpack-Plugin/" target="_self">
           <img src="/img/webpack.png" srcset="/img/loading.gif" lazyload alt="介绍webpack_Plugin">
         </a>
@@ -813,73 +880,6 @@
             <i class="iconfont icon-tags"></i>
             
               <a href="/tags/%E9%98%B2%E6%8A%96-%E8%8A%82%E6%B5%81/">#防抖-节流</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2014/05/27/vue%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8E%9F%E7%90%86/" target="_self">
-          <img src="/img/vuejs.png" srcset="/img/loading.gif" lazyload alt="vue响应式原理">
-        </a>
-      </div>
-    
-    <article class="col-12 col-md-8 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2014/05/27/vue%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8E%9F%E7%90%86/" target="_self">
-          vue响应式原理
-        </a>
-      </h1>
-
-      <a class="index-excerpt" href="/2014/05/27/vue%E5%93%8D%E5%BA%94%E5%BC%8F%E5%8E%9F%E7%90%86/" target="_self">
-        <div>
-          
-          Vue2.x响应式原理： vue创建一个实例时，首先会遍历data属性。采用数据劫持结合发布者订阅者的方式。使用es5的object.defindeproperty 方法将他们转化成getter，setter，并在内部追踪相关依赖。在属性被访问和修改时通知变化。也就是observer使用object.defindproerty来监听数据的读写。读取数据时，调用get方法通知dep去收集订阅者
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2014-05-27 20:57" pubdate>
-              2014-05-27
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/vue2/" class="category-chain-item">vue2</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/vue%E5%8E%9F%E7%90%86/">#vue原理</a>
             
           </div>
         
