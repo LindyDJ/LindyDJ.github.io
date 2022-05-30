@@ -1,0 +1,1060 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=light>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.ico">
+  <link rel="icon" href="/img/fluid.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="温酒斩华雄">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="第七章 第三方可视化数据分析图表PyechartsEcharts是一个由百度开源的数据可视化工具，而Python是一门适用于数据处理和数据分析的语言，为了适应Python的需求，Pyecharts诞生了。本章以Pyecharts 1.7.1版本为主，介绍Pyecharts的安装、链式调用、Pyecharts图表的组成，以及如何绘制柱状图、折线图、面积图、饼形图、箱形图、散点图、词云图、热力图、水球">
+<meta property="og:type" content="article">
+<meta property="og:title" content="数据可视化分析图表Pyechars">
+<meta property="og:url" content="http://example.com/2020/02/21/shujufenxi/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96%E5%88%86%E6%9E%90%E5%9B%BE%E8%A1%A8Pyechars/index.html">
+<meta property="og:site_name" content="zhaoShuoLin的博客">
+<meta property="og:description" content="第七章 第三方可视化数据分析图表PyechartsEcharts是一个由百度开源的数据可视化工具，而Python是一门适用于数据处理和数据分析的语言，为了适应Python的需求，Pyecharts诞生了。本章以Pyecharts 1.7.1版本为主，介绍Pyecharts的安装、链式调用、Pyecharts图表的组成，以及如何绘制柱状图、折线图、面积图、饼形图、箱形图、散点图、词云图、热力图、水球">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/img/pyechars.png">
+<meta property="article:published_time" content="2020-02-20T17:32:16.000Z">
+<meta property="article:modified_time" content="2020-02-20T17:32:16.000Z">
+<meta property="article:author" content="温酒斩华雄">
+<meta property="article:tag" content="pyechars">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/img/pyechars.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>数据可视化分析图表Pyechars - zhaoShuoLin的博客</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.0","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+
+  
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Lin&#39;s blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="数据可视化分析图表Pyechars"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        温酒斩华雄
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2020-02-21 01:32" pubdate>
+          2020年2月21日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          16k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          130 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">数据可视化分析图表Pyechars</h1>
+            
+              <p class="note note-info">
+                
+                  
+                    本文最后更新于：2020年2月21日 凌晨
+                  
+                
+              </p>
+            
+            <div class="markdown-body">
+              
+              <h1 id="第七章-第三方可视化数据分析图表Pyecharts"><a href="#第七章-第三方可视化数据分析图表Pyecharts" class="headerlink" title="第七章 第三方可视化数据分析图表Pyecharts"></a>第七章 第三方可视化数据分析图表Pyecharts</h1><p>Echarts是一个由百度开源的数据可视化工具，而Python是一门适用于数据处理和数据分析的语言，为了适应Python的需求，Pyecharts诞生了。<br>本章以Pyecharts 1.7.1版本为主，介绍Pyecharts的安装、链式调用、Pyecharts图表的组成，以及如何绘制柱状图、折线图、面积图、饼形图、箱形图、散点图、词云图、热力图、水球图和日历图。此外，本章还通过综合应用介绍南丁格尔玫瑰图、双y轴可视化数据分析图表的实现，以及饼形图与环形图组合图表的实现。接下来，就让我们开启Pyecharts的旅程。</p>
+<h1 id="7-1-Pyecharts概述"><a href="#7-1-Pyecharts概述" class="headerlink" title="7.1　Pyecharts概述"></a>7.1　Pyecharts概述</h1><h2 id="7-1-1-Pyecharts简介"><a href="#7-1-1-Pyecharts简介" class="headerlink" title="7.1.1　Pyecharts简介"></a>7.1.1　Pyecharts简介</h2><p>Pyecharts是一个用于生成Echarts图表的类库。Echarts是百度开源的一个数据可视化JS库。用Echarts生成的图可视化效果非常好，而Pyecharts则是专门为了与Python衔接，方便在Python中直接使用的可视化数据分析图表。使用Pyecharts可以生成独立的网页格式的图表，还可以在flask、django中直接使用，非常方便。<br>Pyecharts的图表类型非常多且效果非常漂亮，例如图7.1、图7.2和图7.3所示的线性闪烁图、仪表盘图和水球图。<br>Pyecharts的图表类型主要包括Bar（柱状图／条形图）、Boxplot（箱形图）、Funnel（漏斗图）、Gauge（仪表盘）、HeatMap（热力图）、Line（折线／面积图）、Line3D（3D折线图）、Liquid（水球图）、Map（地图）、Parallel（平行坐标系）、Pie（饼图）、Polar（极坐标系）、Radar（雷达图）、Scatter（散点图）和WordCloud（词云图）等。</p>
+<p><img src="/2020/02/21/shujufenxi/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96%E5%88%86%E6%9E%90%E5%9B%BE%E8%A1%A8Pyechars/image-20211025093507338.png" srcset="/img/loading.gif" lazyload alt="image-20211025093507338"></p>
+<p>​                                                                              图7.1　线性闪烁图</p>
+<p><img src="/2020/02/21/shujufenxi/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96%E5%88%86%E6%9E%90%E5%9B%BE%E8%A1%A8Pyechars/image-20211025093610269.png" srcset="/img/loading.gif" lazyload alt="image-20211025093610269"></p>
+<p>​                                                                                           图7.2　仪表盘图</p>
+<p><img src="/2020/02/21/shujufenxi/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96%E5%88%86%E6%9E%90%E5%9B%BE%E8%A1%A8Pyechars/image-20211025093631679.png" srcset="/img/loading.gif" lazyload alt="image-20211025093631679"></p>
+<p>​                                                                                                       图7.3　水球图</p>
+<h2 id="7-1-2-安装Pyecharts"><a href="#7-1-2-安装Pyecharts" class="headerlink" title="7.1.2　安装Pyecharts"></a>7.1.2　安装Pyecharts</h2><p>在anaconda命令提示符窗口中安装Pyecharts库。在系统搜索框中输入anaconda prompt，单击Anaconda Prompt打开Anaconda Prompt命令提示符窗口，使用pip工具安装，命令如下：</p>
+<p>pip install pyecharts==1.7.1<br>安装成功后，将提示安装成功的字样，如“Successfully installed pyecharts-1.7.1”。说明<br>由于Pyecharts各个版本的相关代码有一些区别，因此这里建议安装与笔者相同的版本，以免造成不必要的麻烦。那么，对于已经安装完成的Pyecharts，可以使用如下方法查看Pyecharts的版本，代码如下：</p>
+<p>import pyecharts<br>print(pyecharts.<strong>version</strong>)<br>运行程序，控制台输出结果如下：</p>
+<p>1.7.1</p>
+<p>如果安装版本与笔者不同，建议卸载重新安装Pyecharts 1.7.1版本。</p>
+<h2 id="7-1-3-绘制第一张图表"><a href="#7-1-3-绘制第一张图表" class="headerlink" title="7.1.3　绘制第一张图表"></a>7.1.3　绘制第一张图表</h2><p>【示例01】　绘制简单的柱状图。（示例位置：资源包\MR\Code\07\01）<br>下面使用Pyecharts绘制一张简单的柱状图，具体步骤如下。<br>（1）从pyecharts.charts库中导入Bar模块，代码如下：</p>
+<p>from pyecharts.charts import Bar  #从pyecharts.charts库中导入Bar模块</p>
+<p>（2）创建一个空的Bar()对象，代码如下：</p>
+<p>bar = Bar()<br>（3）定义x轴和y轴数据，其中x轴为月份，y轴为销量。代码如下：</p>
+<p>01 bar.add_xaxis([“1月”, “2月”, “3月”, “4月”, “5月”, “6月”])<br>02 bar.add_yaxis(“零基础学Python”, [2567, 1888, 1359, 3400, 4050, 5500])<br>03 bar.add_yaxis(“Python趣味案例编程”, [1567, 988, 2270,3900, 2750, 3600])<br>（4）渲染图表到HTML文件中，并存放在程序所在目录下，代码如下：</p>
+<p>bar.render(“mycharts.html”)<br>运行程序，在程序所在路径下生成一个名为mycharts.html的HTML文件，打开该文件，效果如图7.4所示。</p>
+<p><img src="/2020/02/21/shujufenxi/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96%E5%88%86%E6%9E%90%E5%9B%BE%E8%A1%A8Pyechars/image-20211025093733763.png" srcset="/img/loading.gif" lazyload alt="image-20211025093733763"></p>
+<p>​                                                                                                图7.4　绘制第一张图表<br>以上就是我们绘制的第一张Pyecharts图表。实用技巧Pyecharts 1.0以上版本对方法的链式调用<br>对于方法的调用可分为<strong>单独调用和链式调用</strong>。单独调用就是常规的一个方法一个方法的调用。而链式调用的关键在于方法化，现在很多开源库或者代码都使用链式调用。链式调用将所有需要调用的方法写在一个方法里，这样使得我们的代码看上去更加简洁易懂。<br>下面以本节的“第一张图表”为例，在调用Bar模块的各个方法时，将单独调用与链式调用进行简单对比，效果如图7.5所示。</p>
+<p><img src="/2020/02/21/shujufenxi/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96%E5%88%86%E6%9E%90%E5%9B%BE%E8%A1%A8Pyechars/image-20211025093824559.png" srcset="/img/loading.gif" lazyload alt="image-20211025093824559"></p>
+<p>​                                                                                 图7.5　单独调用与链式调用对比<br>从图7.5中可以看出，链式调用将所有需要调用的方法写在了一个方法里，这样的代码看上去更加简洁易懂。当然，如果不习惯使用链式调用，单独调用也可以。</p>
+<h1 id="7-2-Pyecharts图表的组成"><a href="#7-2-Pyecharts图表的组成" class="headerlink" title="7.2　Pyecharts图表的组成"></a>7.2　Pyecharts图表的组成</h1><p>Pyecharts不仅具备Matplotlib图表的一些常用功能，而且还提供了独有的、别具特色的功能。<strong>主要包括主题风格的设置、提示框、视觉映射、工具箱和区域缩放</strong>等，如图7.6所示。这些功能使得Pyecharts能够绘制出各种各样、超乎想象的图表。</p>
+<p><img src="/2020/02/21/shujufenxi/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96%E5%88%86%E6%9E%90%E5%9B%BE%E8%A1%A8Pyechars/image-20211025093932297.png" srcset="/img/loading.gif" lazyload alt="image-20211025093932297"></p>
+<p>​                                                                                                    图7.6　Pyecharts图表的组成</p>
+<h2 id="7-2-1-主题风格"><a href="#7-2-1-主题风格" class="headerlink" title="7.2.1　主题风格"></a>7.2.1　主题风格</h2><p>Pyecharts内置提供了15种不同的主题风格，并提供了便捷的定制主题的方法。主要使用Pyecharts库的options模块，通过该模块的InitOpts()方法设置图表的主题风格。下面介绍InitOpts()方法的几个关键参数。</p>
+<p>参数说明：　</p>
+<p>width：字符型，图表画布宽度，以像素为单位，例如width=’500px’。　</p>
+<p>height：字符型，图表画布高度，以像素为单位，例如height=’300px’。　</p>
+<p>chart_id：图表的ID，图表的唯一标识，主要用于多张图表时以区分每张图表。　</p>
+<p>page_title：字符型，网页标题。　</p>
+<p>theme：图表主题，其参数值主要由ThemeType模块提供。　</p>
+<p>bg_color：字符型，图表背景颜色，例如bg_color=’black’或bg_color=’#fff’。</p>
+<p>下面详细介绍一下ThemeType模块提供的15种图表主题风格，如表7.1所示。</p>
+<p>​                                                                               表7.1　theme参数设置值</p>
+<p><img src="/2020/02/21/shujufenxi/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96%E5%88%86%E6%9E%90%E5%9B%BE%E8%A1%A8Pyechars/image-20211025094017187.png" srcset="/img/loading.gif" lazyload alt="image-20211025094017187"></p>
+<p>【示例02】　为图表更换主题。（示例位置：资源包\MR\Code\07\02）<br>下面为“第一张图表”更换主题，具体步骤如下所示。<br>（1）从pyecharts.charts库中导入Bar模块，代码如下：</p>
+<p>from pyecharts.charts import Bar<br>（2）从pyecharts库中导入options模块，代码如下：</p>
+<p>from pyecharts import options as opts<br>（3）从pyecharts.globals库中导入主题类型模块ThemeType，代码如下：</p>
+<p>from pyecharts.globals import ThemeType<br>（4）设置画布大小、图表主题和图表背景颜色，代码如下：</p>
+<p><img src="/2020/02/21/shujufenxi/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96%E5%88%86%E6%9E%90%E5%9B%BE%E8%A1%A8Pyechars/image-20211025094339610.png" srcset="/img/loading.gif" lazyload alt="image-20211025094339610"></p>
+<p>（5）渲染图表到HTML文件中，并存放在程序所在目录下，代码如下：</p>
+<p>bar.render(“mycharts1.html”)<br>运行程序，在程序所在路径下生成一个名为mycharts1.html的HTML文件，打开该文件，效果如图7.7所示。</p>
+<p><img src="/2020/02/21/shujufenxi/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96%E5%88%86%E6%9E%90%E5%9B%BE%E8%A1%A8Pyechars/image-20211025094359953.png" srcset="/img/loading.gif" lazyload alt="image-20211025094359953"></p>
+<p>​                                                                                                 图7.7　主题风格</p>
+<h2 id="7-2-2-图表标题"><a href="#7-2-2-图表标题" class="headerlink" title="7.2.2　图表标题"></a>7.2.2　图表标题</h2><p>图表标题主要通过set_global_options()方法的title_opts参数进行设置，该参数值参考options模块的TitleOpts()方法，该方法可以实现主标题、副标题、距离设置以及文字样式等。TitleOpts()方法主要参数说明如下。　</p>
+<p>title：字符型，默认值为None。主标题文本，支持换行符“\n”。　</p>
+<p>title_link：字符型，默认值为None。主标题跳转URL链接。　</p>
+<p>title_target：字符型，默认值为None。主标题跳转链接的方式，默认值为blank，表示在新窗口打开。可选参数self，表示在当前窗口打开。　</p>
+<p>subtitle：字符型，默认值为None。副标题文本，支持换行符“\n”。　</p>
+<p>subtitle_link：字符型，默认值为None。副标题跳转URL链接。　</p>
+<p>subtitle_target：字符型，默认值为None。副标题跳转链接的方式，默认值为blank，表示在新窗口打开。可选参数self，表示在当前窗口打开。　</p>
+<p>pos_left：字符型，默认值为None。标题距左侧的距离，其值可以是像10这样的具体像素值，也可以是像10%这样的相对于容器的高宽的百分比，还可以是left、center或right，标题将根据相应的位置自动对齐。　</p>
+<p>pos_right：字符型，默认值为None。标题距右侧的距离，其值可以是像10这样的具体像素值，也可以是像10%这样的相对于容器的高宽的百分比。　</p>
+<p>pos_top：字符型，默认值为None。标题距顶端的距离，其值可以是像10这样的具体像素值，也可以是像10%这样的相对于容器的高宽的百分比，还可以是top、middle或bottom，标题将根据相应的位置自动对齐。　</p>
+<p>pos_bottom：字符型，默认值为None。标题距底端的距离，其值可以是像10这样的具体像素值，也可以是像10%这样的相对于容器的高宽的百分比。　</p>
+<p>padding：标题内边距，单位为像素。默认值为各方向（上右下左）内边距为5，接受数组分别设定上右下左边距，例如padding=[10,4,5,90]。　</p>
+<p>item_gap：数值型，主标题与副标题之间的间距，例如item_gap=3.5。　</p>
+<p>title_textstyle_opts：主标题文字样式配置项，参考options模块的TextStyleOpts()方法。主要包括颜色、字体样式、字体的粗细、字体的大小以及对齐方式等。例如，设置标题颜色为红色，字体大小为16，代码如下：</p>
+<p>title_textstyle_opts=opts.TextStyleOpts(color=’red’,font_size=18)　</p>
+<p>subtitle_textstyle_opts：副标题文字样式配置项。同上。</p>
+<p>【示例03】　为图表设置标题。（示例位置：资源包\MR\Code\07\03）<br>下面为“第一张图表”设置标题，具体步骤如下所示。<br>（1）从pyecharts.charts库中导入Bar模块，代码如下：</p>
+<p>from pyecharts.charts import Bar<br>（2）从pyecharts库中导入options模块，代码如下：</p>
+<p>from pyecharts import options as opts<br>（3）从pyecharts.globals库中导入主题类型模块ThemeType，代码如下：</p>
+<p>from pyecharts.globals import ThemeType<br>（4）生成图表，设置图表标题，包括主标题、主标题字体颜色和大小、副标题、标题内边距，以及主标题与副标题之间的间距。代码如下：</p>
+<p><img src="/2020/02/21/shujufenxi/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96%E5%88%86%E6%9E%90%E5%9B%BE%E8%A1%A8Pyechars/image-20211025094612795.png" srcset="/img/loading.gif" lazyload alt="image-20211025094612795"></p>
+<p>（5）渲染图表到HTML文件中，并存放在程序所在目录下，代码如下：</p>
+<p>bar.render(“mycharts2.html”)<br>运行程序，在程序所在路径下生成一个名为mycharts2.html的HTML文件，打开该文件，效果如图7.8所示。</p>
+<p><img src="/2020/02/21/shujufenxi/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96%E5%88%86%E6%9E%90%E5%9B%BE%E8%A1%A8Pyechars/image-20211025094645524.png" srcset="/img/loading.gif" lazyload alt="image-20211025094645524"></p>
+<p>​                                                                                                        图7.8　图表标题</p>
+<h2 id="7-2-3-图例"><a href="#7-2-3-图例" class="headerlink" title="7.2.3　图例"></a>7.2.3　图例</h2><p>设置图例主要通过set_global_opts()方法的legend_opts参数进行设置，该参数值参考options模块的LegendOpts()方法。LegendOpts()方法主要参数说明如下。　</p>
+<p>is_show：布尔值，是否显示图例，值为True显示图例，值为False则不显示图例。　</p>
+<p>pos_left：字符串或数字，默认值为None。图例离容器左侧的距离，其值可以是像10这样的具体像素值，也可以是10%，表示相对于容器高宽的百分比，还可以是left、center或right，图例将根据相应的位置自动对齐。　</p>
+<p>pos_right：字符串或数字，默认值为None。图例离容器右侧的距离，其值可以是像10这样的具体像素值，也可以是10%，表示相对于容器高宽的百分比。　</p>
+<p>pos_top：字符串或数字，默认值为None。图例离容器顶端的距离，其值可以是像10这样的具体像素值，也可以是10%，表示相对于容器高宽的百分比，还可以是top、middle或bottom，图例将根据相应的位置自动对齐。　</p>
+<p>pos_bottom：字符串或数字，默认值为None。图例离容器底端的距离，其值可以是像10这样的具体像素值，也可以是10%，表示相对于容器高宽的百分比。　</p>
+<p>orient：字符串，默认值为None。图例列表的布局朝向，其值为horizontal（横向）或vertical（纵向）。</p>
+<p>align：字符串。图例标记和文本的对齐，其值为auto、left或right，默认值为auto（自动）。根据图表的位置和orient参数（图例列表的朝向）决定。　padding：整型，图例内边距，单位为像素（px），默认值为各方向内边距为5。　</p>
+<p>item_gap：图例之间的间隔。横向布局时为水平间隔，纵向布局时为纵向间隔。默认间隔为10。　</p>
+<p>item_width：图例标记的宽度。默认宽度为25。　</p>
+<p>item_height：图例标记的高度。默认高度为14。　</p>
+<p>textstyle_opts：图例的字体样式。参考options模块的TextStyleOpts()方法。主要包括颜色、字体样式、字体的粗细、字体的大小以及对齐方式等。　</p>
+<p>legend_icon：图例标记的样式。其值为circle（圆形）、rect（矩形）、roundRect（圆角矩形）、triangle（三角形）、diamond（菱形）、pin（大头针）、arrow（箭头）或none（无），也可以设置为图片。</p>
+<p>【示例04】　为图表设置图例。（示例位置：资源包\MR\Code\07\04）<br>下面为“第一张图表”设置图例，具体步骤如下所示。<br>（1）从pyecharts.charts库中导入Bar模块，代码如下：</p>
+<p>from pyecharts.charts import Bar<br>（2）从pyecharts库中导入options模块，代码如下：</p>
+<p>from pyecharts import options as opts<br>（3）生成图表，设置图表标题和图例。其中图例主要包括图例离容器右侧的距离、图例标记的宽度和图例标记的样式，代码如下：</p>
+<p><img src="/2020/02/21/shujufenxi/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96%E5%88%86%E6%9E%90%E5%9B%BE%E8%A1%A8Pyechars/image-20211025094813219.png" srcset="/img/loading.gif" lazyload alt="image-20211025094813219"></p>
+<p>运行程序，在程序所在路径下生成一个名为mycharts3.html的HTML文件，打开该文件，效果如图7.9所示。</p>
+<p><img src="/2020/02/21/shujufenxi/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96%E5%88%86%E6%9E%90%E5%9B%BE%E8%A1%A8Pyechars/image-20211025094912334.png" srcset="/img/loading.gif" lazyload alt="image-20211025094912334"></p>
+<p>​                                                                                                  图7.9　图例</p>
+<h2 id="7-2-4-提示框"><a href="#7-2-4-提示框" class="headerlink" title="7.2.4　提示框"></a>7.2.4　提示框</h2><p>提示框的设置主要通过set_global_opts()方法的tooltip_opts参数进行设置，该参数值参考options模块的TooltipOpts()方法。TooltipOpts()方法主要参数说明如下。　</p>
+<p>is_show：布尔值，是否显示提示框。　</p>
+<p>trigger：提示框触发的类型，可选参数。item数据项图形触发，主要在散点图和饼图等无类目轴的图表中使用。axis坐标轴触发，主要在柱状图和折线图等使用类目轴的图表中使用。None不触发，无提示框。　</p>
+<p>trigger_on：提示框触发的条件，可选参数。mousemove鼠标移动时触发，click鼠标单击时触发，mousemove|click鼠标移动和单击的同时触发，none鼠标不移动或不单击时触发。　</p>
+<p>axis_pointer_type：指示器类型，可选参数。其值如下。　</p>
+<p>line：直线指示器。　</p>
+<p>shadow：阴影指示器。</p>
+<p>cross：十字线指示器。　</p>
+<p>none：无指示器。　</p>
+<p>background_color：提示框的背景颜色。　</p>
+<p>border_color：提示框边框的颜色。　</p>
+<p>border_width：提示框边框的宽度。　</p>
+<p>textstyle_opts：提示框中文字的样式。参考options模块的TextStyleOpts()方法。主要包括颜色、字体样式、字体的粗细、字体的大小以及对齐方式等。</p>
+<p>【示例05】　为图表设置提示框。（示例位置：资源包\MR\Code\07\05）<br>下面设置提示框的样式，具体步骤如下所示。<br>（1）导入相关模块，代码如下：</p>
+<p>01  from pyecharts import options as opts<br>02  from pyecharts.charts import Bar<br>03  from pyecharts.globals import ThemeType<br>（2）设置图表标题和图例。其中图例主要包括图例离容器右侧的距离、图例标记的宽度和图例标记的样式，代码如下：</p>
+<p><img src="/2020/02/21/shujufenxi/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96%E5%88%86%E6%9E%90%E5%9B%BE%E8%A1%A8Pyechars/image-20211025095151357.png" srcset="/img/loading.gif" lazyload alt="image-20211025095151357"></p>
+<p>（3）生成图表，设置提示框。鼠标单击时触发提示框，设置提示框为十字线指示器，设置背景色、边框宽度和边框颜色，代码如下：</p>
+<p><img src="/2020/02/21/shujufenxi/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96%E5%88%86%E6%9E%90%E5%9B%BE%E8%A1%A8Pyechars/image-20211025095209115.png" srcset="/img/loading.gif" lazyload alt="image-20211025095209115"></p>
+<p>运行程序，在程序所在路径下生成一个名为mycharts5.html的HTML文件，打开该文件，效果如图7.10所示。</p>
+<p><img src="/2020/02/21/shujufenxi/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96%E5%88%86%E6%9E%90%E5%9B%BE%E8%A1%A8Pyechars/image-20211025095249239.png" srcset="/img/loading.gif" lazyload alt="image-20211025095249239"></p>
+<p>​                                                                                              图7.10　提示框</p>
+<h2 id="7-2-5-视觉映射"><a href="#7-2-5-视觉映射" class="headerlink" title="7.2.5　视觉映射"></a>7.2.5　视觉映射</h2><p>视觉映射主要通过set_global_opts()方法的title_opts参数进行设置，该参数值参考options模块的VisualMapOpts()方法。VisualMapOpts()方法主要参数说明如下。　</p>
+<p>is_show：布尔型，是否显示视觉映射配置。　</p>
+<p>type_：映射过渡类型，可选参数，其值为color或size。　_</p>
+<p>_min_：整型或浮点型，颜色条的最小值。　</p>
+<p>max_：整型或浮点型，颜色条的最大值。　</p>
+<p>range_text：颜色条两端的文本，例如，High或Low。　range_color：序列。颜色范围（过渡颜色），例如range_color=[“#FFF0F5”, “#8B008B”]。　</p>
+<p>orient：颜色条放置方式，水平（horizontal）或者竖直（vertical）。　</p>
+<p>pos_left：颜色条离左侧的距离。　</p>
+<p>dimension：颜色条映射的维度。　</p>
+<p>is_piecewise：布尔型，是否分段显示数据。【示例06】　为图表添加视觉映射。（示例位置：资源包\MR\Code\07\06）<br>下面为图表添加视觉映射，具体步骤如下所示。<br>（1）导入相关模块，代码如下：</p>
+<p>01  from pyecharts import options as opts</p>
+<p>02  from pyecharts.charts import Bar<br>（2）为柱状图添加数据，代码如下：</p>
+<p><img src="/2020/02/21/shujufenxi/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96%E5%88%86%E6%9E%90%E5%9B%BE%E8%A1%A8Pyechars/image-20211025101615302.png" srcset="/img/loading.gif" lazyload alt="image-20211025101615302"></p>
+<p>（3）设置图表标题和视觉映射，并生成图表，代码如下：</p>
+<p><img src="/2020/02/21/shujufenxi/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96%E5%88%86%E6%9E%90%E5%9B%BE%E8%A1%A8Pyechars/image-20211025101634254.png" srcset="/img/loading.gif" lazyload alt="image-20211025101634254"></p>
+<p>运行程序，在程序所在路径下生成一个名为mycharts6.html的HTML文件，打开该文件，效果如图7.11所示。</p>
+<p><img src="/2020/02/21/shujufenxi/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96%E5%88%86%E6%9E%90%E5%9B%BE%E8%A1%A8Pyechars/image-20211025101655610.png" srcset="/img/loading.gif" lazyload alt="image-20211025101655610"></p>
+<p>​                                                                                                 图7.11　视觉映射</p>
+<h2 id="7-2-6-工具箱"><a href="#7-2-6-工具箱" class="headerlink" title="7.2.6　工具箱"></a>7.2.6　工具箱</h2><p>工具箱主要通过set_global_opts()方法的title_opts参数进行设置，该参数值参考options模块的ToolboxOpts()方法。ToolboxOpts()方法主要参数说明如下。　</p>
+<p>is_show：布尔值，是否显示工具箱。　</p>
+<p>orient：工具箱的布局朝向。可选参数，默认值为None，其值为horizontal（水平）或vertical（竖直）。　</p>
+<p>pos_left：工具箱离容器左侧的距离。　</p>
+<p>pos_right：工具箱离容器右侧的距离。　</p>
+<p>pos_top：工具箱离容器顶端的距离。　</p>
+<p>pos_bottom：工具箱离容器底端的距离。　</p>
+<p>feature：工具箱中每个工具的配置项。</p>
+<p>【示例07】　为图表添加工具箱。（示例位置：资源包\MR\Code\07\07）<br>下面为图表添加工具箱，具体步骤如下所示。<br>（1）导入相关模块，代码如下：</p>
+<p>01  from pyecharts import options as opts<br>02  from pyecharts.charts import Bar<br>（2）绘制柱状图，代码如下：</p>
+<p><img src="/2020/02/21/shujufenxi/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96%E5%88%86%E6%9E%90%E5%9B%BE%E8%A1%A8Pyechars/image-20211025102300265.png" srcset="/img/loading.gif" lazyload alt="image-20211025102300265"></p>
+<p>（3）添加工具箱，并生成图表，代码如下：</p>
+<p><img src="/2020/02/21/shujufenxi/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96%E5%88%86%E6%9E%90%E5%9B%BE%E8%A1%A8Pyechars/image-20211025102427248.png" srcset="/img/loading.gif" lazyload alt="image-20211025102427248">运行程序，在程序所在路径下生成一个名为mycharts7.html的HTML文件，打开该文件，效果如图7.12所示。</p>
+<p><img src="/2020/02/21/shujufenxi/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96%E5%88%86%E6%9E%90%E5%9B%BE%E8%A1%A8Pyechars/image-20211025102448491.png" srcset="/img/loading.gif" lazyload alt="image-20211025102448491"></p>
+<p>​                                                                                         图7.12　工具箱</p>
+<h2 id="7-2-7-区域缩放"><a href="#7-2-7-区域缩放" class="headerlink" title="7.2.7　区域缩放"></a>7.2.7　区域缩放</h2><p>区域缩放工具条主要通过set_global_opts()方法的datazoom_opts参数进行设置，该参数值参考options模块的DataZoomOpts()方法。DataZooDataZoomOpts()方法主要参数说明如下。　</p>
+<p>is_show：布尔值，是否显示区域缩放工具条。　</p>
+<p>type_：区域缩放工具条的类型，可选参数，其值为slider或inside。　</p>
+<p>is_realtime：布尔值，是否实时更新图表。　</p>
+<p>range_start：数据窗口范围的起始百分比，其值为0～100，表示0%～100%。　</p>
+<p>range_end：数据窗口范围的结束百分比，其值为0～100，表示0%～100%。　</p>
+<p>start_value：数据窗口的起始数值。　</p>
+<p>end_value：数据窗口范围的结束数值。　</p>
+<p>orient：区域缩放工具条的布局方式。可选参数，默认值为None，其值为horizontal（水平）或vertical（竖直）。　</p>
+<p>pos_left：工具箱离容器左侧的距离。　</p>
+<p>pos_right：工具箱离容器右侧的距离。　</p>
+<p>pos_top：工具箱离容器顶端的距离。　</p>
+<p>pos_bottom：工具箱离容器底端的距离。</p>
+<p>【示例08】　为图表添加区域缩放。（示例位置：资源包\MR\Code\07\08）<br>下面为图表添加区域缩放工具条，具体步骤如下所示。<br>（1）导入相关模块，代码如下：</p>
+<p>01  from pyecharts import options as opts<br>02  from pyecharts.charts import Bar<br>（2）绘制柱状图，代码如下：</p>
+<p><img src="/2020/02/21/shujufenxi/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96%E5%88%86%E6%9E%90%E5%9B%BE%E8%A1%A8Pyechars/image-20211025102558340.png" srcset="/img/loading.gif" lazyload alt="image-20211025102558340"></p>
+<p>（3）添加区域缩放工具条，并生成图表，代码如下：</p>
+<p><img src="/2020/02/21/shujufenxi/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96%E5%88%86%E6%9E%90%E5%9B%BE%E8%A1%A8Pyechars/image-20211025102644997.png" srcset="/img/loading.gif" lazyload alt="image-20211025102644997"></p>
+<p>运行程序，在程序所在路径下生成一个名为mycharts8.html的HTML文件，打开该文件，效果如图7.13所示。</p>
+<p><img src="/2020/02/21/shujufenxi/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96%E5%88%86%E6%9E%90%E5%9B%BE%E8%A1%A8Pyechars/image-20211025102719440.png" srcset="/img/loading.gif" lazyload alt="image-20211025102719440"></p>
+<p>​                                                                                                       图7.13　区域缩放</p>
+<h1 id="7-3-Pyecharts图表的绘制"><a href="#7-3-Pyecharts图表的绘制" class="headerlink" title="7.3　Pyecharts图表的绘制"></a>7.3　Pyecharts图表的绘制</h1><h2 id="7-3-1-柱状图——Bar模块"><a href="#7-3-1-柱状图——Bar模块" class="headerlink" title="7.3.1　柱状图——Bar模块"></a>7.3.1　柱状图——Bar模块</h2><p>绘制柱状图／条形图主要使用Bar模块实现，主要方法介绍如下。</p>
+<p>add_xaxis()：x轴数据。　</p>
+<p>add_yaxis()：y轴数据。　</p>
+<p>reversal_axis()：翻转x、y轴数据。　</p>
+<p>add_dataset()：原始数据。一般来说，原始数据表达的是二维表。</p>
+<p>【示例09】　绘制多柱状图。（示例位置：资源包\MR\Code\07\09）<br>上述内容简单介绍了柱状图的绘制，下面通过Pandas导入Excel文件中的数据，然后绘制多柱状图，分析近7年各个电商平台的销量情况，具体步骤如下所示。<br>（1）导入相关模块，代码如下：</p>
+<p>01  import pandas as pd<br>02  from pyecharts.charts import Bar<br>03  from pyecharts import options as opts<br>04  from pyecharts.globals import ThemeType<br>（2）导入Excel文件，代码如下：</p>
+<p>01  #导入Excel文件<br>02  df = pd.read_excel(‘books.xlsx’,sheet_name=’Sheet2’)<br>03  #x轴和y轴数据<br>04  x=list(df[‘年份’])<br>05  y1=list(df[‘京东’])<br>06 y2=list(df[‘天猫’])<br>07 y3=list(df[‘自营’])<br>（3）绘制多柱状图，代码如下：<br>运行程序，对比效果如图7.14和图7.15所示。</p>
+<p><img src="/2020/02/21/shujufenxi/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96%E5%88%86%E6%9E%90%E5%9B%BE%E8%A1%A8Pyechars/image-20211025102857406.png" srcset="/img/loading.gif" lazyload alt="image-20211025102857406"></p>
+<p>​                                                                                                     图7.14　数据展示</p>
+<p><img src="/2020/02/21/shujufenxi/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96%E5%88%86%E6%9E%90%E5%9B%BE%E8%A1%A8Pyechars/image-20211025102918759.png" srcset="/img/loading.gif" lazyload alt="image-20211025102918759"></p>
+<p>​                                                                                             图7.15　多柱状图展示</p>
+<h2 id="7-3-2-折线／面积图——Line模块"><a href="#7-3-2-折线／面积图——Line模块" class="headerlink" title="7.3.2　折线／面积图——Line模块"></a>7.3.2　折线／面积图——Line模块</h2><p>绘制折线／面积图主要使用Line模块的add_xaxis()方法和add_yaxis()方法实现。下面介绍add_yaxis()方法的几个主要参数。　series_name：系列名称。用于提示文本和图例标签。　</p>
+<p>y_axis：y轴数据。　</p>
+<p>color：标签文本的颜色。　</p>
+<p>symbol：标记。包括circle、rect、roundRect、triangle、diamond、pin、arrow或none，也可以设置为图片。　</p>
+<p>symbol_size：标记大小。　</p>
+<p>is_smooth：布尔值，是否为平滑曲线。　</p>
+<p>is_step：布尔值，是否显示为阶梯图。　</p>
+<p>linestyle_opts：线条样式。参考series_options.LineStyleOpts。　</p>
+<p>areastyle_opts：填充区域配置项，主要用于绘制面积图。该参数值须参考options模块的AreaStyleOpts()方法，例如areastyle_opts=opts.AreaStyleOpts(opacity=1)。</p>
+<p>【示例10】　绘制折线图。（示例位置：资源包\MR\Code\07\10）<br>下面绘制折线图，分析近7年各个电商平台的销量情况，具体步骤如下所示。<br>（1）导入相关模块，代码如下：</p>
+<p>01  import pandas as pd<br>02  from pyecharts.charts import Line<br>（2）绘制折线图，代码如下：<br>运行程序，在程序所在路径下生成myline1.html的HTML文件，打开该文件，效果如图7.16所示。</p>
+<p><img src="/2020/02/21/shujufenxi/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96%E5%88%86%E6%9E%90%E5%9B%BE%E8%A1%A8Pyechars/image-20211025103019599.png" srcset="/img/loading.gif" lazyload alt="image-20211025103019599"></p>
+<p>​                                                                                                         图7.16　折线图</p>
+<p>注意</p>
+<p>x轴数据必须为字符串，否则图表不显示。如果数据为其他类型，需要使用str()函数转换为字符串，如x_data=[str(i) for i in x]。</p>
+<p>【示例11】　绘制面积图。（示例位置：资源包\MR\Code\07\11）<br>使用Line模块还可以绘制面积图，主要通过在add_yaxis()方法中指定areastyle_opts参数，该参数值由options模块的AreaStyleOpts()方法提供。下面绘制面积图，具体步骤如下所示。<br>（1）导入相关模块，代码如下：</p>
+<p>01  import pandas as pd<br>02  from pyecharts.charts import Line<br>03  from pyecharts import options as opts<br>（2）绘制面积图，代码如下：</p>
+<p><img src="/2020/02/21/shujufenxi/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96%E5%88%86%E6%9E%90%E5%9B%BE%E8%A1%A8Pyechars/image-20211025103120692.png" srcset="/img/loading.gif" lazyload alt="image-20211025103120692"></p>
+<p>运行程序，在程序所在路径下生成myline2.html的HTML文件，打开该文件，效果如图7.17所示。</p>
+<p><img src="/2020/02/21/shujufenxi/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96%E5%88%86%E6%9E%90%E5%9B%BE%E8%A1%A8Pyechars/image-20211025103137908.png" srcset="/img/loading.gif" lazyload alt="image-20211025103137908"></p>
+<p>​                                                                                                  图7.17　面积图</p>
+<h2 id="7-3-3-饼形图——Pie模块"><a href="#7-3-3-饼形图——Pie模块" class="headerlink" title="7.3.3　饼形图——Pie模块"></a>7.3.3　饼形图——Pie模块</h2><p>绘制饼形图主要使用Pie模块的add()方法实现。下面介绍add()方法的几个主要参数。　</p>
+<p>series_name：系列名称。用于提示文本和图例标签。　</p>
+<p>data_pair：数据项，格式为[(key1, value1), (key2, value2)]。可使用zip()函数将可迭代对象打包成元组，然后再转换为列表。　</p>
+<p>color：系列标签的颜色。　</p>
+<p>radius：饼图的半径，数组的第一项是内半径，第二项是外半径。默认设置为百分比，相对于容器高宽中较小的一项的一半。</p>
+<p>rosetype：是否展开为南丁格尔玫瑰图（也称南丁格尔的玫瑰），通过半径区分数据大小。其值为radius或area，radius表示通过扇区圆心角展现数据的百分比，通过半径展现数据的大小；area表示所有扇区圆心角相同，仅通过半径展现数据的大小。知识胶囊<br>南丁格尔，英国护士和统计学家，出生于意大利的一个英国上流社会的家庭。南丁格尔被描述为“在统计的图形显示方法上，是一个真正的先驱”，她发展出极坐标图饼图的形式，或称为南丁格尔玫瑰图，相当于现代圆形直方图，以说明她在管理的野战医院内，病人死亡率在不同季节的变化。她使用极坐标图饼图，向不会阅读统计报告的国会议员，报告克里米亚战争的医疗条件。　</p>
+<p>is_clockwise：饼图的扇区是否以顺时针显示。</p>
+<p>【示例12】　饼形图分析各地区销量占比情况。（示例位置：资源包\MR\Code\07\12）<br>下面绘制饼形图，分析各地区销量占比情况，具体步骤如下所示。<br>（1）导入相关模块，代码如下：</p>
+<p>01  import pandas as pd<br>02  from pyecharts.charts import Pie<br>03  from pyecharts import options as opts<br>（2）导入Excel文件，并将数据处理为列表加元组的形式，代码如下：</p>
+<p><img src="/2020/02/21/shujufenxi/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96%E5%88%86%E6%9E%90%E5%9B%BE%E8%A1%A8Pyechars/image-20211025103236326.png" srcset="/img/loading.gif" lazyload alt="image-20211025103236326"></p>
+<p>（3）创建饼形图，代码如下：</p>
+<p><img src="/2020/02/21/shujufenxi/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96%E5%88%86%E6%9E%90%E5%9B%BE%E8%A1%A8Pyechars/image-20211025103625577.png" srcset="/img/loading.gif" lazyload alt="image-20211025103625577"></p>
+<p>运行程序，在程序所在路径下生成mypie1.html的HTML文件，打开该文件，效果如图7.18所示。</p>
+<p><img src="/2020/02/21/shujufenxi/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96%E5%88%86%E6%9E%90%E5%9B%BE%E8%A1%A8Pyechars/image-20211025103706227.png" srcset="/img/loading.gif" lazyload alt="image-20211025103706227"></p>
+<p>​                                                                                               图7.18　饼形图</p>
+<h2 id="7-3-4-箱形图——Boxplot模块"><a href="#7-3-4-箱形图——Boxplot模块" class="headerlink" title="7.3.4　箱形图——Boxplot模块"></a>7.3.4　箱形图——Boxplot模块</h2><p>【示例13】　绘制简单的箱形图。（示例位置：资源包\MR\Code\07\13）<br>绘制箱形图主要使用Boxplot模块的add_xaxis()方法和add_yaxis()方法实现。下面绘制一个简单的箱形图，程序代码如下：</p>
+<p><img src="/2020/02/21/shujufenxi/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96%E5%88%86%E6%9E%90%E5%9B%BE%E8%A1%A8Pyechars/image-20211025103730467.png" srcset="/img/loading.gif" lazyload alt="image-20211025103730467"></p>
+<p>运行程序，在程序所在路径下生成myboxplot.html的HTML文件，打开该文件，效果如图7.19所示。</p>
+<p><img src="/2020/02/21/shujufenxi/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96%E5%88%86%E6%9E%90%E5%9B%BE%E8%A1%A8Pyechars/image-20211025103753043.png" srcset="/img/loading.gif" lazyload alt="image-20211025103753043"></p>
+<p>​                                                                                                 图7.19　箱形图</p>
+<h2 id="7-3-5-涟漪特效散点图——EffectScatter模块"><a href="#7-3-5-涟漪特效散点图——EffectScatter模块" class="headerlink" title="7.3.5　涟漪特效散点图——EffectScatter模块"></a>7.3.5　涟漪特效散点图——EffectScatter模块</h2><p>【示例14】　绘制简单的散点图。（示例位置：资源包\MR\Code\07\14）<br>绘制涟漪特效散点图主要使用EffectScatter模块的add_xaxis()方法和add_yaxis()方法实现。下面绘制一个简单的涟漪特效散点图，程序代码如下：</p>
+<p><img src="/2020/02/21/shujufenxi/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96%E5%88%86%E6%9E%90%E5%9B%BE%E8%A1%A8Pyechars/image-20211025103917833.png" srcset="/img/loading.gif" lazyload alt="image-20211025103917833"></p>
+<p>运行程序，在程序所在路径下生成myscatter.html的HTML文件，打开该文件，效果如图7.20所示。</p>
+<p><img src="/2020/02/21/shujufenxi/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96%E5%88%86%E6%9E%90%E5%9B%BE%E8%A1%A8Pyechars/image-20211025103937243.png" srcset="/img/loading.gif" lazyload alt="image-20211025103937243"></p>
+<p>​                                                                                    图7.20　涟漪特效散点图</p>
+<h2 id="7-3-6-词云图——WordCloud模块"><a href="#7-3-6-词云图——WordCloud模块" class="headerlink" title="7.3.6　词云图——WordCloud模块"></a>7.3.6　词云图——WordCloud模块</h2><p>绘制词云图主要使用WordCloud模块的add()方法实现。下面介绍add()方法的几个主要参数。　</p>
+<p>series_name：系列名称。用于提示文本和图例标签。　</p>
+<p>data_pair：数据项。格式为[(word1,count1), (word2, count2)]。可使用zip()函数将可迭代对象打包成元组，然后再转换为列表。　</p>
+<p>shape：字符型，词云图的轮廓。其值为circle、cardioid、diamond、triangle-forward、triangle、pentagon或star。　</p>
+<p>mask_image：自定义图片（支持的图片格式为jpg、jpeg、png和ico）。该参数支持base64（一种基于64个可打印字符来表示二进制数据的方法）和本地文件路径（相对或者绝对路径都可以）。　</p>
+<p>word_gap：单词间隔。　</p>
+<p>word_size_range：单词字体大小范围。　</p>
+<p>rotate_step：旋转单词角度。　</p>
+<p>pos_left：距离左侧的距离。　</p>
+<p>pos_top：距离顶部的距离。　</p>
+<p>pos_right：距离右侧的距离。　</p>
+<p>pos_bottom：距离底部的距离。　</p>
+<p>width：词云图的宽度。　</p>
+<p>height：词云图的高度。<br>实现词云图首先需要通过jieba模块的TextRank算法从文本中提取关键词。TextRank是一种文本排序算法，是基于著名的网页排序算法PageRank改动而来。TextRank不仅能进行关键词提取，也能做自动文摘。<br>根据某个词所连接的所有词汇的权重（权重是指某一因素或指标相对于某一事物的重要程度，这里指某个词在整段文字中的重要程度），重新计算该词汇的权重，然后把重新计算的权重传递下去，直到这种变化达到均衡态，权重数值不再发生改变。根据最后的权重值，取其中排列靠前的词汇作为关键词。</p>
+<p>【示例15】　绘制词云图分析用户评论内容。（示例位置：资源包\MR\Code\07\15）<br>接下来绘制词云图，分析用户的评论内容。具体步骤如下所示。<br>（1）安装jieba模块，运行anaconda prompt（Anaconda），通过pip命令安装jieba模块，安装命令如下：</p>
+<p>pip install jieba<br>（2）导入相关模块，代码如下：</p>
+<p>01  from pyecharts.charts import WordCloud<br>02  from jieba import analyse</p>
+<p>（3）使用TextRank算法从文本中提取关键词，代码如下：</p>
+<p><img src="/2020/02/21/shujufenxi/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96%E5%88%86%E6%9E%90%E5%9B%BE%E8%A1%A8Pyechars/image-20211025104200766.png" srcset="/img/loading.gif" lazyload alt="image-20211025104200766"></p>
+<p>（4）关键词列表，代码如下：</p>
+<p><img src="/2020/02/21/shujufenxi/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96%E5%88%86%E6%9E%90%E5%9B%BE%E8%A1%A8Pyechars/image-20211025104221304.png" srcset="/img/loading.gif" lazyload alt="image-20211025104221304"></p>
+<p>（5）绘制词云图，代码如下：</p>
+<p>01  mywordcloud=WordCloud()<br>02  mywordcloud.add(‘’,list1,word_size_range=[20,100])<br>03  mywordcloud.render(‘wordclound.html’)<br>运行程序，在程序所在路径下生成wordclound.html的HTML文件，打开该文件，效果如图7.21所示。</p>
+<p><img src="/2020/02/21/shujufenxi/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96%E5%88%86%E6%9E%90%E5%9B%BE%E8%A1%A8Pyechars/image-20211025104247930.png" srcset="/img/loading.gif" lazyload alt="image-20211025104247930"></p>
+<p>​                                                                                               图7.21　词云图</p>
+<h2 id="7-3-7-热力图——HeatMap模块"><a href="#7-3-7-热力图——HeatMap模块" class="headerlink" title="7.3.7　热力图——HeatMap模块"></a>7.3.7　热力图——HeatMap模块</h2><p>【示例16】　热力图统计双色球中奖号码出现的次数。（示例位置：资源包\MR\Code\07\16）</p>
+<p>绘制热力图主要使用HeatMap模块的add_xaxis()方法和add_yaxis()方法。下面通过热力图统计2014—2019年双色球中奖号码出现的次数，具体步骤如下所示。<br>（1）导入相关模块，代码如下：</p>
+<p>01  import pyecharts.options as opts<br>02  from pyecharts.charts import HeatMap<br>03  import pandas as pd<br>（2）导入Excel文件，并进行数据处理，代码如下：</p>
+<p><img src="/2020/02/21/shujufenxi/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96%E5%88%86%E6%9E%90%E5%9B%BE%E8%A1%A8Pyechars/image-20211025104333637.png" srcset="/img/loading.gif" lazyload alt="image-20211025104333637"></p>
+<p>（3）将数据转换为HeatMap支持的列表格式，代码如下：</p>
+<p><img src="/2020/02/21/shujufenxi/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96%E5%88%86%E6%9E%90%E5%9B%BE%E8%A1%A8Pyechars/image-20211025104354300.png" srcset="/img/loading.gif" lazyload alt="image-20211025104354300"></p>
+<p>（4）绘制热力图，代码如下：</p>
+<p><img src="/2020/02/21/shujufenxi/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96%E5%88%86%E6%9E%90%E5%9B%BE%E8%A1%A8Pyechars/image-20211025104427190.png" srcset="/img/loading.gif" lazyload alt="image-20211025104427190"></p>
+<p>运行程序，在程序所在路径下生成heatmap.html的HTML文件，打开该文件，效果如图7.22所示。</p>
+<p><img src="/2020/02/21/shujufenxi/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96%E5%88%86%E6%9E%90%E5%9B%BE%E8%A1%A8Pyechars/image-20211025104521598.png" srcset="/img/loading.gif" lazyload alt="image-20211025104521598"></p>
+<p>图7.22　热力图</p>
+<h2 id="7-3-8-水球图——Liquid模块"><a href="#7-3-8-水球图——Liquid模块" class="headerlink" title="7.3.8　水球图——Liquid模块"></a>7.3.8　水球图——Liquid模块</h2><p>【示例17】　绘制水球图。（示例位置：资源包\MR\Code\07\17）<br>绘制水球图主要使用Liquid模块的add()方法实现。下面绘制一个简单的涟漪特效散点图，程序代码如下：<br>运行程序，在程序所在路径下生成myliquid.html的HTML文件，打开该文件，效果如图7.23所示。</p>
+<p><img src="/2020/02/21/shujufenxi/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96%E5%88%86%E6%9E%90%E5%9B%BE%E8%A1%A8Pyechars/image-20211025105150709.png" srcset="/img/loading.gif" lazyload alt="image-20211025105150709"></p>
+<p>​                                                                                                            图7.23　水球图</p>
+<h2 id="7-3-9-日历图——Calendar模块"><a href="#7-3-9-日历图——Calendar模块" class="headerlink" title="7.3.9　日历图——Calendar模块"></a>7.3.9　日历图——Calendar模块</h2><p>【示例18】　绘制加班日历图。（示例位置：资源包\MR\Code\07\18）<br>绘制日历图主要使用Calendar模块的add()方法实现。下面绘制一个简单日历图，通过该日历图分析6月份加班情况，程序代码如下：</p>
+<p><img src="/2020/02/21/shujufenxi/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96%E5%88%86%E6%9E%90%E5%9B%BE%E8%A1%A8Pyechars/image-20211025105216401.png" srcset="/img/loading.gif" lazyload alt="image-20211025105216401"></p>
+<p>运行程序，在程序所在路径下生成calendar.html的HTML文件，打开该文件，效果如图7.24所示。</p>
+<p><img src="/2020/02/21/shujufenxi/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96%E5%88%86%E6%9E%90%E5%9B%BE%E8%A1%A8Pyechars/image-20211025105257503.png" srcset="/img/loading.gif" lazyload alt="image-20211025105257503"></p>
+<p>​                                                                                                   图7.24　日历图</p>
+<h1 id="7-4-综合应用"><a href="#7-4-综合应用" class="headerlink" title="7.4　综合应用"></a>7.4　综合应用</h1><h2 id="7-4-1-案例1：南丁格尔玫瑰图"><a href="#7-4-1-案例1：南丁格尔玫瑰图" class="headerlink" title="7.4.1　案例1：南丁格尔玫瑰图"></a>7.4.1　案例1：南丁格尔玫瑰图</h2><p>案例位置：资源包\MR\Code\07\example\01<br>下面使用Pie模块绘制南丁格尔玫瑰图，效果如图7.25所示。<br>南丁格尔玫瑰图主要通过绘制饼形图实现，其中一个关键点是设置rosetype参数为area，具体实现步骤如下所示。<br>（1）导入相关模块，代码如下：</p>
+<p>01  import pandas as pd<br>02  from pyecharts.charts import Pie</p>
+<p>03  from pyecharts import options as opts</p>
+<p><img src="/2020/02/21/shujufenxi/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96%E5%88%86%E6%9E%90%E5%9B%BE%E8%A1%A8Pyechars/image-20211025105352924.png" srcset="/img/loading.gif" lazyload alt="image-20211025105352924"></p>
+<p>​                                                                                图7.25　南丁格尔玫瑰图<br>（2）导入Excel文件，并对数据进行处理，代码如下：</p>
+<p><img src="/2020/02/21/shujufenxi/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96%E5%88%86%E6%9E%90%E5%9B%BE%E8%A1%A8Pyechars/image-20211025105510687.png" srcset="/img/loading.gif" lazyload alt="image-20211025105510687"></p>
+<p>（3）绘制南丁格尔玫瑰图，代码如下：</p>
+<p><img src="/2020/02/21/shujufenxi/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96%E5%88%86%E6%9E%90%E5%9B%BE%E8%A1%A8Pyechars/image-20211025105530815.png" srcset="/img/loading.gif" lazyload alt="image-20211025105530815"></p>
+<h2 id="7-4-2-案例2：双y轴可视化数据分析图表的实现（柱形图-折线图）"><a href="#7-4-2-案例2：双y轴可视化数据分析图表的实现（柱形图-折线图）" class="headerlink" title="7.4.2　案例2：双y轴可视化数据分析图表的实现（柱形图+折线图）"></a>7.4.2　案例2：双y轴可视化数据分析图表的实现（柱形图+折线图）</h2><p>案例位置：资源包\MR\Code\07\example\02</p>
+<p>双y轴顾名思义就是两个y轴，下面实现柱形图+折线图双y轴图表的绘制，其中柱形图y轴表示月销量，折线图y轴表示3个平台的月平均销量，效果如图7.26所示。</p>
+<p><img src="/2020/02/21/shujufenxi/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96%E5%88%86%E6%9E%90%E5%9B%BE%E8%A1%A8Pyechars/image-20211025105606632.png" srcset="/img/loading.gif" lazyload alt="image-20211025105606632"></p>
+<p>​                                                              图7.26　双y轴可视化数据分析图表<br>实现双y轴可视化数据分析图表的两个关键点：一是使用Bar模块的extend_axis()方法扩展y轴；二是对add_yaxis()方法的yaxis_index参数进行设置，该参数用于指定y轴的索引值，从0开始。双y轴索引值分别为0和1。具体实现步骤如下所示。<br>（1）导入相关模块，代码如下：</p>
+<p>01  import pyecharts.options as opts<br>02  from pyecharts.charts import Bar, Line<br>03  import pandas as pd<br>04  import numpy<br>（2）导入Excel文件，代码如下：</p>
+<p><img src="/2020/02/21/shujufenxi/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96%E5%88%86%E6%9E%90%E5%9B%BE%E8%A1%A8Pyechars/image-20211025105630197.png" srcset="/img/loading.gif" lazyload alt="image-20211025105630197"></p>
+<p>（3）创建颜色列表，代码如下：</p>
+<p>colors = [“#5793f3”, “#FFD700”, “#675bba”]<br>（4）求平均值并保留整数位，代码如下：</p>
+<p>y_average=list(((df[‘京东’]+df[‘天猫’]+df[‘自营’])/3).apply(numpy.round))</p>
+<p>（5）绘制柱形图，代码如下：</p>
+<p><img src="/2020/02/21/shujufenxi/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96%E5%88%86%E6%9E%90%E5%9B%BE%E8%A1%A8Pyechars/image-20211025105718321.png" srcset="/img/loading.gif" lazyload alt="image-20211025105718321"></p>
+<p>（6）绘制折线图，代码如下：</p>
+<p><img src="/2020/02/21/shujufenxi/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96%E5%88%86%E6%9E%90%E5%9B%BE%E8%A1%A8Pyechars/image-20211025105735016.png" srcset="/img/loading.gif" lazyload alt="image-20211025105735016"></p>
+<h2 id="7-4-3-案例3：饼形图与环形图组合图表的实现"><a href="#7-4-3-案例3：饼形图与环形图组合图表的实现" class="headerlink" title="7.4.3　案例3：饼形图与环形图组合图表的实现"></a>7.4.3　案例3：饼形图与环形图组合图表的实现</h2><p>案例位置：资源包\MR\Code\07\example\03<br>饼形图与环形图组合，其中饼形图展示“北上广”三大主要城市的销量情况，环形图展示其他省份的销量情况，效果如图7.27所示。</p>
+<p><img src="/2020/02/21/shujufenxi/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96%E5%88%86%E6%9E%90%E5%9B%BE%E8%A1%A8Pyechars/image-20211025105757566.png" srcset="/img/loading.gif" lazyload alt="image-20211025105757566"></p>
+<p>​                                                                              图7.27　饼形图与环形图组合图表<br>绘制饼形图与环形图组合图表的一个关键点是创建两个饼形图，并设置不同的半径（radius参数），具体实现步骤如下所示。<br>（1）导入相关模块，代码如下：</p>
+<p>01  import pyecharts.options as opts</p>
+<p>02  from pyecharts.charts import Pie<br>（2）为饼形图和环形图添加数据，代码如下：</p>
+<p><img src="/2020/02/21/shujufenxi/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96%E5%88%86%E6%9E%90%E5%9B%BE%E8%A1%A8Pyechars/image-20211025105830032.png" srcset="/img/loading.gif" lazyload alt="image-20211025105830032"></p>
+<p>（3）饼形图与环形图组合，代码如下：</p>
+<p><img src="/2020/02/21/shujufenxi/%E6%95%B0%E6%8D%AE%E5%8F%AF%E8%A7%86%E5%8C%96%E5%88%86%E6%9E%90%E5%9B%BE%E8%A1%A8Pyechars/image-20211025105847941.png" srcset="/img/loading.gif" lazyload alt="image-20211025105847941"></p>
+<p>知识胶囊<br>下面介绍一下Pyecharts的文本标签配置项。　</p>
+<p>字体基本样式：fontStyle、fontWeight、fontSize、fontFamily。　</p>
+<p>文字颜色：color。　</p>
+<p>文字描边：textBorderColor、textBorderWidth。　</p>
+<p>文字阴影：textShadowColor、textShadowBlur、textShadowOffsetX、textShadowOffsetY。　</p>
+<p>文本块或文本片段大小：lineHeight、width、height、padding。　</p>
+<p>文本块或文本片段的对齐：align、verticalAlign。　</p>
+<p>文本块或文本片段的边框、背景（颜色或图片）：backgroundColor、borderColor、borderWidth、borderRadius。　</p>
+<p>文本块或文本片段的阴影：shadowColor、shadowBlur、shadowOffsetX、shadowOffsetY。　</p>
+<p>文本块的位置和旋转：position、distance、rotate。</p>
+<h1 id="7-5-小结"><a href="#7-5-小结" class="headerlink" title="7.5　小结"></a>7.5　小结</h1><p>相比Matplotlib和Searnborn，Pyecharts绘制出的图表更加令人惊叹，其动感效果更是Matplotlib和Searnborn无法比拟的，但也存在不足之处，其生成的图表为网页格式，不能够随时查看，需要打开文件进行浏览。Pyecharts更适合Web程序。<br>Pyecharts还有很多功能，由于篇幅有限不能一一进行介绍，希望读者在学习过程中能够举一反三，绘制出更多精彩的数据分析图表。</p>
+
+              
+            </div>
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/" class="category-chain-item">数据分析</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/pyechars/">#pyechars</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>数据可视化分析图表Pyechars</div>
+      <div>http://example.com/2020/02/21/shujufenxi/数据可视化分析图表Pyechars/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>温酒斩华雄</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2020年2月21日</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>更新于</div>
+          <div>2020年2月21日</div>
+        </div>
+      
+      <div class="license-meta-item">
+        <div>许可协议</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/03/21/shujufenxi/%E8%AE%A1%E7%AE%97%E6%A8%A1%E5%9D%97numpy/" title="计算模块numpy">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">计算模块numpy</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/02/19/shujufenxi/Pandas%E7%BB%9F%E8%AE%A1%E5%88%86%E6%9E%90/" title="Pandas统计分析">
+                        <span class="hidden-mobile">Pandas统计分析</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  <article id="comments" lazyload>
+    
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <div>来喽博客 | 记录学习成长的过程</div> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.0/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script>
+  (function() {
+    var enableLang = CONFIG.code_language.enable && CONFIG.code_language.default;
+    var enableCopy = CONFIG.copy_btn;
+    if (!enableLang && !enableCopy) {
+      return;
+    }
+
+    function getBgClass(ele) {
+      return Fluid.utils.getBackgroundLightness(ele) >= 0 ? 'code-widget-light' : 'code-widget-dark';
+    }
+
+    var copyTmpl = '';
+    copyTmpl += '<div class="code-widget">';
+    copyTmpl += 'LANG';
+    copyTmpl += '</div>';
+    jQuery('.markdown-body pre').each(function() {
+      var $pre = jQuery(this);
+      if ($pre.find('code.mermaid').length > 0) {
+        return;
+      }
+      if ($pre.find('span.line').length > 0) {
+        return;
+      }
+
+      var lang = '';
+
+      if (enableLang) {
+        lang = CONFIG.code_language.default;
+        if ($pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2 && $pre.children().hasClass('hljs')) {
+          lang = $pre[0].children[0].classList[1];
+        } else if ($pre[0].getAttribute('data-language')) {
+          lang = $pre[0].getAttribute('data-language');
+        } else if ($pre.parent().hasClass('sourceCode') && $pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2) {
+          lang = $pre[0].children[0].classList[1];
+          $pre.parent().addClass('code-wrapper');
+        } else if ($pre.parent().hasClass('markdown-body') && $pre[0].classList.length === 0) {
+          $pre.wrap('<div class="code-wrapper"></div>');
+        }
+        lang = lang.toUpperCase().replace('NONE', CONFIG.code_language.default);
+      }
+      $pre.append(copyTmpl.replace('LANG', lang).replace('code-widget">',
+        getBgClass($pre[0]) + (enableCopy ? ' code-widget copy-btn" data-clipboard-snippet><i class="iconfont icon-copy"></i>' : ' code-widget">')));
+
+      if (enableCopy) {
+        Fluid.utils.createScript('https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js', function() {
+          var clipboard = new window.ClipboardJS('.copy-btn', {
+            target: function(trigger) {
+              var nodes = trigger.parentNode.childNodes;
+              for (var i = 0; i < nodes.length; i++) {
+                if (nodes[i].tagName === 'CODE') {
+                  return nodes[i];
+                }
+              }
+            }
+          });
+          clipboard.on('success', function(e) {
+            e.clearSelection();
+            e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-copy', 'icon-success');
+            setTimeout(function() {
+              e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-success', 'icon-copy');
+            }, 2000);
+          });
+        });
+      }
+    });
+  })();
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/assets/wanko.model.json"},"display":{"position":"left","hOffset":0,"vOffset":-20,"width":200,"height":300},"mobile":{"show":true},"react":{"opacity":0.7},"log":false});</script></body>
+</html>

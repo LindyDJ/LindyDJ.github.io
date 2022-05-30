@@ -1,0 +1,974 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=light>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.ico">
+  <link rel="icon" href="/img/fluid.ico">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="温酒斩华雄">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="Numpy补充一.数组补充1.np.alltrue()判断数组的元素是否都为True，是否都是非0 2.复数数组的建立i^2&#x3D;-1 f1&#x3D;np.array([10+2j,8j,2.1+3j]) f1.dtype 注意事项：Numpy的数组元素要求统一类型，不能出现既是整型又是字符型的现象，如果不小心输入了不同类型的元素，array会把其他类型的元素自动转换成字符串型。 3.np.eye(N,M,k">
+<meta property="og:type" content="article">
+<meta property="og:title" content="numpy补充">
+<meta property="og:url" content="http://example.com/2020/04/18/shujufenxi/numpy%E8%A1%A5%E5%85%85/index.html">
+<meta property="og:site_name" content="zhaoShuoLin的博客">
+<meta property="og:description" content="Numpy补充一.数组补充1.np.alltrue()判断数组的元素是否都为True，是否都是非0 2.复数数组的建立i^2&#x3D;-1 f1&#x3D;np.array([10+2j,8j,2.1+3j]) f1.dtype 注意事项：Numpy的数组元素要求统一类型，不能出现既是整型又是字符型的现象，如果不小心输入了不同类型的元素，array会把其他类型的元素自动转换成字符串型。 3.np.eye(N,M,k">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="http://example.com/img/numpy.png">
+<meta property="article:published_time" content="2020-04-17T19:12:35.000Z">
+<meta property="article:modified_time" content="2020-04-17T19:12:35.000Z">
+<meta property="article:author" content="温酒斩华雄">
+<meta property="article:tag" content="numpy">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/img/numpy.png">
+  
+  
+    <meta name="referrer" content="no-referrer-when-downgrade">
+  
+  
+  <title>numpy补充 - zhaoShuoLin的博客</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_hj8rtnfg7um.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_lbnruvf0jn.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.0","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false}},"search_path":"/local-search.xml"};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+
+  
+<meta name="generator" content="Hexo 5.4.2"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Lin&#39;s blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="numpy补充"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-author" aria-hidden="true"></i>
+        温酒斩华雄
+      </span>
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2020-04-18 03:12" pubdate>
+          2020年4月18日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          7.5k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          63 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="busuanzi_container_page_pv" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="busuanzi_value_page_pv"></span> 次
+        </span>
+        
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">numpy补充</h1>
+            
+              <p class="note note-info">
+                
+                  
+                    本文最后更新于：2020年4月18日 凌晨
+                  
+                
+              </p>
+            
+            <div class="markdown-body">
+              
+              <h1 id="Numpy补充"><a href="#Numpy补充" class="headerlink" title="Numpy补充"></a>Numpy补充</h1><h1 id="一-数组补充"><a href="#一-数组补充" class="headerlink" title="一.数组补充"></a>一.数组补充</h1><h2 id="1-np-alltrue"><a href="#1-np-alltrue" class="headerlink" title="1.np.alltrue()"></a>1.np.alltrue()</h2><p>判断数组的元素是否都为True，是否都是非0</p>
+<h2 id="2-复数数组的建立"><a href="#2-复数数组的建立" class="headerlink" title="2.复数数组的建立"></a>2.复数数组的建立</h2><p>i^2=-1</p>
+<p>f1=np.array([10+2j,8j,2.1+3j])</p>
+<p>f1.dtype</p>
+<p>注意事项：Numpy的数组元素要求统一类型，不能出现既是整型又是字符型的现象，如果不小心输入了不同类型的元素，array会把其他类型的元素自动转换成字符串型。</p>
+<h2 id="3-np-eye-N-M-k-0-dtype-lt-class’float’-gt-order-’C’"><a href="#3-np-eye-N-M-k-0-dtype-lt-class’float’-gt-order-’C’" class="headerlink" title="3.np.eye(N,M,k=0,dtype=&lt;class’float’&gt;,order=’C’)"></a>3.np.eye(N,M,k=0,dtype=&lt;class’float’&gt;,order=’C’)</h2><p>k=0表示主对角线，k=正整数表示上对角线，k=负整数表示下对角线</p>
+<p>返回对角线为1，其他位置均为0的二维数组</p>
+<h2 id="4-repeat（a-repeats-axis-None）"><a href="#4-repeat（a-repeats-axis-None）" class="headerlink" title="4.repeat（a,repeats,axis=None）"></a>4.repeat（a,repeats,axis=None）</h2><p>建立每个元素重复N次的数组。</p>
+<p>a为集合对象</p>
+<p>repeats为指定元素重复次数，在多维数组的情况下，axis可以指定重复维度</p>
+<h2 id="5-数组属性"><a href="#5-数组属性" class="headerlink" title="5.数组属性"></a>5.数组属性</h2><p>(1) ndim属性，返回数组的维度</p>
+<p>arr1=[[1,2,3],[3,4,5],[5,6,7]]</p>
+<p>arr1.ndim</p>
+<p>（2）shape返回数组的形状大小</p>
+<p>（3）size返回数组的元素个数</p>
+<p>（4）dtype返回数组的元素类型</p>
+<p>（5）itemsize 返回数组元素字节大小</p>
+<p>属性不加小括号</p>
+<h2 id="6-数组的使用"><a href="#6-数组的使用" class="headerlink" title="6.数组的使用"></a>6.数组的使用</h2><p>方法加小括号</p>
+<h3 id="（1）reshape-方法"><a href="#（1）reshape-方法" class="headerlink" title="（1）reshape 方法"></a>（1）reshape 方法</h3><p>改变数组的形状</p>
+<p>arr1=[[1,2,3,4],[3,4,5,6],[5,6,7,8]]</p>
+<p>arr2=arr1.reshape(4,3)</p>
+<p>print(arr2)</p>
+<p>注意：reshape方法的参数元组（x,y）,x*y必须等于数组元素的个数，否则执行该方法会报错</p>
+<h3 id="（2）all方法"><a href="#（2）all方法" class="headerlink" title="（2）all方法"></a>（2）all方法</h3><p>判断指定的数组元素是否都是非0，是返回True，否则返回False</p>
+<p>m1=np.ones(9).all()</p>
+<p>print(m1)</p>
+<p>np.array([1,0,2]).all()</p>
+<p>np.array([1,0,2],[1,2,3]).all(axis=1)从行方向上判断每行的值是否均为0</p>
+<p>axis指向维度的方向，其值为0表示第二维的方向列方向，值为1表示第一维的方向</p>
+<h3 id="（3）any方法"><a href="#（3）any方法" class="headerlink" title="（3）any方法"></a>（3）any方法</h3><p>判断数组的元素有非0值，有则返回True，否则返回False</p>
+<p>t1=np.array([[1,0,3],[0,0,2]])</p>
+<p>t1.any(axis=0)</p>
+<h3 id="（4）copy方法"><a href="#（4）copy方法" class="headerlink" title="（4）copy方法"></a>（4）copy方法</h3><p>复制数组副本</p>
+<p>arr2=arr1</p>
+<p>id(arr1)</p>
+<p>id(arr2)</p>
+<p>arr0=arr1.copy()</p>
+<p>id(arr0)</p>
+<p>使用copy的方法在计算机的内存生成一个新的数组副本，修改一个数组的元素不会影响另一个数组的元素。</p>
+<h3 id="（5）astype方法"><a href="#（5）astype方法" class="headerlink" title="（5）astype方法"></a>（5）astype方法</h3><p>改变元素类型</p>
+<p>arr1=np.ones(9,dtype=int)</p>
+<p>print(arr1.astype(float))</p>
+<h2 id="7-函数"><a href="#7-函数" class="headerlink" title="7.函数"></a>7.函数</h2><p>1.简单去最接近的整数</p>
+<p>rint(x)</p>
+<p>np.rint([0.49,1.4,1.5,0.6])</p>
+<p>2.向0方向舍入取最接近的整数</p>
+<p>fix(x)</p>
+<p>np.fix([0.0001,0.7,0,3],[10.1,10.3,10.7])</p>
+<h2 id="8-乱序和随机抽取"><a href="#8-乱序和随机抽取" class="headerlink" title="8 .乱序和随机抽取"></a>8 .乱序和随机抽取</h2><p>1.radom.permutation(x)</p>
+<p>当x为标量时，生成一个[0,n)的乱序数组，当X为可变集合时，对集合里面的值进行乱序排列</p>
+<p>2.random.shuffle(x)</p>
+<p>对x乱序处理</p>
+<p>3.random.choice(a,size=None,replace=True,p=None)</p>
+<p>从a抽取size个，replace=False不重复p权重</p>
+<h2 id="9-数组的对接、分割"><a href="#9-数组的对接、分割" class="headerlink" title="9.数组的对接、分割"></a>9.数组的对接、分割</h2><p>（1）数组对接</p>
+<p>hstack（），vstack（）</p>
+<p>（2）数组分割</p>
+<p>hsplit(arr,N)实现水平分割，N为分割数</p>
+<p>vsplit(arr,N)实现垂直分割，N为分割数</p>
+<h2 id="10-索引以及索引省略"><a href="#10-索引以及索引省略" class="headerlink" title="10.索引以及索引省略"></a>10.索引以及索引省略</h2><h3 id="10-1-索引"><a href="#10-1-索引" class="headerlink" title="10.1 索引"></a>10.1 索引</h3><p>arr[1][2]</p>
+<p>arr[1,2]</p>
+<h4 id="1-数组索引"><a href="#1-数组索引" class="headerlink" title="1.数组索引"></a>1.数组索引</h4><p>(1)一维</p>
+<p>arr1=np.array([‘a’，‘b’，‘c’，‘d’，‘e’])</p>
+<p>idx=np.array([1,2,3])</p>
+<p>arr1[idx]</p>
+<p>（2）二维</p>
+<p>arr1=np.array([[‘a’，‘b’，‘c’，‘d’，‘e’],[‘a’，‘b’，‘c’，‘d’，‘e’],[‘a’，‘b’，‘c’，‘d’，‘e’],[‘a’，‘b’，‘c’，‘d’，‘e’]])</p>
+<p>x=np.array([0,1,2])</p>
+<p>y=np.array([0,1,2])</p>
+<p>arr1[x,y]</p>
+<p>(3)布尔下标</p>
+<p>arr1=np.arange(9).reshape(3,3)</p>
+<p>b1=np.array([[‘True’,’False’,’False’],[‘False’,’True’,’True’],[‘False’,’False’,’True’]])</p>
+<p>arr1[b1]</p>
+<p>结果：过滤，得到指定true位置的值，返回结果一维</p>
+<p>b2=np.array([‘True’,’False’,’True’])#形状一致</p>
+<p>arr1[b2]</p>
+<p>结果：保留行，二维</p>
+<h3 id="10-2-索引省略"><a href="#10-2-索引省略" class="headerlink" title="10.2 索引省略"></a>10.2 索引省略</h3><p>当确定不了维度时，可以通过下标右边…（省略号）或者直接省略下边的方法来读取数组</p>
+<p>n3[1,…]等价于n3[1,]或者n3[1]</p>
+<p>从下标左侧开始省略，只能用“…”的形式，不能用n3[,2]的形式</p>
+<p>n3[…,2]</p>
+<p>当下标从中间维度省略</p>
+<p>n3[1,…,2]不能使用n3[1,,2]</p>
+<h2 id="11-数组运算"><a href="#11-数组运算" class="headerlink" title="11.数组运算"></a>11.数组运算</h2><h3 id="1-基本运算"><a href="#1-基本运算" class="headerlink" title="1.基本运算"></a>1.基本运算</h3><p>+，-，*，/</p>
+<p>//取整  arr1//arr2</p>
+<h3 id="2-位运算"><a href="#2-位运算" class="headerlink" title="2.位运算"></a>2.位运算</h3><p>&amp;按位与</p>
+<p>|按位或</p>
+<p>~非运算</p>
+<p>&lt;&lt;左移</p>
+<p>右移&gt;&gt;</p>
+<h2 id="12-数组增删改查"><a href="#12-数组增删改查" class="headerlink" title="12.数组增删改查"></a>12.数组增删改查</h2><p>1.删除</p>
+<p>delete（）</p>
+<p>2.增加</p>
+<p>insert(arr,obj,values,axis=None)</p>
+<p>指定列</p>
+<p>b1=np.ones(9).reshape(3,3)</p>
+<p>np.insert(b1,3,[2,2,2],axis=1)</p>
+<p>指定行</p>
+<p>b1=np.ones(9).reshape(3,3)</p>
+<p>np.insert(b1,3,[2,2,2],axis=0)</p>
+<p>3.将指定值附加到数组末尾</p>
+<p>append(aee,values,axis=None),axis=1在行反向上增加</p>
+<p>z1=np.zeros(9).reshape(3,3)</p>
+<p>np.append(z1,b1,axis=1)在行上增加</p>
+<h1 id="二、矩阵和线性代数补充"><a href="#二、矩阵和线性代数补充" class="headerlink" title="二、矩阵和线性代数补充"></a>二、矩阵和线性代数补充</h1><h2 id="1-行列式求值"><a href="#1-行列式求值" class="headerlink" title="1.行列式求值"></a>1.行列式求值</h2><p>det(a)函数</p>
+<p>v1=np.linalg.det(a)</p>
+<p>‘%.2f%’%(v1)</p>
+<h2 id="2-特殊值行列式"><a href="#2-特殊值行列式" class="headerlink" title="2.特殊值行列式"></a>2.特殊值行列式</h2><h3 id="（1）-范德蒙行列式"><a href="#（1）-范德蒙行列式" class="headerlink" title="（1）.范德蒙行列式"></a>（1）.范德蒙行列式</h3><p>vander(x,N=None,increasing=False)x为一维集合，N为默认要产生的列数，N不指定时，N=len(x),increasing为False，从右往左计算</p>
+<p>vm=np.vander([1,2,3])</p>
+<p>vm</p>
+<p>array([[1,1,1],[4,2,1],[9,3,1]])</p>
+<h3 id="（2）-下三角行列式"><a href="#（2）-下三角行列式" class="headerlink" title="（2）.下三角行列式"></a>（2）.下三角行列式</h3><p>tril(m,k=0)主对角线上方的元素都为0,k指定主对角线以及上方0元素的位置，默认k=0,当k=-1时，主对角线也为0，当k=1时，从主对角线往右斜上方扩展一行处开始为0</p>
+<p>t1=np.array([[1,2,3],[4,5,6],[7,8,9]])</p>
+<p>np.tril(t1)</p>
+<p>该函数还可以提供主对角线元素</p>
+<p>np.tril([1,2,3])</p>
+<p>返回值：</p>
+<p>array([1,0,0],</p>
+<p>​           [1,2,0],</p>
+<p>​           [1,2,3])</p>
+<h3 id="（3）-上三角行列式"><a href="#（3）-上三角行列式" class="headerlink" title="（3）.上三角行列式"></a>（3）.上三角行列式</h3><p>triu(arr,k=0)</p>
+<p>使用方法同tril</p>
+<h3 id="（4）-获取主对角线的值"><a href="#（4）-获取主对角线的值" class="headerlink" title="（4）.获取主对角线的值"></a>（4）.获取主对角线的值</h3><p>diag(arr,k=0)k往左下方移动使用负数，右上方使用正数</p>
+<p>arr=np.arange(9).reshape(3,3)</p>
+<p>d=np.diag(arr)</p>
+<h2 id="3-线性代数求解"><a href="#3-线性代数求解" class="headerlink" title="3.线性代数求解"></a>3.线性代数求解</h2><p>1.线性方程求解</p>
+<p>solve(a,b)   a为系数矩阵，b为常数项矩阵，返回求解x未知数矩阵对应的公式ax=b</p>
+<p>x1-x2-x3=2</p>
+<p>2x1-x2-3x3=1</p>
+<p>3x1- 2x2-5x3=0</p>
+<p>系数矩阵A=[[1,-1,1],[2,-1,-3],[3,2,-5]],常数项矩阵b=[2,1,0],求x=[x1,x2,x3]</p>
+<p>代码：</p>
+<p>A=np.matrix([[1,-1,1],[2,-1,-3],[3,2,-5]])</p>
+<p>b=[2,1,0]</p>
+<p>x=np.linalg.solve(A,b)</p>
+<p>要求系数矩阵行列式的值不为0</p>
+<h1 id="三、文件处理"><a href="#三、文件处理" class="headerlink" title="三、文件处理"></a>三、文件处理</h1><p>计算机文件可以存储文字、数字、图片、视频、声音等信息，也可以永久形式记录计算机的数据处理及算计结果。计算机文件以一定格式主要存放于硬盘介质上，供用户使用时调用。计算机文件主要分文本文件和二进制文件。</p>
+<p>文本文件主要指以ASCII码方式存储的文件，具体内容包括了英文、数字、特殊符号，也包括了Unicode码（主要是UTF-8、UTF-16L）方式下的中文、日文等双字节多字节语言内容。常见的文本文件格式（及扩展名）包括了txt、doc、docx、wps、pdf、 chm、rtf、xml、csv等。</p>
+<h2 id="1-文本文件"><a href="#1-文本文件" class="headerlink" title="1.文本文件"></a>1.文本文件</h2><h3 id="（1）、将数组保存到文本文件"><a href="#（1）、将数组保存到文本文件" class="headerlink" title="（1）、将数组保存到文本文件."></a>（1）、将数组保存到文本文件.</h3><p>函数savetxt(fname, X, fmt=’%.18e’, delimiter=’ ‘, newline=’\n’, header=’’,footer=’’, comments=’# ‘, encoding=None)</p>
+<p>*参数：</p>
+<p>*（1）fname：指定文件名或文件句柄，如果文件名以<code>.gz</code>结尾，则文件会自动保存为压缩gzip格式。</p>
+<p>*（2）X：集合对象，为需要保存的数据。</p>
+<p>*（3）fmt：为指定存储格式，字符串型，可选。如’%.2f’要求保留的浮点数为两位小数，这种情况下忽略分隔符。’%.4e’为复数格式。</p>
+<p>*（4）delimite：可选，分隔列的字符串或字符。如’,’。</p>
+<p>*（5）newline：数据行之间的分隔符，字符串或字符分隔线，可选，默认值为’\n’。</p>
+<p>*（6）header：可选，在文件开头写入的字符串。</p>
+<p>*（7）footer：可选，在文件末尾写入的字符串。</p>
+<p>*（8）comments：可选，将被添加到文件头或尾的标记信息，默认值为’#’。</p>
+<p>*（9）encoding：可选，用于编码输出文件的编码，默认编码为’ latin1’。</p>
+<p>例1、将数组保存到文本文件</p>
+<p>import numpy as np</p>
+<p>data=np.arange(12).reshape(3,4)</p>
+<p>np.savetext(r’/A1.txt’,data,delimiter=’,’)</p>
+<p>加 r 会把字符串转变为非转义的原始字符串。</p>
+<h3 id="（2）从文本文件加载数据"><a href="#（2）从文本文件加载数据" class="headerlink" title="（2）从文本文件加载数据"></a>（2）从文本文件加载数据</h3><p><em><strong>函数</strong></em>*loadtxt(fname, dtype=&lt;class ‘float’&gt;, comments=’#’, delimiter=None,converters=None,skiprows=0, usecols=None, unpack=False, ndmin=0,encoding=’bytes’,max_rows=None)</p>
+<p>*参数：</p>
+<p>*（1）fname：指定要读取的文件，文件名或生成器。如果文件扩展名为.gz或.bz2，则首先解压缩该文件。请注意，生成器支持返回Python 3版本的字节字符串。</p>
+<p>*（2）dtype（数据类型），可选，结果数组的数据类型;默认值浮点数。</p>
+<p>*（3）comments（注释），str或str的序列，可选。</p>
+<p>*（4）delimiter（分隔符）：str，可选，指定要读取文件里用于分隔值的字符串，默认值为空格。</p>
+<p>*（5）converters（转换器）：dict，可选，将列号映射到将列字符串解析为所需值的函数的字典。例如，如果第0列是日期字符串：converters = {0：datestr2num}。默认值：无。</p>
+<p>*（6）skiprows（跳行）：跳过前几行读取，必须是整型，可选，默认值为0。</p>
+<p>*（7）usecols：指定需要读取的列（必须是整数），0为第一列，例如，usecols =（1,2,4）将提取第2列、第3列和第5列。默认值None为读取所有列。</p>
+<p>*（8）unpack（解包）：bool，可选，如果为True，则返回的数组被转置，因此可以使用x，y，z = loadtxt（…）解压缩参数。与结构化数据类型一起使用时，将为每个字段返回数组。默认值为False。</p>
+<p>*（9）ndmin（指定返回数组的维度）：整型，可选，返回的数组至少具有ndmin维度。否则将以一维数组形式返回。合法值：0（默认值），1或2。</p>
+<p>*（10）encoding：str，可选，用于解码输入文件的编码。不适用于输入流。特殊值’bytes’启用向后兼容性解决方法，尽可能接收字节数组作为结果，并将’latin1’编码字符串传递给转换器。重写此值以接收unicode数组并将字符串作为输入传递给转换器。如果设置为“无”，则使用系统默认值。默认值为’bytes’。</p>
+<p>*（11）max_rows读取指定范围的行内容：整型，可选，在跳过指定行后，读取max_rows行内容。默认是读取所有行。</p>
+<p><img src="/2020/04/18/shujufenxi/numpy%E8%A1%A5%E5%85%85/image-20211101050632607.png" srcset="/img/loading.gif" lazyload alt="image-20211101050632607"></p>
+<h3 id="（3）使用正则表达式解析从文本文件构造数组"><a href="#（3）使用正则表达式解析从文本文件构造数组" class="headerlink" title="（3）使用正则表达式解析从文本文件构造数组"></a>（3）使用正则表达式解析从文本文件构造数组</h3><p>函数fromregex(file,regexp,dtype, encoding=None)，</p>
+<p>*（1）file，要读取的文件名或文件对象。</p>
+<p>*（2）regexp，用于解析文件的正则表达式，正则表达式中的组对应于dtype中的字段。</p>
+<p>*（3）dtype，指定生成数组的数据类型，可以指定类型值，也可以时集合类型。</p>
+<p>*（4）encoding，字符串，可选。用于解码输入文本文件的编码。</p>
+<p>with open(‘test.dat’, ‘w’) as f:</p>
+<p>​    f.write(“2000 Tom\n3000 Go\n3333  John”)</p>
+<p>regexp = r”(\d+)\s+(…)” #匹配数字(\d+)，空白\s+，任何东西(…)</p>
+<p>output = np.fromregex(‘test.dat’, regexp,[(‘Number’, np.int64), (‘key’, ‘S3’)])</p>
+<p>output</p>
+<p><img src="/2020/04/18/shujufenxi/numpy%E8%A1%A5%E5%85%85/image-20211101051157264.png" srcset="/img/loading.gif" lazyload alt="image-20211101051157264"></p>
+<h2 id="2-二进制文件"><a href="#2-二进制文件" class="headerlink" title="2.二进制文件"></a>2.二进制文件</h2><h3 id="（1）将数组保存为Numpy（扩展名为-npy-格式的二进制文件"><a href="#（1）将数组保存为Numpy（扩展名为-npy-格式的二进制文件" class="headerlink" title="（1）将数组保存为Numpy（扩展名为.npy)格式的二进制文件"></a>（1）将数组保存为Numpy（扩展名为.npy)格式的二进制文件</h3><p>*以二进制数据形式存储数据的文件，用专业工具（如Debug、WinHex、U_Edit）打开时往往显示的是十六进制（相比二进制十六进制更方便读写）。图形文件、可执行程序、后缀名为bin的驱动程序都属于二进制文件。</p>
+<p>*将数组保存为NumPy（扩展名为.npy）格式的二进制文件。</p>
+<p>函数save(file, arr,allow_pickle=True, fix_imports=True)</p>
+<p>*（1）file，指定需要保存的Numpy格式的二进制格式的文件名。</p>
+<p>*（2）arr，类似数组的需要存储的数据对象。</p>
+<p>*（3）allow_pickle，在默认值True情况下允许使用Python pickles保存对象数组；若为False则禁止使用pickle方式。</p>
+<p>*（4）fix_imports，默认值为True，则pickle将尝试将新的Python 3名称映射到Python 2中使用的旧模块名称，以便使用Python 2可读取pickle数据流。</p>
+<p>A1=np.arange(9).reshape(3,3)</p>
+<p>np.save(‘testB’,A1)         </p>
+<h3 id="（2）从-npy，-npz或pickled文件加载数组或pickle对象"><a href="#（2）从-npy，-npz或pickled文件加载数组或pickle对象" class="headerlink" title="（2）从.npy，.npz或pickled文件加载数组或pickle对象"></a>（2）从.npy，.npz或pickled文件加载数组或pickle对象</h3><p>函数load(file,mmap_mode=None,allow_pickle=True,fix_imports=True,encoding=’ASCII’)</p>
+<p>* （1）file，指定需要读取的二进制文件名，字符串、pathlib.Path。</p>
+<p>* （2）mmap_mode，读写模式，可选参数值包括了None、’r+’、’w+’、’c’。  如果不是None，则使用给定模式对文件进行内存映射。它可以像任何ndarray一样访问和切片。 内存映射对于访问大型文件的小片段而不将整个文件读入内存特别有用。</p>
+<p>* （3）allow_pickle，布尔，允许加载存储在npy文件中的pickled对象数组。 禁止pickle的原因包括安全性，因为加载pickle数据可以执行任意代码。 如果不允许使用pickle，则加载对象数组将失败。默认值True。pickle模块用来实现python对象的序列化和反序列化。通常地pickle将python对象序列化为二进制流或文件。</p>
+<p>* （4）fix_imports，布尔，仅在Python 3上加载Python 2生成的pickle文件时才有用，其中包括包含对象数组的npy / npz文件。</p>
+<p>* （5）encoding，读取Python 2字符串时要使用的编码。 仅在Python 3中加载Python 2生成的pickle文件时才有用，其中包括包含对象数组的npy / npz文件。 不允许使用“latin1”，“ASCII”和“bytes”以外的值，因为它们可能会破坏数值数据。 默认值’ASCII’。</p>
+<p>B1=np.load(‘testB.npy’)               #读取上列生成的二进制文件</p>
+<p>B1</p>
+<h3 id="3-多个数组以未压缩-npz格式保存到单个文件中"><a href="#3-多个数组以未压缩-npz格式保存到单个文件中" class="headerlink" title="(3)多个数组以未压缩.npz格式保存到单个文件中"></a>(3)多个数组以未压缩.npz格式保存到单个文件中</h3><p>函数savez（file,*args,**kwds)</p>
+<p>x1=np.linspace(1,10,10)</p>
+<p>y1=np.sin(x1)</p>
+<p>np.savez(‘Z1’,x1,y1)</p>
+<p>z1=np.load(‘Z1.npz’)</p>
+<p>for get in Z1.items():</p>
+<p>​    print(get)</p>
+<p>​    print(type(get))</p>
+<h3 id="4-根据文本或二进制文件中的数据构造数组"><a href="#4-根据文本或二进制文件中的数据构造数组" class="headerlink" title="(4)根据文本或二进制文件中的数据构造数组"></a>(4)根据文本或二进制文件中的数据构造数组</h3><p>函数fromfile(file,dtype=float,count=-1,sep=’’)</p>
+<p>file文件名字</p>
+<p>dtype要生成的数组类型</p>
+<p>count要读取的文件的项目数，-1表示所有项目</p>
+<p>sep为项目之间的分隔符</p>
+<p>z1=np.fromfile(‘a.jpg’)</p>
+<p>z1</p>
+<h2 id="3-其他文件"><a href="#3-其他文件" class="headerlink" title="3.其他文件"></a>3.其他文件</h2><p>通用数据源文件（文件，http，ftp，…）</p>
+<p>DataSource(destpath=’.’)对象，DataSource对象的方法支持可以是本地文件或远程文件/ URL的操作。 文件也可以是压缩的或未压缩的。 DataSource对象隐藏了下载文件的一些低级细节，允许简单地设置有效的文件路径（或URL）并获取文件对象。参数destpath，指定下载源文件的目录的路径；当destpath值为None，将创建一个临时目录，默认路径是当前目录。</p>
+<p>ds=np.DataSource(path.abspath(path.curdir))</p>
+<p>if ds.exists(r’<a target="_blank" rel="noopener" href="https://docs.scipy.org/doc/numpy/numpy-user-1.16.1.pdf&#39;">https://docs.scipy.org/doc/numpy/numpy-user-1.16.1.pdf&#39;</a>):</p>
+<p>​        ds.open(r’<a target="_blank" rel="noopener" href="https://docs.scipy.org/doc/numpy/numpy-user-1.16.1.pdf&#39;">https://docs.scipy.org/doc/numpy/numpy-user-1.16.1.pdf&#39;</a>)</p>
+<p>else:</p>
+<pre><code class="hljs">     print(&#39;没有文件下载&#39;)
+</code></pre>
+<p>​     </p>
+
+              
+            </div>
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E6%95%B0%E6%8D%AE%E5%88%86%E6%9E%90/" class="category-chain-item">数据分析</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/numpy/">#numpy</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>numpy补充</div>
+      <div>http://example.com/2020/04/18/shujufenxi/numpy补充/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>温酒斩华雄</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2020年4月18日</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>更新于</div>
+          <div>2020年4月18日</div>
+        </div>
+      
+      <div class="license-meta-item">
+        <div>许可协议</div>
+        <div>
+          
+            
+            
+              <a target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+              <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                <i class="iconfont icon-by"></i>
+              </span>
+              </a>
+            
+          
+        </div>
+      </div>
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2020/05/21/shujufenxi/scikit-learn%E5%88%9D%E7%BA%A7/" title="scikit-learn初级">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">scikit-learn初级</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2020/03/28/shujufenxi/%E6%95%B0%E6%8D%AE%E7%BB%9F%E8%AE%A1%E5%88%86%E6%9E%90%E6%A1%88%E4%BE%8B/" title="数据统计分析案例">
+                        <span class="hidden-mobile">数据统计分析案例</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  <article id="comments" lazyload>
+    
+
+  </article>
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> <div>来喽博客 | 记录学习成长的过程</div> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="busuanzi_container_site_pv" style="display: none">
+        总访问量 
+        <span id="busuanzi_value_site_pv"></span>
+         次
+      </span>
+    
+    
+      <span id="busuanzi_container_site_uv" style="display: none">
+        总访客数 
+        <span id="busuanzi_value_site_uv"></span>
+         人
+      </span>
+    
+    
+  
+</div>
+
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.0/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.18.0/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      headingSelector : CONFIG.toc.headingSelector || 'h1,h2,h3,h4,h5,h6',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      collapseDepth   : CONFIG.toc.collapseDepth || 0,
+      scrollSmooth    : true,
+      headingsOffset  : -boardTop
+    });
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+  });
+</script>
+
+
+  <script>
+  (function() {
+    var enableLang = CONFIG.code_language.enable && CONFIG.code_language.default;
+    var enableCopy = CONFIG.copy_btn;
+    if (!enableLang && !enableCopy) {
+      return;
+    }
+
+    function getBgClass(ele) {
+      return Fluid.utils.getBackgroundLightness(ele) >= 0 ? 'code-widget-light' : 'code-widget-dark';
+    }
+
+    var copyTmpl = '';
+    copyTmpl += '<div class="code-widget">';
+    copyTmpl += 'LANG';
+    copyTmpl += '</div>';
+    jQuery('.markdown-body pre').each(function() {
+      var $pre = jQuery(this);
+      if ($pre.find('code.mermaid').length > 0) {
+        return;
+      }
+      if ($pre.find('span.line').length > 0) {
+        return;
+      }
+
+      var lang = '';
+
+      if (enableLang) {
+        lang = CONFIG.code_language.default;
+        if ($pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2 && $pre.children().hasClass('hljs')) {
+          lang = $pre[0].children[0].classList[1];
+        } else if ($pre[0].getAttribute('data-language')) {
+          lang = $pre[0].getAttribute('data-language');
+        } else if ($pre.parent().hasClass('sourceCode') && $pre[0].children.length > 0 && $pre[0].children[0].classList.length >= 2) {
+          lang = $pre[0].children[0].classList[1];
+          $pre.parent().addClass('code-wrapper');
+        } else if ($pre.parent().hasClass('markdown-body') && $pre[0].classList.length === 0) {
+          $pre.wrap('<div class="code-wrapper"></div>');
+        }
+        lang = lang.toUpperCase().replace('NONE', CONFIG.code_language.default);
+      }
+      $pre.append(copyTmpl.replace('LANG', lang).replace('code-widget">',
+        getBgClass($pre[0]) + (enableCopy ? ' code-widget copy-btn" data-clipboard-snippet><i class="iconfont icon-copy"></i>' : ' code-widget">')));
+
+      if (enableCopy) {
+        Fluid.utils.createScript('https://lib.baomitu.com/clipboard.js/2.0.10/clipboard.min.js', function() {
+          var clipboard = new window.ClipboardJS('.copy-btn', {
+            target: function(trigger) {
+              var nodes = trigger.parentNode.childNodes;
+              for (var i = 0; i < nodes.length; i++) {
+                if (nodes[i].tagName === 'CODE') {
+                  return nodes[i];
+                }
+              }
+            }
+          });
+          clipboard.on('success', function(e) {
+            e.clearSelection();
+            e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-copy', 'icon-success');
+            setTimeout(function() {
+              e.trigger.innerHTML = e.trigger.innerHTML.replace('icon-success', 'icon-copy');
+            }, 2000);
+          });
+        });
+      }
+    });
+  })();
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/4.3.1/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+  <script defer src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+<script src="/live2dw/lib/L2Dwidget.min.js?094cbace49a39548bed64abff5988b05"></script><script>L2Dwidget.init({"pluginRootPath":"live2dw/","pluginJsPath":"lib/","pluginModelPath":"assets/","tagMode":false,"debug":false,"model":{"jsonPath":"/live2dw/assets/assets/wanko.model.json"},"display":{"position":"left","hOffset":0,"vOffset":-20,"width":200,"height":300},"mobile":{"show":true},"react":{"opacity":0.7},"log":false});</script></body>
+</html>
