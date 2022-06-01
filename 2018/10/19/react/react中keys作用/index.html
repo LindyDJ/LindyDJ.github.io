@@ -16,26 +16,24 @@
   <meta name="author" content="温酒斩华雄">
   <meta name="keywords" content="">
   
-    <meta name="description" content="介绍一下 webpack 的构建流程核心概念 entry：入口配置。webpack从入口开始根据模块间依赖关系递归解析和处理所有资源文件。 output：出口配置。经打包后的文件写入的位置。 loader：模块转换器。纯文件转换。因为webpack默认只认识js，json文件。 plugin：扩展插件。插件可以扩展 Webpack 的功能。 module：模块。除了js范畴内的es module、">
+    <meta name="description" content="React 中 keys 的作用是什么？ keys是react用于追踪那些列表中元素被修改，被添加或者被移除的辅助标识。  在开发过程中，我们需要保证某个元素的key在统计元素中具有唯一性。在react diff算法中，react会借助元素key值来判断该元素新创建的还是被移动而来的元素，从而减少不必要元素的重新渲染。此外，react还借助key值来判断元素与本地状态的关联关系，因此我们绝不可忽视">
 <meta property="og:type" content="article">
-<meta property="og:title" content="webpack构建流程">
-<meta property="og:url" content="http://example.com/2019/03/28/webpack/webpack%E6%9E%84%E5%BB%BA%E6%B5%81%E7%A8%8B/index.html">
+<meta property="og:title" content="react中keys作用">
+<meta property="og:url" content="http://example.com/2018/10/19/react/react%E4%B8%ADkeys%E4%BD%9C%E7%94%A8/index.html">
 <meta property="og:site_name" content="zhaoShuoLin的博客">
-<meta property="og:description" content="介绍一下 webpack 的构建流程核心概念 entry：入口配置。webpack从入口开始根据模块间依赖关系递归解析和处理所有资源文件。 output：出口配置。经打包后的文件写入的位置。 loader：模块转换器。纯文件转换。因为webpack默认只认识js，json文件。 plugin：扩展插件。插件可以扩展 Webpack 的功能。 module：模块。除了js范畴内的es module、">
+<meta property="og:description" content="React 中 keys 的作用是什么？ keys是react用于追踪那些列表中元素被修改，被添加或者被移除的辅助标识。  在开发过程中，我们需要保证某个元素的key在统计元素中具有唯一性。在react diff算法中，react会借助元素key值来判断该元素新创建的还是被移动而来的元素，从而减少不必要元素的重新渲染。此外，react还借助key值来判断元素与本地状态的关联关系，因此我们绝不可忽视">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/img/webpack.png">
-<meta property="article:published_time" content="2019-03-28T09:43:35.000Z">
-<meta property="article:modified_time" content="2019-03-28T09:43:35.000Z">
+<meta property="article:published_time" content="2018-10-19T05:52:54.000Z">
+<meta property="article:modified_time" content="2018-10-19T05:52:54.000Z">
 <meta property="article:author" content="温酒斩华雄">
-<meta property="article:tag" content="webpack">
+<meta property="article:tag" content="react">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://example.com/img/webpack.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>webpack构建流程 - zhaoShuoLin的博客</title>
+  <title>react中keys作用 - zhaoShuoLin的博客</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -198,7 +196,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="webpack构建流程"></span>
+            <span id="subtitle" data-typed-text="react中keys作用"></span>
           
         </div>
 
@@ -214,8 +212,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2019-03-28 17:43" pubdate>
-          2019年3月28日 下午
+        <time datetime="2018-10-19 13:52" pubdate>
+          2018年10月19日 下午
         </time>
       </span>
     
@@ -226,7 +224,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          888 字
+          356 字
         
       </span>
     
@@ -237,7 +235,7 @@
         
         
         
-          8 分钟
+          3 分钟
         
       </span>
     
@@ -283,45 +281,25 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">webpack构建流程</h1>
+            <h1 style="display: none">react中keys作用</h1>
             
               <p class="note note-info">
                 
                   
-                    本文最后更新于：2019年3月28日 下午
+                    本文最后更新于：2018年10月19日 下午
                   
                 
               </p>
             
             <div class="markdown-body">
               
-              <h4 id="介绍一下-webpack-的构建流程"><a href="#介绍一下-webpack-的构建流程" class="headerlink" title="介绍一下 webpack 的构建流程"></a>介绍一下 webpack 的构建流程</h4><h5 id="核心概念"><a href="#核心概念" class="headerlink" title="核心概念"></a><strong>核心概念</strong></h5><ul>
-<li><code>entry</code>：入口配置。webpack从入口开始根据模块间依赖关系递归解析和处理所有资源文件。</li>
-<li><code>output</code>：出口配置。经打包后的文件写入的位置。</li>
-<li><code>loader</code>：模块转换器。纯文件转换。因为webpack默认只认识js，json文件。</li>
-<li><code>plugin</code>：扩展插件。插件可以扩展 Webpack 的功能。</li>
-<li><code>module</code>：模块。除了js范畴内的<code>es module、commonJs、AMD</code>等，<code>css @import、url(...)</code>、图片、字体等在webpack中都被视为模块。</li>
-</ul>
-<h5 id="打包流程"><a href="#打包流程" class="headerlink" title="打包流程"></a>打包流程</h5><ul>
-<li>初始化参数：从配置文件和 Shell 语句中读取并合并参数，得出最终的配置参数。</li>
-<li>开始编译：从上一步得到的参数初始化 <code>Compiler</code> 对象，加载所有配置的插件，执行对象的 <code>run</code> 方法开始执行编译。</li>
-<li>确定入口：根scope据配置中的 <code>entry</code> 找出所有的入口文件。</li>
-<li>编译模块：从入口文件出发，调用所有配置的 <code>loader</code> 对模块进行翻译，再找出该模块依赖的模块，这个步骤是递归执行的，直至所有入口依赖的模块文件都经过本步骤的处理。</li>
-<li>完成模块编译：经过第 4 步使用 loader 翻译完所有模块后，得到了每个模块被翻译后的最终内容以及它们之间的依赖关系。</li>
-<li>输出资源：根据入口和模块之间的依赖关系，组装成一个个包含多个模块的 <code>chunk</code>，再把每个 <code>chunk</code> 转换成一个单独的文件加入到输出列表，这一步是可以修改输出内容的最后机会。</li>
-<li>输出完成：在确定好输出内容后，根据配置确定输出的路径和文件名，把文件内容写入到文件系统。</li>
-</ul>
-<p><img src="/2019/03/28/webpack/webpack%E6%9E%84%E5%BB%BA%E6%B5%81%E7%A8%8B/tt.png" srcset="/img/loading.gif" lazyload></p>
-<br>
-
-
-
-<p>从配置文件中读取所需要的参数，初始化compiler对象，并且加载所有的插件，执行run方法开始编译。找到entry入口文件。调用loader对模板进行递归解析翻译。等确定每个模块的依赖关系后，将他们组装成一个个包含多个模块的chunk。确定好内容后，根据出口配置将打包后的文件写入到具体位置。</p>
-<h5 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h5><hr>
-
-<blockquote>
+              <h4 id="React-中-keys-的作用是什么？"><a href="#React-中-keys-的作用是什么？" class="headerlink" title="React 中 keys 的作用是什么？"></a><strong>React 中 keys 的作用是什么？</strong></h4><blockquote>
+<p>keys是react用于追踪那些列表中元素被修改，被添加或者被移除的辅助标识。</p>
+</blockquote>
+<p>在开发过程中，我们需要保证某个元素的<code>key</code>在统计元素中具有唯一性。在<code>react diff</code>算法中，react会借助元素<code>key</code>值来判断该元素新创建的还是被移动而来的元素，从而减少不必要元素的重新渲染。此外，<code>react</code>还借助<code>key</code>值来判断元素与本地状态的关联关系，因此我们绝不可忽视转换函数中<code>key</code>的重要性。</p>
+<h5 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h5><blockquote>
 <ul>
-<li><a target="_blank" rel="noopener" href="https://interview2.poetries.top/docs/simply.html#_10-%E7%A7%BB%E5%8A%A8%E7%AB%AF%E4%BC%98%E5%8C%96">https://interview2.poetries.top/docs/simply.html#_10-%E7%A7%BB%E5%8A%A8%E7%AB%AF%E4%BC%98%E5%8C%96</a></li>
+<li><a target="_blank" rel="noopener" href="https://interview2.poetries.top/excellent-docs/6-React.html#_1%E3%80%81react-%E4%B8%AD-keys-%E7%9A%84%E4%BD%9C%E7%94%A8%E6%98%AF%E4%BB%80%E4%B9%88">https://interview2.poetries.top/excellent-docs/6-React.html#_1%E3%80%81react-%E4%B8%AD-keys-%E7%9A%84%E4%BD%9C%E7%94%A8%E6%98%AF%E4%BB%80%E4%B9%88</a></li>
 </ul>
 </blockquote>
 
@@ -341,7 +319,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/webpack/" class="category-chain-item">webpack</a>
+  <a href="/categories/react/" class="category-chain-item">react</a>
   
   
 
@@ -356,7 +334,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/webpack/">#webpack</a>
+        <a href="/tags/react/">#react</a>
       
     </div>
   
@@ -368,8 +346,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>webpack构建流程</div>
-      <div>http://example.com/2019/03/28/webpack/webpack构建流程/</div>
+      <div>react中keys作用</div>
+      <div>http://example.com/2018/10/19/react/react中keys作用/</div>
     </div>
     <div class="license-meta">
       
@@ -381,13 +359,13 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2019年3月28日</div>
+          <div>2018年10月19日</div>
         </div>
       
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2019年3月28日</div>
+          <div>2018年10月19日</div>
         </div>
       
       <div class="license-meta-item">
@@ -416,9 +394,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2019/03/29/webpack/%E4%BB%8B%E7%BB%8Dwebpack-Loader/" title="介绍webpack_Loader">
+                      <a href="/2019/03/28/webpack/webpack%E6%9E%84%E5%BB%BA%E6%B5%81%E7%A8%8B/" title="webpack构建流程">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">介绍webpack_Loader</span>
+                        <span class="hidden-mobile">webpack构建流程</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -426,8 +404,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2018/10/19/react/react%E4%B8%ADkeys%E4%BD%9C%E7%94%A8/" title="react中keys作用">
-                        <span class="hidden-mobile">react中keys作用</span>
+                      <a href="/2018/08/17/js/ES6%E6%96%B0%E5%A2%9ESet%E3%80%81Map%E4%B8%A4%E7%A7%8D%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" title="ES6新增Set、Map两种数据结构">
+                        <span class="hidden-mobile">ES6新增Set、Map两种数据结构</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

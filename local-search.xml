@@ -681,6 +681,31 @@
   
   
   <entry>
+    <title>react中keys作用</title>
+    <link href="/2018/10/19/react/react%E4%B8%ADkeys%E4%BD%9C%E7%94%A8/"/>
+    <url>/2018/10/19/react/react%E4%B8%ADkeys%E4%BD%9C%E7%94%A8/</url>
+    
+    <content type="html"><![CDATA[<h4 id="React-中-keys-的作用是什么？"><a href="#React-中-keys-的作用是什么？" class="headerlink" title="React 中 keys 的作用是什么？"></a><strong>React 中 keys 的作用是什么？</strong></h4><blockquote><p>keys是react用于追踪那些列表中元素被修改，被添加或者被移除的辅助标识。</p></blockquote><p>在开发过程中，我们需要保证某个元素的<code>key</code>在统计元素中具有唯一性。在<code>react diff</code>算法中，react会借助元素<code>key</code>值来判断该元素新创建的还是被移动而来的元素，从而减少不必要元素的重新渲染。此外，<code>react</code>还借助<code>key</code>值来判断元素与本地状态的关联关系，因此我们绝不可忽视转换函数中<code>key</code>的重要性。</p><h5 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h5><blockquote><ul><li><a href="https://interview2.poetries.top/excellent-docs/6-React.html#_1%E3%80%81react-%E4%B8%AD-keys-%E7%9A%84%E4%BD%9C%E7%94%A8%E6%98%AF%E4%BB%80%E4%B9%88">https://interview2.poetries.top/excellent-docs/6-React.html#_1%E3%80%81react-%E4%B8%AD-keys-%E7%9A%84%E4%BD%9C%E7%94%A8%E6%98%AF%E4%BB%80%E4%B9%88</a></li></ul></blockquote>]]></content>
+    
+    
+    <categories>
+      
+      <category>react</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>react</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>ES6新增Set、Map两种数据结构</title>
     <link href="/2018/08/17/js/ES6%E6%96%B0%E5%A2%9ESet%E3%80%81Map%E4%B8%A4%E7%A7%8D%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/"/>
     <url>/2018/08/17/js/ES6%E6%96%B0%E5%A2%9ESet%E3%80%81Map%E4%B8%A4%E7%A7%8D%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</url>
