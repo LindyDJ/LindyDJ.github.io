@@ -806,6 +806,31 @@
   
   
   <entry>
+    <title>redux中间件</title>
+    <link href="/2018/07/02/react/redux%E4%B8%AD%E9%97%B4%E4%BB%B6/"/>
+    <url>/2018/07/02/react/redux%E4%B8%AD%E9%97%B4%E4%BB%B6/</url>
+    
+    <content type="html"><![CDATA[<h4 id="redux中间件"><a href="#redux中间件" class="headerlink" title="redux中间件"></a>redux中间件</h4><blockquote><p>中间件提供第三方插件的模式，自定义拦截<code>action</code>    -&gt;    <code>reducer</code>  的过程。变成  <code>action</code>   -&gt;   <code>middlewares</code>     -&gt;     <code>reducer</code>。  这种机制可以让我们改变数据流，实现如异步  <code>action</code>，  <code>action</code>  过滤，日志输出，异常报告等功能。</p></blockquote><ul><li><code>redux-logger</code>：提供日志输出</li><li><code>redux-thunk</code>：处理异步操作</li><li><code>redux-promise</code>：处理异步操作，<code>actionCreator</code>的返回值是<code>promise</code></li></ul>]]></content>
+    
+    
+    <categories>
+      
+      <category>react</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>react</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>react的diff算法</title>
     <link href="/2018/06/10/react/react%E7%9A%84diff%E7%AE%97%E6%B3%95/"/>
     <url>/2018/06/10/react/react%E7%9A%84diff%E7%AE%97%E6%B3%95/</url>
