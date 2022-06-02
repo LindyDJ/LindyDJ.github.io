@@ -781,6 +781,31 @@
   
   
   <entry>
+    <title>react一些知识点</title>
+    <link href="/2018/06/05/react/react%E4%B8%80%E4%BA%9B%E7%9F%A5%E8%AF%86%E7%82%B9/"/>
+    <url>/2018/06/05/react/react%E4%B8%80%E4%BA%9B%E7%9F%A5%E8%AF%86%E7%82%B9/</url>
+    
+    <content type="html"><![CDATA[<h4 id="shouldComponentUpdate-的作用-？"><a href="#shouldComponentUpdate-的作用-？" class="headerlink" title="shouldComponentUpdate 的作用 ？"></a><strong>shouldComponentUpdate 的作用</strong> ？</h4><p>使用shouldComponentUpdate是优化性能的一个方式。shouldComponentUpdate可以手动的判断组件是否更新渲染，根据组件的是否渲染，来返回一个布尔值。true或者false。从而避免不必要的更新。</p><h4 id="如何告诉-React-它应该编译生产环境版-？"><a href="#如何告诉-React-它应该编译生产环境版-？" class="headerlink" title="如何告诉 React 它应该编译生产环境版 ？"></a><strong>如何告诉 React 它应该编译生产环境版</strong> ？</h4><p>通常情况下我们会使用<code>webpack</code>的<code>DefinePlugin</code>方法来将NODE_ENV变量值设置为<code>production</code>。编译版本中<code>react</code>会忽略<code>proptype</code>验证以及其他的警告信息，同时还会降低代码库的大小。<code>react</code>使用了<code>uglify</code>插件来移除生产环境下不必要的注释等信息。</p><h4 id="概述下-React-中的事件处理逻辑-？"><a href="#概述下-React-中的事件处理逻辑-？" class="headerlink" title="概述下 React 中的事件处理逻辑 ？"></a><strong>概述下 React 中的事件处理逻辑</strong> ？</h4><p>为了解决快于浏览器兼容性的问题，<code>react</code>会将浏览器原生事件封装为合成事件传入设置的事件处理器中。这里的合成时间提供了于原生时间相同的接口，不过他们屏蔽了底层浏览器的细节差异，保证了行为的一致性。另外有意思的是，<code>react</code>并没有直接将事件附着到子元素上，而是以单一事件监听器的方式将所有的事件发送到顶层进行处理。这样<code>react</code>在更新DOM的时候就不许哟啊考虑如何去处理附着在dom上的事件监听器，最终达到优化性能的目的。</p><h4 id="createElement-与-cloneElement-的区别是什么-？"><a href="#createElement-与-cloneElement-的区别是什么-？" class="headerlink" title="createElement 与 cloneElement 的区别是什么 ？"></a><strong>createElement 与 cloneElement 的区别是什么</strong> ？</h4><p><code>createElement</code>函数是JSX编译后使用创建<code>react Element</code>的函数。</p><p><code>cloneElement</code>是用于复制某个元素并传入新的props。</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>react</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>react</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>防抖与节流</title>
     <link href="/2018/06/05/js/%E9%98%B2%E6%8A%96%E4%B8%8E%E8%8A%82%E6%B5%81/"/>
     <url>/2018/06/05/js/%E9%98%B2%E6%8A%96%E4%B8%8E%E8%8A%82%E6%B5%81/</url>
