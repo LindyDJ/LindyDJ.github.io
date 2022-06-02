@@ -4,6 +4,31 @@
   
   
   <entry>
+    <title>虚拟dom提高性能</title>
+    <link href="/2022/06/13/react/%E8%99%9A%E6%8B%9Fdom%E6%8F%90%E9%AB%98%E6%80%A7%E8%83%BD/"/>
+    <url>/2022/06/13/react/%E8%99%9A%E6%8B%9Fdom%E6%8F%90%E9%AB%98%E6%80%A7%E8%83%BD/</url>
+    
+    <content type="html"><![CDATA[<h4 id="为什么虚拟dom会提高性能？"><a href="#为什么虚拟dom会提高性能？" class="headerlink" title="为什么虚拟dom会提高性能？"></a>为什么虚拟dom会提高性能？</h4><blockquote><p>虚拟<code>dom</code>相当于在<code>js</code>和真实<code>dom</code>中间加了一个缓存，利用<code>om diff</code>算法避免了没有必要的<code>dom</code>操作，从而提高性能。</p></blockquote><p>具体实现步骤如下：</p><ul><li>用<code>javascript</code>对象结构标识Dom树的结构；然后用这个树构建一个真正的dom树，插到文档当中</li><li>当状态变更的时候，重新构造一颗新的对象树。然后用新的树和旧的树进行比较，记录两颗树差异</li><li>把第二棵树所记录的差异应用到第一颗所构建的真正dom树上，视图就更新。</li></ul>]]></content>
+    
+    
+    <categories>
+      
+      <category>react</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>react</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>vue3系列面试题</title>
     <link href="/2021/10/19/vue3%E9%9D%A2%E8%AF%95%E9%A2%98/"/>
     <url>/2021/10/19/vue3%E9%9D%A2%E8%AF%95%E9%A2%98/</url>
@@ -782,8 +807,8 @@
   
   <entry>
     <title>react的diff算法</title>
-    <link href="/2018/06/10/react%E7%9A%84diff%E7%AE%97%E6%B3%95/"/>
-    <url>/2018/06/10/react%E7%9A%84diff%E7%AE%97%E6%B3%95/</url>
+    <link href="/2018/06/10/react/react%E7%9A%84diff%E7%AE%97%E6%B3%95/"/>
+    <url>/2018/06/10/react/react%E7%9A%84diff%E7%AE%97%E6%B3%95/</url>
     
     <content type="html"><![CDATA[<h4 id="react中的diff算法？"><a href="#react中的diff算法？" class="headerlink" title="react中的diff算法？"></a>react中的diff算法？</h4><ul><li>把树形结构按照层级分解，只比较同级元素。</li><li>给列表结构的每个单元添加唯一的<code>key</code>属性，方便比较。</li><li><code>react</code>只会匹配相同的<code>class</code>的<code>component</code>（这里面的<code>class</code>指的是组件的名字）</li><li>合并操作，调用<code>component</code>的<code>setState</code>方法的时候，<code>react</code>将其标记为<code> dirty</code>。到每一个事件循环结束，<code>react</code>检查所有标记<code>dirty</code>的<code>component</code>重新绘制。</li><li>选择性子树渲染。开发人员可以重写<code>shouldComponentUpdate</code>提高<code>diff</code>的性能</li></ul>]]></content>
     
