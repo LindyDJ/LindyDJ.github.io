@@ -456,11 +456,36 @@
   
   
   <entry>
-    <title>浏览器的跨标签页通讯,架构,渲染机制</title>
+    <title>浏览器渲染机制</title>
+    <link href="/2019/06/06/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%A8%A1%E5%9D%97/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%B8%B2%E6%9F%93%E6%9C%BA%E5%88%B6/"/>
+    <url>/2019/06/06/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%A8%A1%E5%9D%97/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%B8%B2%E6%9F%93%E6%9C%BA%E5%88%B6/</url>
+    
+    <content type="html"><![CDATA[<h4 id="渲染机制"><a href="#渲染机制" class="headerlink" title="渲染机制"></a>渲染机制</h4><h4 id="浏览器渲染机制"><a href="#浏览器渲染机制" class="headerlink" title="浏览器渲染机制"></a>浏览器渲染机制</h4><h5 id="1-渲染机制步骤步骤："><a href="#1-渲染机制步骤步骤：" class="headerlink" title="1.渲染机制步骤步骤："></a>1.渲染机制步骤步骤：</h5><ul><li>处理<code>HTML</code>并构建<code>DOM</code>树</li><li>处理<code>css</code>构建<code>cssdom</code>树</li><li>将<code>DOM</code>与<code>cssdom</code>合并成一个渲染树</li><li>根据渲染树来布局，计算每个节点的位置</li><li>调用<code>GPU</code>绘制，合成图层，显示在屏幕上</li></ul><p><img src="/2019/06/06/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%A8%A1%E5%9D%97/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%B8%B2%E6%9F%93%E6%9C%BA%E5%88%B6/98.png"></p><p>在构建cssdom树时，会阻塞渲染，直至cssdom树构建完成。并且构建cssdom树是一个十分消耗性能的过程，所以尽量保证层级扁平，减少过度层叠，越是具体的css选择器，执行速度越慢。</p><p>css是阻塞渲染的资源。需要将他尽早，尽快的下载到客户端，以便缩短首次渲染的时间。</p><p>当html解析到script标签时，会暂停构建dom，完成后才会从暂停的地方重新开始。也就是说，如果你想首屏渲染的越快，就越不应该在首屏就加载js文件。并且css也会影响js的执行，只有当解析完样式才会执行js，所以也可以认为这种情况下，css也会暂停构建dom。</p><h5 id="2-图层"><a href="#2-图层" class="headerlink" title="2.图层"></a>2.图层</h5><blockquote><p>一般来说，可以把普通文档流看成一个图层。特定的属性可以生成一个新的图层。不同的图层渲染互不影响，所以对于某些频繁需要渲染的建议单独生成一个新图层，提高性能。但也不能生成过多的图层，会引起反作用。</p></blockquote><p>通过以下几个常用属性可以生成新图层</p><ul><li><code>3D</code>变换：<code>translate3d</code>,<code>reanslatez</code></li><li><code>will-change</code></li><li><code>video</code>,<code>iframe</code>标签</li><li>通过动画实现的<code>opacity</code>动画转换</li><li><code>position：fixed</code></li></ul><h5 id="3-重绘与回流"><a href="#3-重绘与回流" class="headerlink" title="3.重绘与回流"></a>3.重绘与回流</h5><blockquote><ul><li>重绘(repaint)：当元素样式的改变不影响布局时，浏览器将使用重绘对元素进行更新，此时由于只需要UI层面的重新像素绘制，因此，损耗较少</li></ul></blockquote><blockquote><ul><li>回流(reflow)：当元素的尺寸，结构或触发某些属性时，浏览器会重新渲染页面，称为回流。此时，浏览器需要重新经过计算，计算后还需要重新页面布局，因此是较重的操作。会触发回流的操作：</li></ul></blockquote><p>触发回流和重绘的操作：</p><ul><li>页面初次渲染</li><li>浏览器窗口大小发生改变</li><li>元素尺寸，位置，内容发生改变</li><li>元素字体大小变化</li><li>添加或者删除可见的dom元素</li><li>激活css伪类（列如：hover）</li><li>查询某些属性或调用某些方法<ul><li><code>clientWidth、clientHeight、clientTop、clientLeft</code></li><li>``offsetWidth、offsetHeight、offsetTop、offsetLeft`</li><li><code>scrollWidth、scrollHeight、scrollTop、scrollLeft</code></li><li>``getComputedStyle()`</li><li><code>getBoundingClientRect()</code></li><li><code>scrollTo()</code></li></ul></li></ul><blockquote><p>回流必定触发重绘，重绘不不一定触发回流。重绘的开销小，回流的代价高。</p></blockquote><p>避免回流的优化：</p><ul><li>css层面：<ul><li>不要使用css表达式</li><li>避免table布局</li><li>避免多层嵌套样式</li></ul></li><li>js层面：<ul><li>避免频繁操作DOM，可以创建一个documentFragment文档流片段，在它上面应用所有dom操作，最后再把它添加到文档中。</li><li>避免频繁操作样式</li><li>可以先为元素设置不可见：<code>display：none</code>，操作结束后在显示出来。</li></ul></li></ul><h5 id="4-javascript会阻塞dom生成"><a href="#4-javascript会阻塞dom生成" class="headerlink" title="4.javascript会阻塞dom生成"></a>4.javascript会阻塞dom生成</h5><blockquote><p>javascript 会阻塞dom生成，而样式文件又会阻塞javascriot执行，所以在实际的工程中需要重点关注javascript文件和样式表文件，使用不当会影响页面性能的</p></blockquote><blockquote><p>当渲染进程接收html文件字节流时，会先开启一个与解析线程，如果遇到javascipt文件或者css文件，那么与解析线程会提前下载这些数据</p></blockquote><ul><li>如果代码里引用了外部的css文件，那么在执行javascript之前，还需要等待外部的css文件下载完成，并解析生成cssdom对象之后，才能执行javascript脚本。</li><li>而javascript引擎在解析javascript之前，是不知道javascript是否操作了cssdom的，所以渲染引擎在遇到javascript脚本时，不管脚本是否操作了cssdom，都会执行css文件下载，解析操作，在执行javascript脚本。</li><li>不管css文件和javascript文件谁先到达，都要等到css文件下载完成并生成cssdom，然后在执行javascript脚本，最后再继续构建dom，构建布局树，绘制页面。</li></ul><h5 id="5-缩短白屏时长的策略"><a href="#5-缩短白屏时长的策略" class="headerlink" title="5.缩短白屏时长的策略"></a>5.缩短白屏时长的策略</h5><ul><li>通过内联 JavaScript、内联 CSS 来移除这两种类型的文件下载，这样获取到 HTML 文件之后就可以直接开始渲染流程了。</li><li>但并不是所有的场合都适合内联，那么还可以尽量减少文件大小，比如通过 webpack 等工具移除一些不必要的注释，并压缩 JavaScript 文件。</li><li>还可以将一些不需要在解析 HTML 阶段使用的 JavaScript 标记上 sync 或者 defer</li><li>对于大的 CSS 文件，可以通过媒体查询属性，将其拆分为多个不同用途的 CSS 文件，这样只有在特定的场景下才会加载特定的 CSS 文件。</li></ul>]]></content>
+    
+    
+    <categories>
+      
+      <category>浏览器模块</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>浏览器</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>浏览器的跨标签页通讯,架构</title>
     <link href="/2019/06/05/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%A8%A1%E5%9D%97/%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9A%84%E8%B7%A8%E6%A0%87%E7%AD%BE%E9%A1%B5%E9%80%9A%E8%AE%AF-%E6%9E%B6%E6%9E%84-%E6%B8%B2%E6%9F%93%E6%9C%BA%E5%88%B6/"/>
     <url>/2019/06/05/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%A8%A1%E5%9D%97/%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9A%84%E8%B7%A8%E6%A0%87%E7%AD%BE%E9%A1%B5%E9%80%9A%E8%AE%AF-%E6%9E%B6%E6%9E%84-%E6%B8%B2%E6%9F%93%E6%9C%BA%E5%88%B6/</url>
     
-    <content type="html"><![CDATA[<h4 id="1-跨标签页通讯"><a href="#1-跨标签页通讯" class="headerlink" title="1.跨标签页通讯"></a>1.跨标签页通讯</h4><blockquote><p>不同标签页面间的通讯，本质与哪里就是去运用一些可以 共享的中间介质，因此比较常用的有以下方法：</p></blockquote><ul><li>通过父页面<code>windowopen()</code>和子页面<code>postmessage</code><ul><li>异步下通过<code>windowopen(&#39;about：blank&#39;)</code>和<code>tablocationhref=&#39;*&#39;</code></li></ul></li><li>色湖之同域下共享的<code>localStorage</code>与监听<code>windowonstorage</code><ul><li>重复写入相同的值无法触发</li><li>会受到浏览器隐身模式等限制</li></ul></li><li>共同设置<code>cookie</code>与不断轮询脏检查(<code>setInterval</code>)</li><li>借助服务端或者中间层实现。</li></ul><h4 id="2-浏览器架构"><a href="#2-浏览器架构" class="headerlink" title="2.浏览器架构"></a>2.浏览器架构</h4><ul><li>用户主界面</li><li>主进程</li><li>内核<ul><li>渲染引擎</li><li><code>JS</code>引擎<ul><li>执行栈</li></ul></li></ul></li><li>事件触发线程<ul><li>消息队列<ul><li>微任务</li><li>宏任务</li></ul></li></ul></li><li>网络异步线程</li><li>定时器线程</li></ul><h4 id="3-渲染机制"><a href="#3-渲染机制" class="headerlink" title="3.渲染机制"></a>3.渲染机制</h4><p>步骤：</p><ul><li>处理<code>HTML</code>并构建<code>DOM</code>树</li><li>处理<code>css</code>构建<code>cssdom</code>树</li><li>将<code>DOM</code>与<code>cssdom</code>合并成一个渲染树</li><li>根据渲染树来布局，计算每个节点的位置</li><li>调用<code>GPU</code>绘制，合成图层，显示在屏幕上</li></ul><p><img src="/2019/06/05/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%A8%A1%E5%9D%97/%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9A%84%E8%B7%A8%E6%A0%87%E7%AD%BE%E9%A1%B5%E9%80%9A%E8%AE%AF-%E6%9E%B6%E6%9E%84-%E6%B8%B2%E6%9F%93%E6%9C%BA%E5%88%B6/98.png"></p><p>在构建cssdom树时，会阻塞渲染，直至cssdom树构建完成。并且构建cssdom树是一个十分消耗性能的过程，所以尽量保证层级扁平，减少过度层叠，越是具体的css选择器，执行速度越慢。</p><p>css是阻塞渲染的资源。需要将他尽早，尽快的下载到客户端，以便缩短首次渲染的时间。</p><p>当html解析到script标签时，会暂停构建dom，完成后才会从暂停的地方重新开始。也就是说，如果你想首屏渲染的越快，就越不应该在首屏就加载js文件。并且css也会影响js的执行，只有当解析完样式才会执行js，所以也可以认为这种情况下，css也会暂停构建dom。</p>]]></content>
+    <content type="html"><![CDATA[<h4 id="1-跨标签页通讯"><a href="#1-跨标签页通讯" class="headerlink" title="1.跨标签页通讯"></a>1.跨标签页通讯</h4><blockquote><p>不同标签页面间的通讯，本质与哪里就是去运用一些可以 共享的中间介质，因此比较常用的有以下方法：</p></blockquote><ul><li>通过父页面<code>windowopen()</code>和子页面<code>postmessage</code><ul><li>异步下通过<code>windowopen(&#39;about：blank&#39;)</code>和<code>tablocationhref=&#39;*&#39;</code></li></ul></li><li>色湖之同域下共享的<code>localStorage</code>与监听<code>windowonstorage</code><ul><li>重复写入相同的值无法触发</li><li>会受到浏览器隐身模式等限制</li></ul></li><li>共同设置<code>cookie</code>与不断轮询脏检查(<code>setInterval</code>)</li><li>借助服务端或者中间层实现。</li></ul><h4 id="2-浏览器架构"><a href="#2-浏览器架构" class="headerlink" title="2.浏览器架构"></a>2.浏览器架构</h4><ul><li>用户主界面</li><li>主进程</li><li>内核<ul><li>渲染引擎</li><li><code>JS</code>引擎<ul><li>执行栈</li></ul></li></ul></li><li>事件触发线程<ul><li>消息队列<ul><li>微任务</li><li>宏任务</li></ul></li></ul></li><li>网络异步线程</li><li>定时器线程</li></ul>]]></content>
     
     
     <categories>
