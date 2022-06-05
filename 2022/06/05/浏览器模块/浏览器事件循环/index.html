@@ -16,24 +16,26 @@
   <meta name="author" content="温酒斩华雄">
   <meta name="keywords" content="">
   
-    <meta name="description" content="Vue3.0的设计目标是什么？做了哪些优化？设计目标 体积更小： vue3移除一些不常用的API，引入tree shaking，将一些无用的模块“剪辑掉”。仅打包需要的模块。使打包体积变小了。   更快： diff算法优化： 静态提升 事件缓存机制 ssr优化   更友好： vue3推出了composition API，大大增加了代码的组织能力和复用能力。    优化方案 源码 源码管理，体积更小">
+    <meta name="description" content="说说你对事件循环的理解event loop过程1：  同步代码，一行一行在call stack（执行栈）执行  遇到异步，会先“记录”下，等待时机（定时，网络请求等）  时机到了，就移动到 Callback Queue （回调队列）   event loop过程2：  如Call Stack为空（及代码执行完）Event loop 开始工作  轮询查找Callback Queue，如有则移动到 C">
 <meta property="og:type" content="article">
-<meta property="og:title" content="vue3系列面试题">
-<meta property="og:url" content="http://example.com/2021/10/19/vue3%E9%9D%A2%E8%AF%95%E9%A2%98/index.html">
+<meta property="og:title" content="浏览器事件循环">
+<meta property="og:url" content="http://example.com/2022/06/05/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%A8%A1%E5%9D%97/%E6%B5%8F%E8%A7%88%E5%99%A8%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/index.html">
 <meta property="og:site_name" content="zhaoShuoLin的博客">
-<meta property="og:description" content="Vue3.0的设计目标是什么？做了哪些优化？设计目标 体积更小： vue3移除一些不常用的API，引入tree shaking，将一些无用的模块“剪辑掉”。仅打包需要的模块。使打包体积变小了。   更快： diff算法优化： 静态提升 事件缓存机制 ssr优化   更友好： vue3推出了composition API，大大增加了代码的组织能力和复用能力。    优化方案 源码 源码管理，体积更小">
+<meta property="og:description" content="说说你对事件循环的理解event loop过程1：  同步代码，一行一行在call stack（执行栈）执行  遇到异步，会先“记录”下，等待时机（定时，网络请求等）  时机到了，就移动到 Callback Queue （回调队列）   event loop过程2：  如Call Stack为空（及代码执行完）Event loop 开始工作  轮询查找Callback Queue，如有则移动到 C">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-10-19T05:52:54.000Z">
-<meta property="article:modified_time" content="2021-10-19T05:52:54.000Z">
+<meta property="og:image" content="http://example.com/2022/06/05/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%A8%A1%E5%9D%97/%E6%B5%8F%E8%A7%88%E5%99%A8%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/69.png">
+<meta property="og:image" content="http://example.com/2022/06/05/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%A8%A1%E5%9D%97/%E6%B5%8F%E8%A7%88%E5%99%A8%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/70.png">
+<meta property="article:published_time" content="2022-06-05T12:54:24.000Z">
+<meta property="article:modified_time" content="2022-06-05T13:18:03.281Z">
 <meta property="article:author" content="温酒斩华雄">
-<meta property="article:tag" content="面试题总结">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="http://example.com/2022/06/05/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%A8%A1%E5%9D%97/%E6%B5%8F%E8%A7%88%E5%99%A8%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/69.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>vue3系列面试题 - zhaoShuoLin的博客</title>
+  <title>浏览器事件循环 - zhaoShuoLin的博客</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -196,7 +198,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="vue3系列面试题"></span>
+            <span id="subtitle" data-typed-text="浏览器事件循环"></span>
           
         </div>
 
@@ -212,8 +214,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2021-10-19 13:52" pubdate>
-          2021年10月19日 下午
+        <time datetime="2022-06-05 20:54" pubdate>
+          2022年6月5日 晚上
         </time>
       </span>
     
@@ -224,7 +226,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          1.5k 字
+          549 字
         
       </span>
     
@@ -235,7 +237,7 @@
         
         
         
-          13 分钟
+          5 分钟
         
       </span>
     
@@ -281,110 +283,64 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">vue3系列面试题</h1>
+            <h1 style="display: none">浏览器事件循环</h1>
             
               <p class="note note-info">
                 
                   
-                    本文最后更新于：2021年10月19日 下午
+                    本文最后更新于：2022年6月5日 晚上
                   
                 
               </p>
             
             <div class="markdown-body">
               
-              <h4 id="Vue3-0的设计目标是什么？做了哪些优化？"><a href="#Vue3-0的设计目标是什么？做了哪些优化？" class="headerlink" title="Vue3.0的设计目标是什么？做了哪些优化？"></a>Vue3.0的设计目标是什么？做了哪些优化？</h4><h5 id="设计目标"><a href="#设计目标" class="headerlink" title="设计目标"></a>设计目标</h5><ul>
-<li>体积更小：<ul>
-<li>vue3移除一些不常用的API，引入tree shaking，将一些无用的模块“剪辑掉”。仅打包需要的模块。使打包体积变小了。</li>
-</ul>
-</li>
-<li>更快：<ul>
-<li>diff算法优化：</li>
-<li>静态提升</li>
-<li>事件缓存机制</li>
-<li>ssr优化</li>
-</ul>
-</li>
-<li>更友好：<ul>
-<li>vue3推出了composition API，大大增加了代码的组织能力和复用能力。</li>
-</ul>
-</li>
-</ul>
-<h5 id="优化方案"><a href="#优化方案" class="headerlink" title="优化方案"></a>优化方案</h5><ul>
-<li>源码<ul>
-<li>源码管理，体积更小</li>
-<li>使用ts，提供类型检查</li>
-</ul>
-</li>
-<li>性能<ul>
-<li>体积优化</li>
-<li>编译优化</li>
-<li>数据劫持优化</li>
-</ul>
-</li>
-<li>语法API<ul>
-<li>组合式API，主要提高了代码的组织和复用能力</li>
-</ul>
-</li>
-</ul>
-<h4 id="Vue3-0性能提升主要是通过哪几方面体现的？"><a href="#Vue3-0性能提升主要是通过哪几方面体现的？" class="headerlink" title="Vue3.0性能提升主要是通过哪几方面体现的？"></a>Vue3.0性能提升主要是通过哪几方面体现的？</h4><ul>
-<li>编译阶段<ul>
-<li>diff算法优化：比vue2增加了静态标记，在发生改变的地方做一个flag标记，下次发生改变可以直接找到该地方进行比较。</li>
-<li>静态提升：  vue3对不参与更新的元素，会做静态提升，只创建一次，可以复用渲染。免去重复创建节点，优化了运行时的内存。</li>
-<li>事件缓存机制</li>
-<li>SSR优化：  当内容达到一定量的时候，采用服务端渲染。</li>
-</ul>
-</li>
-<li>源码体积<ul>
-<li>相对于vue2来说体积变小了，去除一些不常用API。使用树摇（tree shaking），只打包需要的模块，打包体积变小了</li>
-</ul>
-</li>
-<li>响应式系统<ul>
-<li>vue2采用object.proerty（）劫持整个对象，深度遍历每个属性，给每个属性添加getter，setter，来实现响应式。</li>
-<li>vue3使用了vue3代理对象，可以对整个对象进行监听，不需要深度遍历。</li>
-<li>可以监听整个对象以及属性的修改和删除，可以监听数组的索引和lenght属性。</li>
-</ul>
-</li>
-</ul>
-<h4 id="Vue3-0里为什么要用-Proxy-API-替代-defineProperty-API-？"><a href="#Vue3-0里为什么要用-Proxy-API-替代-defineProperty-API-？" class="headerlink" title="Vue3.0里为什么要用 Proxy API 替代 defineProperty API ？"></a>Vue3.0里为什么要用 Proxy API 替代 defineProperty API ？</h4><ul>
-<li>defineProerty API：<ul>
-<li>检测不到对象属性的添加和删除， 提供了set，和delete方法。</li>
-<li>数组的方法 无法监听到（push，shift）</li>
-<li>需要对每个属性进行监听，如果是嵌套对象的话，需使用深度监听，可能会造成性能问题。</li>
-</ul>
-</li>
-<li>Proxy：<ul>
-<li>object.definproerty 只能遍历对象属性进行劫持，proxy直接监听整个对象。</li>
-<li>返回一个新对象，只需操作新对象就能达到目的。</li>
-<li>proxy有多达13种监听方法，不限于apply，has等，这是object.defineproerty（）不具备的</li>
-<li>可以直接监听数组的变化（push，shift，splice）</li>
-</ul>
-</li>
-</ul>
-<h4 id="Vue3-0-所采用的-Composition-Api-与-Vue2-x-使用的-Options-Api-有什么不同？"><a href="#Vue3-0-所采用的-Composition-Api-与-Vue2-x-使用的-Options-Api-有什么不同？" class="headerlink" title="Vue3.0 所采用的 Composition Api 与 Vue2.x 使用的 Options Api 有什么不同？"></a>Vue3.0 所采用的 Composition Api 与 Vue2.x 使用的 Options Api 有什么不同？</h4><ul>
-<li>Options API:<ul>
-<li>通过定义data，methods，computed等方法和属性，来共同处理页面逻辑，一个功能的实现，需要不同的位置的方法和属性，比较分散。可能会造成组件的难以理解和维护。    </li>
-</ul>
-</li>
-<li>Composition API:<ul>
-<li>所有方法和功能都写在setup当中，将一个功能的所有方法，属性放在一起。（高内聚，低耦合）。根据相关逻辑来组织代码，提高代码的可读性和维护性。（当功能增多时，还可使用hook来封装出去）</li>
-<li>组合式API中见不到this的使用，减少this指向不明的问题。</li>
-<li>组合式API几乎都是函数，会有很好的类型判断。</li>
-</ul>
-</li>
-</ul>
-<h4 id="说说Vue-3-0中Treeshaking特性？举例说明一下？"><a href="#说说Vue-3-0中Treeshaking特性？举例说明一下？" class="headerlink" title="说说Vue 3.0中Treeshaking特性？举例说明一下？"></a>说说Vue 3.0中Treeshaking特性？举例说明一下？</h4><h5 id="是什么？"><a href="#是什么？" class="headerlink" title="是什么？"></a>是什么？</h5><p>Tree shaking是一种术语，在打包时不打包没有用到的模块，减小了打包体积。</p>
-<h5 id="如何做？"><a href="#如何做？" class="headerlink" title="如何做？"></a>如何做？</h5><p>Tree shaking是基于es6的 <code>import</code> 和  <code>exports</code> 静态编程思想来确定模块的依赖关系。</p>
+              <h4 id="说说你对事件循环的理解"><a href="#说说你对事件循环的理解" class="headerlink" title="说说你对事件循环的理解"></a>说说你对事件循环的理解</h4><p>event loop过程1：</p>
 <ul>
-<li>tree shaking会在编译阶段判断模块的加载状态</li>
-<li>判断未使用的变量，进行移除。</li>
+<li><p>同步代码，一行一行在call stack（执行栈）执行</p>
+</li>
+<li><p>遇到异步，会先“记录”下，等待时机（定时，网络请求等）</p>
+</li>
+<li><p>时机到了，就移动到 Callback Queue （回调队列）</p>
+</li>
 </ul>
-<h5 id="作用"><a href="#作用" class="headerlink" title="作用"></a>作用</h5><ul>
-<li>减小打包体积</li>
-<li>减少程序打包的时间</li>
-<li>便于维护优化项目框架</li>
+<p>event loop过程2：</p>
+<ul>
+<li><p>如Call Stack为空（及代码执行完）Event loop 开始工作</p>
+</li>
+<li><p>轮询查找Callback Queue，如有则移动到 Call Stack执行</p>
+</li>
+<li><p>然后继续轮询查找（永动机一样）</p>
+</li>
 </ul>
-<h4 id="用Vue3-0-写过组件吗？如果想实现一个-Modal你会怎么设计？"><a href="#用Vue3-0-写过组件吗？如果想实现一个-Modal你会怎么设计？" class="headerlink" title="用Vue3.0 写过组件吗？如果想实现一个 Modal你会怎么设计？"></a>用Vue3.0 写过组件吗？如果想实现一个 Modal你会怎么设计？</h4><p>首先要考虑，大致实现的思路，根据ui设计图，确定好主体的内容，布局样式，做的那些交互操作，删除，修改等等。定义API方法来进行开发。</p>
+<p><img src="/2022/06/05/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%A8%A1%E5%9D%97/%E6%B5%8F%E8%A7%88%E5%99%A8%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/69.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2022/06/05/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%A8%A1%E5%9D%97/%E6%B5%8F%E8%A7%88%E5%99%A8%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/70.png" srcset="/img/loading.gif" lazyload></p>
+<h5 id="宏任务："><a href="#宏任务：" class="headerlink" title="宏任务："></a>宏任务：</h5><ul>
+<li><p>我们可以将每次执行栈执行的代码当做是一个宏任务（包括每次从事件队列中获取一个事件回调并放到执行栈中执行）</p>
+</li>
+<li><p>每一个宏任务会从头到尾执行完毕，不会执行其他</p>
+<blockquote>
+<p>浏览器为了能够使js内部宏任务与dom任务有序的执行，会在一个宏任务执行结束后，在下一个宏任务执行开始前，对页面进行重新渲染。</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">// 宏任务--&gt;渲染--&gt;宏任务--&gt;渲染--&gt;渲染．．<br></code></pre></td></tr></table></figure>
+</blockquote>
+<ul>
+<li>js代码</li>
+<li>setTimeout</li>
+<li>Ajax</li>
+<li>Dom事件</li>
+</ul>
+</li>
+</ul>
+<h5 id="微任务："><a href="#微任务：" class="headerlink" title="微任务："></a>微任务：</h5><ul>
+<li>我们已经知道 宏任务结束后，会执行渲染，然后执行下一个 宏任务。</li>
+<li>而微任务可以理解成在当前 宏任务执行后立即执行的任务。</li>
+<li>也就是说，<strong>当 宏任务执行完，会在渲染前，将执行期间所产生的所有 微任务都执行完</strong>。<ul>
+<li>Promise async/</li>
+<li>nextTick（Node.js）</li>
+<li>MutaionObserver</li>
+</ul>
+</li>
+</ul>
 
               
             </div>
@@ -392,34 +348,6 @@
             <div>
               <div class="post-metas my-3">
   
-    <div class="post-meta mr-3 d-flex align-items-center">
-      <i class="iconfont icon-category"></i>
-      
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/%E9%9D%A2%E8%AF%95%E9%A2%98%E6%80%BB%E7%BB%93/" class="category-chain-item">面试题总结</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-    </div>
-  
-  
-    <div class="post-meta">
-      <i class="iconfont icon-tags"></i>
-      
-        <a href="/tags/%E9%9D%A2%E8%AF%95%E9%A2%98%E6%80%BB%E7%BB%93/">#面试题总结</a>
-      
-    </div>
   
 </div>
 
@@ -429,8 +357,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>vue3系列面试题</div>
-      <div>http://example.com/2021/10/19/vue3面试题/</div>
+      <div>浏览器事件循环</div>
+      <div>http://example.com/2022/06/05/浏览器模块/浏览器事件循环/</div>
     </div>
     <div class="license-meta">
       
@@ -442,13 +370,13 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2021年10月19日</div>
+          <div>2022年6月5日</div>
         </div>
       
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2021年10月19日</div>
+          <div>2022年6月5日</div>
         </div>
       
       <div class="license-meta-item">
@@ -477,9 +405,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/06/05/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%A8%A1%E5%9D%97/%E6%B5%8F%E8%A7%88%E5%99%A8%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/" title="浏览器事件循环">
+                      <a href="/2022/06/13/react/%E8%99%9A%E6%8B%9Fdom%E6%8F%90%E9%AB%98%E6%80%A7%E8%83%BD/" title="虚拟dom提高性能">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">浏览器事件循环</span>
+                        <span class="hidden-mobile">虚拟dom提高性能</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -487,8 +415,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2021/07/27/vue3/vue3%E4%B8%ADTreeshaking%E7%89%B9%E6%80%A7/" title="vue3中Treeaking特性">
-                        <span class="hidden-mobile">vue3中Treeaking特性</span>
+                      <a href="/2021/10/19/vue3%E9%9D%A2%E8%AF%95%E9%A2%98/" title="vue3系列面试题">
+                        <span class="hidden-mobile">vue3系列面试题</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
