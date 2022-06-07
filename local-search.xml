@@ -806,6 +806,31 @@
   
   
   <entry>
+    <title>keep-alive作用</title>
+    <link href="/2019/03/23/vue2/keep-alive%E4%BD%9C%E7%94%A8/"/>
+    <url>/2019/03/23/vue2/keep-alive%E4%BD%9C%E7%94%A8/</url>
+    
+    <content type="html"><![CDATA[<h4 id="keep-alive作用是什么呢？"><a href="#keep-alive作用是什么呢？" class="headerlink" title="keep-alive作用是什么呢？"></a>keep-alive作用是什么呢？</h4><blockquote><p>keep-alive可以实现组件缓存，当组件切换时不会对当前组件进行卸载</p></blockquote><ul><li><code>&lt;keep-alive&gt;&lt;/keep-alive&gt;</code>包裹动态组件时，会缓存不活动得组件实例，主要用于保留组件状态或避免重新渲染</li></ul><blockquote><p>比如有一个列表和一个详情，那么用户就会经常执行打开详情=》返回列表=》打开详情….这样得话列表和详情都是一个频率很高得也买你，那么就可以对列表组件使用<code>&lt;keep-alive&gt;&lt;/keep-alive&gt;</code>进行缓存，这样用户每次返回列表的时候，都能从缓存中快速渲染，而不是重新渲染。</p></blockquote><ul><li>常用的两个属性 <code>include/exclude</code>，允许组件有条件的进行缓存</li><li>两个生命周期<code>activated/deactivated</code>，用来得知当前组件是否处于活跃状态</li></ul>]]></content>
+    
+    
+    <categories>
+      
+      <category>vue2</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>keepAlive</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>mvvm的理解</title>
     <link href="/2019/03/21/vue2/mvvm%E7%9A%84%E7%90%86%E8%A7%A3/"/>
     <url>/2019/03/21/vue2/mvvm%E7%9A%84%E7%90%86%E8%A7%A3/</url>
