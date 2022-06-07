@@ -806,6 +806,31 @@
   
   
   <entry>
+    <title>vue路由原理</title>
+    <link href="/2019/03/25/vue2/vue%E8%B7%AF%E7%94%B1%E5%8E%9F%E7%90%86/"/>
+    <url>/2019/03/25/vue2/vue%E8%B7%AF%E7%94%B1%E5%8E%9F%E7%90%86/</url>
+    
+    <content type="html"><![CDATA[<h4 id="vue路由原理！"><a href="#vue路由原理！" class="headerlink" title="vue路由原理！"></a>vue路由原理！</h4><ul><li>hash模式：浏ener器中符号<code>#</code>，后面的字符称之为<code>hash</code>。<ul><li>其中对象中的<code>location.hash</code>储存的是路由的地址，可以赋值改变其URL的地址。而这会触发<code>hashchange</code>事件，通过<code>window.addEventListn</code>监听hash值然后去匹配对应的路由，从而渲染页面的组件。</li></ul></li><li>history：<ul><li>history采用HTML5的新特性，通过<code>pushState</code>和<code>replaceState</code>两个方法来实现url的变化。可以通过<code>popstagte</code>事件监听url的变化，从而对页面进行跳转（渲染）</li></ul></li></ul>]]></content>
+    
+    
+    <categories>
+      
+      <category>vue2</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>router</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>keep-alive作用</title>
     <link href="/2019/03/23/vue2/keep-alive%E4%BD%9C%E7%94%A8/"/>
     <url>/2019/03/23/vue2/keep-alive%E4%BD%9C%E7%94%A8/</url>
