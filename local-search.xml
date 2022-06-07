@@ -1006,6 +1006,31 @@
   
   
   <entry>
+    <title>react性能优化方案</title>
+    <link href="/2018/06/15/react/react%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E6%96%B9%E6%A1%88/"/>
+    <url>/2018/06/15/react/react%E6%80%A7%E8%83%BD%E4%BC%98%E5%8C%96%E6%96%B9%E6%A1%88/</url>
+    
+    <content type="html"><![CDATA[<h4 id="说说react性能优化的手段有那些？"><a href="#说说react性能优化的手段有那些？" class="headerlink" title="说说react性能优化的手段有那些？"></a>说说react性能优化的手段有那些？</h4><ul><li><p>为不必要的render渲染，可以使用shouldComponentUpdate生命周期方法。</p></li><li><p>避免使用内联函数</p><ul><li>如果我们使用内联函数，每次调用render函数时都会创建一个新的函数实例</li></ul></li><li><p>懒加载组件</p><ul><li>webpack存在拆分代码的能力，可以为应用创建多个宝，并在运行时动态加载，减少初始包的大小。</li></ul></li><li><p>事件绑定方式</p></li><li><p>服务端渲染</p><ul><li>采用服务端渲染方式，可以使用户更快的看到渲染完成的页面</li></ul></li><li><p>避免使用内联样式</p></li></ul><h5 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h5><blockquote><ul><li><a href="https://zhuanlan.zhihu.com/p/108666350">https://zhuanlan.zhihu.com/p/108666350</a></li></ul></blockquote><blockquote><ul><li><a href="https://segmentfault.com/a/1190000007811296">https://segmentfault.com/a/1190000007811296</a></li></ul></blockquote>]]></content>
+    
+    
+    <categories>
+      
+      <category>react</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>react</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>虚拟dom提高性能</title>
     <link href="/2018/06/13/react/%E8%99%9A%E6%8B%9Fdom%E6%8F%90%E9%AB%98%E6%80%A7%E8%83%BD/"/>
     <url>/2018/06/13/react/%E8%99%9A%E6%8B%9Fdom%E6%8F%90%E9%AB%98%E6%80%A7%E8%83%BD/</url>
