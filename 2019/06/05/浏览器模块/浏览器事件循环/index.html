@@ -16,26 +16,27 @@
   <meta name="author" content="温酒斩华雄">
   <meta name="keywords" content="">
   
-    <meta name="description" content="为什么虚拟dom会提高性能？ 虚拟dom相当于在js和真实dom中间加了一个缓存，利用om diff算法避免了没有必要的dom操作，从而提高性能。  具体实现步骤如下：  用javascript对象结构标识Dom树的结构；然后用这个树构建一个真正的dom树，插到文档当中 当状态变更的时候，重新构造一颗新的对象树。然后用新的树和旧的树进行比较，记录两颗树差异 把第二棵树所记录的差异应用到第一颗所构建">
+    <meta name="description" content="说说你对事件循环的理解event loop过程1：  同步代码，一行一行在call stack（执行栈）执行  遇到异步，会先“记录”下，等待时机（定时，网络请求等）  时机到了，就移动到 Callback Queue （回调队列）   event loop过程2：  如Call Stack为空（及代码执行完）Event loop 开始工作  轮询查找Callback Queue，如有则移动到 C">
 <meta property="og:type" content="article">
-<meta property="og:title" content="虚拟dom提高性能">
-<meta property="og:url" content="http://example.com/2022/06/13/react/%E8%99%9A%E6%8B%9Fdom%E6%8F%90%E9%AB%98%E6%80%A7%E8%83%BD/index.html">
+<meta property="og:title" content="浏览器事件循环">
+<meta property="og:url" content="http://example.com/2019/06/05/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%A8%A1%E5%9D%97/%E6%B5%8F%E8%A7%88%E5%99%A8%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/index.html">
 <meta property="og:site_name" content="zhaoShuoLin的博客">
-<meta property="og:description" content="为什么虚拟dom会提高性能？ 虚拟dom相当于在js和真实dom中间加了一个缓存，利用om diff算法避免了没有必要的dom操作，从而提高性能。  具体实现步骤如下：  用javascript对象结构标识Dom树的结构；然后用这个树构建一个真正的dom树，插到文档当中 当状态变更的时候，重新构造一颗新的对象树。然后用新的树和旧的树进行比较，记录两颗树差异 把第二棵树所记录的差异应用到第一颗所构建">
+<meta property="og:description" content="说说你对事件循环的理解event loop过程1：  同步代码，一行一行在call stack（执行栈）执行  遇到异步，会先“记录”下，等待时机（定时，网络请求等）  时机到了，就移动到 Callback Queue （回调队列）   event loop过程2：  如Call Stack为空（及代码执行完）Event loop 开始工作  轮询查找Callback Queue，如有则移动到 C">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/img/react.png">
-<meta property="article:published_time" content="2022-06-12T22:12:28.000Z">
-<meta property="article:modified_time" content="2018-06-12T22:12:28.000Z">
+<meta property="og:image" content="http://example.com/2019/06/05/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%A8%A1%E5%9D%97/%E6%B5%8F%E8%A7%88%E5%99%A8%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/69.png">
+<meta property="og:image" content="http://example.com/2019/06/05/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%A8%A1%E5%9D%97/%E6%B5%8F%E8%A7%88%E5%99%A8%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/70.png">
+<meta property="article:published_time" content="2019-06-05T12:54:24.000Z">
+<meta property="article:modified_time" content="2019-06-05T12:54:24.000Z">
 <meta property="article:author" content="温酒斩华雄">
-<meta property="article:tag" content="react">
+<meta property="article:tag" content="eventloop">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://example.com/img/react.png">
+<meta name="twitter:image" content="http://example.com/2019/06/05/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%A8%A1%E5%9D%97/%E6%B5%8F%E8%A7%88%E5%99%A8%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/69.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>虚拟dom提高性能 - zhaoShuoLin的博客</title>
+  <title>浏览器事件循环 - zhaoShuoLin的博客</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -198,7 +199,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="虚拟dom提高性能"></span>
+            <span id="subtitle" data-typed-text="浏览器事件循环"></span>
           
         </div>
 
@@ -214,8 +215,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-06-13 06:12" pubdate>
-          2022年6月13日 早上
+        <time datetime="2019-06-05 20:54" pubdate>
+          2019年6月5日 晚上
         </time>
       </span>
     
@@ -226,7 +227,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          207 字
+          549 字
         
       </span>
     
@@ -237,7 +238,7 @@
         
         
         
-          2 分钟
+          5 分钟
         
       </span>
     
@@ -283,26 +284,63 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">虚拟dom提高性能</h1>
+            <h1 style="display: none">浏览器事件循环</h1>
             
               <p class="note note-info">
                 
                   
-                    本文最后更新于：2018年6月13日 早上
+                    本文最后更新于：2019年6月5日 晚上
                   
                 
               </p>
             
             <div class="markdown-body">
               
-              <h4 id="为什么虚拟dom会提高性能？"><a href="#为什么虚拟dom会提高性能？" class="headerlink" title="为什么虚拟dom会提高性能？"></a>为什么虚拟dom会提高性能？</h4><blockquote>
-<p>虚拟<code>dom</code>相当于在<code>js</code>和真实<code>dom</code>中间加了一个缓存，利用<code>om diff</code>算法避免了没有必要的<code>dom</code>操作，从而提高性能。</p>
-</blockquote>
-<p>具体实现步骤如下：</p>
+              <h4 id="说说你对事件循环的理解"><a href="#说说你对事件循环的理解" class="headerlink" title="说说你对事件循环的理解"></a>说说你对事件循环的理解</h4><p>event loop过程1：</p>
 <ul>
-<li>用<code>javascript</code>对象结构标识Dom树的结构；然后用这个树构建一个真正的dom树，插到文档当中</li>
-<li>当状态变更的时候，重新构造一颗新的对象树。然后用新的树和旧的树进行比较，记录两颗树差异</li>
-<li>把第二棵树所记录的差异应用到第一颗所构建的真正dom树上，视图就更新。</li>
+<li><p>同步代码，一行一行在call stack（执行栈）执行</p>
+</li>
+<li><p>遇到异步，会先“记录”下，等待时机（定时，网络请求等）</p>
+</li>
+<li><p>时机到了，就移动到 Callback Queue （回调队列）</p>
+</li>
+</ul>
+<p>event loop过程2：</p>
+<ul>
+<li><p>如Call Stack为空（及代码执行完）Event loop 开始工作</p>
+</li>
+<li><p>轮询查找Callback Queue，如有则移动到 Call Stack执行</p>
+</li>
+<li><p>然后继续轮询查找（永动机一样）</p>
+</li>
+</ul>
+<p><img src="/2019/06/05/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%A8%A1%E5%9D%97/%E6%B5%8F%E8%A7%88%E5%99%A8%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/69.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2019/06/05/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%A8%A1%E5%9D%97/%E6%B5%8F%E8%A7%88%E5%99%A8%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/70.png" srcset="/img/loading.gif" lazyload></p>
+<h5 id="宏任务："><a href="#宏任务：" class="headerlink" title="宏任务："></a>宏任务：</h5><ul>
+<li><p>我们可以将每次执行栈执行的代码当做是一个宏任务（包括每次从事件队列中获取一个事件回调并放到执行栈中执行）</p>
+</li>
+<li><p>每一个宏任务会从头到尾执行完毕，不会执行其他</p>
+<blockquote>
+<p>浏览器为了能够使js内部宏任务与dom任务有序的执行，会在一个宏任务执行结束后，在下一个宏任务执行开始前，对页面进行重新渲染。</p>
+<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">// 宏任务--&gt;渲染--&gt;宏任务--&gt;渲染--&gt;渲染．．<br></code></pre></td></tr></table></figure>
+</blockquote>
+<ul>
+<li>js代码</li>
+<li>setTimeout</li>
+<li>Ajax</li>
+<li>Dom事件</li>
+</ul>
+</li>
+</ul>
+<h5 id="微任务："><a href="#微任务：" class="headerlink" title="微任务："></a>微任务：</h5><ul>
+<li>我们已经知道 宏任务结束后，会执行渲染，然后执行下一个 宏任务。</li>
+<li>而微任务可以理解成在当前 宏任务执行后立即执行的任务。</li>
+<li>也就是说，<strong>当 宏任务执行完，会在渲染前，将执行期间所产生的所有 微任务都执行完</strong>。<ul>
+<li>Promise async/</li>
+<li>nextTick（Node.js）</li>
+<li>MutaionObserver</li>
+</ul>
+</li>
 </ul>
 
               
@@ -321,7 +359,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/react/" class="category-chain-item">react</a>
+  <a href="/categories/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%A8%A1%E5%9D%97/" class="category-chain-item">浏览器模块</a>
   
   
 
@@ -336,7 +374,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/react/">#react</a>
+        <a href="/tags/eventloop/">#eventloop</a>
       
     </div>
   
@@ -348,8 +386,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>虚拟dom提高性能</div>
-      <div>http://example.com/2022/06/13/react/虚拟dom提高性能/</div>
+      <div>浏览器事件循环</div>
+      <div>http://example.com/2019/06/05/浏览器模块/浏览器事件循环/</div>
     </div>
     <div class="license-meta">
       
@@ -361,13 +399,13 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2022年6月13日</div>
+          <div>2019年6月5日</div>
         </div>
       
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2018年6月13日</div>
+          <div>2019年6月5日</div>
         </div>
       
       <div class="license-meta-item">
@@ -396,12 +434,18 @@
                   <article class="post-prev col-6">
                     
                     
+                      <a href="/2019/06/06/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%A8%A1%E5%9D%97/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%B8%B2%E6%9F%93%E6%9C%BA%E5%88%B6/" title="浏览器渲染机制">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">浏览器渲染机制</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
                   </article>
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/06/07/js/%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%8C%96/" title="前端工程化">
-                        <span class="hidden-mobile">前端工程化</span>
+                      <a href="/2019/06/05/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%A8%A1%E5%9D%97/%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9A%84%E8%B7%A8%E6%A0%87%E7%AD%BE%E9%A1%B5%E9%80%9A%E8%AE%AF-%E6%9E%B6%E6%9E%84-%E6%B8%B2%E6%9F%93%E6%9C%BA%E5%88%B6/" title="浏览器的跨标签页通讯,架构">
+                        <span class="hidden-mobile">浏览器的跨标签页通讯,架构</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

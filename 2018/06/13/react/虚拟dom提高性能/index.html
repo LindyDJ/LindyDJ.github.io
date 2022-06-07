@@ -16,26 +16,26 @@
   <meta name="author" content="温酒斩华雄">
   <meta name="keywords" content="">
   
-    <meta name="description" content="什么是前端工程化？1.小白眼中的前端开发 会写HTML+CSS+Javascript就会前端开发 需要美化界面样式，就拽一个bootstrap组件过来 需要操作DOM或者Ajax请求，就拽jQuery过来 需要快死实现界面布局，就拽layUI过来  2.实际的前端开发 模块化（js模块化，css模块化，资源模块化） 组件化（复用现有的UI结构，样式，行为） 规范化（目录结构的划分，编码规范化，接口">
+    <meta name="description" content="为什么虚拟dom会提高性能？ 虚拟dom相当于在js和真实dom中间加了一个缓存，利用om diff算法避免了没有必要的dom操作，从而提高性能。  具体实现步骤如下：  用javascript对象结构标识Dom树的结构；然后用这个树构建一个真正的dom树，插到文档当中 当状态变更的时候，重新构造一颗新的对象树。然后用新的树和旧的树进行比较，记录两颗树差异 把第二棵树所记录的差异应用到第一颗所构建">
 <meta property="og:type" content="article">
-<meta property="og:title" content="前端工程化">
-<meta property="og:url" content="http://example.com/2022/06/07/js/%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%8C%96/index.html">
+<meta property="og:title" content="虚拟dom提高性能">
+<meta property="og:url" content="http://example.com/2018/06/13/react/%E8%99%9A%E6%8B%9Fdom%E6%8F%90%E9%AB%98%E6%80%A7%E8%83%BD/index.html">
 <meta property="og:site_name" content="zhaoShuoLin的博客">
-<meta property="og:description" content="什么是前端工程化？1.小白眼中的前端开发 会写HTML+CSS+Javascript就会前端开发 需要美化界面样式，就拽一个bootstrap组件过来 需要操作DOM或者Ajax请求，就拽jQuery过来 需要快死实现界面布局，就拽layUI过来  2.实际的前端开发 模块化（js模块化，css模块化，资源模块化） 组件化（复用现有的UI结构，样式，行为） 规范化（目录结构的划分，编码规范化，接口">
+<meta property="og:description" content="为什么虚拟dom会提高性能？ 虚拟dom相当于在js和真实dom中间加了一个缓存，利用om diff算法避免了没有必要的dom操作，从而提高性能。  具体实现步骤如下：  用javascript对象结构标识Dom树的结构；然后用这个树构建一个真正的dom树，插到文档当中 当状态变更的时候，重新构造一颗新的对象树。然后用新的树和旧的树进行比较，记录两颗树差异 把第二棵树所记录的差异应用到第一颗所构建">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/img/js.png">
-<meta property="article:published_time" content="2022-06-07T07:00:32.000Z">
-<meta property="article:modified_time" content="2022-06-07T07:20:10.835Z">
+<meta property="og:image" content="http://example.com/img/react.png">
+<meta property="article:published_time" content="2018-06-12T22:12:28.000Z">
+<meta property="article:modified_time" content="2018-06-12T22:12:28.000Z">
 <meta property="article:author" content="温酒斩华雄">
-<meta property="article:tag" content="工程化">
+<meta property="article:tag" content="react">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://example.com/img/js.png">
+<meta name="twitter:image" content="http://example.com/img/react.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>前端工程化 - zhaoShuoLin的博客</title>
+  <title>虚拟dom提高性能 - zhaoShuoLin的博客</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -198,7 +198,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="前端工程化"></span>
+            <span id="subtitle" data-typed-text="虚拟dom提高性能"></span>
           
         </div>
 
@@ -214,8 +214,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-06-07 15:00" pubdate>
-          2022年6月7日 下午
+        <time datetime="2018-06-13 06:12" pubdate>
+          2018年6月13日 早上
         </time>
       </span>
     
@@ -226,7 +226,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          398 字
+          207 字
         
       </span>
     
@@ -237,7 +237,7 @@
         
         
         
-          4 分钟
+          2 分钟
         
       </span>
     
@@ -283,44 +283,26 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">前端工程化</h1>
+            <h1 style="display: none">虚拟dom提高性能</h1>
             
               <p class="note note-info">
                 
                   
-                    本文最后更新于：2022年6月7日 下午
+                    本文最后更新于：2018年6月13日 早上
                   
                 
               </p>
             
             <div class="markdown-body">
               
-              <h4 id="什么是前端工程化？"><a href="#什么是前端工程化？" class="headerlink" title="什么是前端工程化？"></a>什么是前端工程化？</h4><h5 id="1-小白眼中的前端开发"><a href="#1-小白眼中的前端开发" class="headerlink" title="1.小白眼中的前端开发"></a>1.小白眼中的前端开发</h5><ul>
-<li>会写HTML+CSS+Javascript就会前端开发</li>
-<li>需要美化界面样式，就拽一个bootstrap组件过来</li>
-<li>需要操作DOM或者Ajax请求，就拽jQuery过来</li>
-<li>需要快死实现界面布局，就拽layUI过来</li>
-</ul>
-<h5 id="2-实际的前端开发"><a href="#2-实际的前端开发" class="headerlink" title="2.实际的前端开发"></a>2.实际的前端开发</h5><ul>
-<li>模块化（js模块化，css模块化，资源模块化）</li>
-<li>组件化（复用现有的UI结构，样式，行为）</li>
-<li>规范化（目录结构的划分，编码规范化，接口规范化，文档规范化）</li>
-<li>自动化（自动化构建，自动部署，自动化测试）</li>
-</ul>
-<h5 id="3-什么是前端工程化"><a href="#3-什么是前端工程化" class="headerlink" title="3.什么是前端工程化"></a>3.什么是前端工程化</h5><ul>
-<li>前端工程化是指：在企业的前端项目开发中，把前端开发所需的工具，技术，流程，经验等进行规范化，标准化。</li>
-<li>企业开发中的vue和react项目，都是基于工程化的方式进行开发的。</li>
-<li>好处：前端自成体系，有一套标准开发方案和流程。</li>
-</ul>
-<h5 id="4-前端工程化解决方案"><a href="#4-前端工程化解决方案" class="headerlink" title="4.前端工程化解决方案"></a>4.前端工程化解决方案</h5><p>早期的前端工程化解决方案</p>
+              <h4 id="为什么虚拟dom会提高性能？"><a href="#为什么虚拟dom会提高性能？" class="headerlink" title="为什么虚拟dom会提高性能？"></a>为什么虚拟dom会提高性能？</h4><blockquote>
+<p>虚拟<code>dom</code>相当于在<code>js</code>和真实<code>dom</code>中间加了一个缓存，利用<code>om diff</code>算法避免了没有必要的<code>dom</code>操作，从而提高性能。</p>
+</blockquote>
+<p>具体实现步骤如下：</p>
 <ul>
-<li><a target="_blank" rel="noopener" href="https://www.gruntjs.net/">grund</a></li>
-<li><a target="_blank" rel="noopener" href="https://www.gulpjs.com.cn/">gulp</a></li>
-</ul>
-<p>目前流行的前端工程化解决方案</p>
-<ul>
-<li><a target="_blank" rel="noopener" href="https://www.webpackjs.com/">webpack</a></li>
-<li><a target="_blank" rel="noopener" href="https://zh.parceljs.org/">parcel</a></li>
+<li>用<code>javascript</code>对象结构标识Dom树的结构；然后用这个树构建一个真正的dom树，插到文档当中</li>
+<li>当状态变更的时候，重新构造一颗新的对象树。然后用新的树和旧的树进行比较，记录两颗树差异</li>
+<li>把第二棵树所记录的差异应用到第一颗所构建的真正dom树上，视图就更新。</li>
 </ul>
 
               
@@ -339,7 +321,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/javascript/" class="category-chain-item">javascript</a>
+  <a href="/categories/react/" class="category-chain-item">react</a>
   
   
 
@@ -354,7 +336,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/%E5%B7%A5%E7%A8%8B%E5%8C%96/">#工程化</a>
+        <a href="/tags/react/">#react</a>
       
     </div>
   
@@ -366,8 +348,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>前端工程化</div>
-      <div>http://example.com/2022/06/07/js/前端工程化/</div>
+      <div>虚拟dom提高性能</div>
+      <div>http://example.com/2018/06/13/react/虚拟dom提高性能/</div>
     </div>
     <div class="license-meta">
       
@@ -379,13 +361,13 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2022年6月7日</div>
+          <div>2018年6月13日</div>
         </div>
       
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2022年6月7日</div>
+          <div>2018年6月13日</div>
         </div>
       
       <div class="license-meta-item">
@@ -414,9 +396,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/06/13/react/%E8%99%9A%E6%8B%9Fdom%E6%8F%90%E9%AB%98%E6%80%A7%E8%83%BD/" title="虚拟dom提高性能">
+                      <a href="/2018/07/02/react/redux%E4%B8%AD%E9%97%B4%E4%BB%B6/" title="redux中间件">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">虚拟dom提高性能</span>
+                        <span class="hidden-mobile">redux中间件</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -424,8 +406,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2022/06/05/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%A8%A1%E5%9D%97/%E6%B5%8F%E8%A7%88%E5%99%A8%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/" title="浏览器事件循环">
-                        <span class="hidden-mobile">浏览器事件循环</span>
+                      <a href="/2018/06/10/react/react%E7%9A%84diff%E7%AE%97%E6%B3%95/" title="react的diff算法">
+                        <span class="hidden-mobile">react的diff算法</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
