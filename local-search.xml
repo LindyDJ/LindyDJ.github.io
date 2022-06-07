@@ -806,6 +806,31 @@
   
   
   <entry>
+    <title>mvvm的理解</title>
+    <link href="/2019/03/21/vue2/mvvm%E7%9A%84%E7%90%86%E8%A7%A3/"/>
+    <url>/2019/03/21/vue2/mvvm%E7%9A%84%E7%90%86%E8%A7%A3/</url>
+    
+    <content type="html"><![CDATA[<h4 id="对于mvvm的理解？"><a href="#对于mvvm的理解？" class="headerlink" title="对于mvvm的理解？"></a>对于mvvm的理解？</h4><p>mvvm就是modle-view-viewmodule。mvvm是一种设计思想。</p><ul><li>modle：模型层，用于处理逻辑和服务器的交互。</li><li>view：视图层，用于将数据渲染在页面上。UI视图。</li><li>view-model：视图模型层，用来连接model和view，是model和view之间的通信桥梁。达到数据驱动视图的效果。</li></ul><p>mvvm模式简化了界面与业务的依赖，解决了数据频繁更新。mvvm在使用当中，利用双向数据绑定技术，使得model变化时，viewmodel会自动更新，而viewmodel变化时，view也会自动变化。</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>vue2</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>mvvm</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>react中keys作用</title>
     <link href="/2018/10/19/react/react%E4%B8%ADkeys%E4%BD%9C%E7%94%A8/"/>
     <url>/2018/10/19/react/react%E4%B8%ADkeys%E4%BD%9C%E7%94%A8/</url>
