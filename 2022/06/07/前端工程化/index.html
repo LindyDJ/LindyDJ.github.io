@@ -16,26 +16,26 @@
   <meta name="author" content="温酒斩华雄">
   <meta name="keywords" content="">
   
-    <meta name="description" content="说说你对事件循环的理解event loop过程1：  同步代码，一行一行在call stack（执行栈）执行  遇到异步，会先“记录”下，等待时机（定时，网络请求等）  时机到了，就移动到 Callback Queue （回调队列）   event loop过程2：  如Call Stack为空（及代码执行完）Event loop 开始工作  轮询查找Callback Queue，如有则移动到 C">
+    <meta name="description" content="什么是前端工程化？1.小白眼中的前端开发 会写HTML+CSS+Javascript就会前端开发 需要美化界面样式，就拽一个bootstrap组件过来 需要操作DOM或者Ajax请求，就拽jQuery过来 需要快死实现界面布局，就拽layUI过来  2.实际的前端开发 模块化（js模块化，css模块化，资源模块化） 组件化（复用现有的UI结构，样式，行为） 规范化（目录结构的划分，编码规范化，接口">
 <meta property="og:type" content="article">
-<meta property="og:title" content="浏览器事件循环">
-<meta property="og:url" content="http://example.com/2022/06/05/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%A8%A1%E5%9D%97/%E6%B5%8F%E8%A7%88%E5%99%A8%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/index.html">
+<meta property="og:title" content="前端工程化">
+<meta property="og:url" content="http://example.com/2022/06/07/%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%8C%96/index.html">
 <meta property="og:site_name" content="zhaoShuoLin的博客">
-<meta property="og:description" content="说说你对事件循环的理解event loop过程1：  同步代码，一行一行在call stack（执行栈）执行  遇到异步，会先“记录”下，等待时机（定时，网络请求等）  时机到了，就移动到 Callback Queue （回调队列）   event loop过程2：  如Call Stack为空（及代码执行完）Event loop 开始工作  轮询查找Callback Queue，如有则移动到 C">
+<meta property="og:description" content="什么是前端工程化？1.小白眼中的前端开发 会写HTML+CSS+Javascript就会前端开发 需要美化界面样式，就拽一个bootstrap组件过来 需要操作DOM或者Ajax请求，就拽jQuery过来 需要快死实现界面布局，就拽layUI过来  2.实际的前端开发 模块化（js模块化，css模块化，资源模块化） 组件化（复用现有的UI结构，样式，行为） 规范化（目录结构的划分，编码规范化，接口">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/2022/06/05/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%A8%A1%E5%9D%97/%E6%B5%8F%E8%A7%88%E5%99%A8%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/69.png">
-<meta property="og:image" content="http://example.com/2022/06/05/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%A8%A1%E5%9D%97/%E6%B5%8F%E8%A7%88%E5%99%A8%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/70.png">
-<meta property="article:published_time" content="2022-06-05T12:54:24.000Z">
-<meta property="article:modified_time" content="2022-06-05T13:18:03.281Z">
+<meta property="og:image" content="http://example.com/img/js.png">
+<meta property="article:published_time" content="2022-06-07T07:00:32.000Z">
+<meta property="article:modified_time" content="2022-06-07T07:19:10.033Z">
 <meta property="article:author" content="温酒斩华雄">
+<meta property="article:tag" content="工程化">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://example.com/2022/06/05/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%A8%A1%E5%9D%97/%E6%B5%8F%E8%A7%88%E5%99%A8%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/69.png">
+<meta name="twitter:image" content="http://example.com/img/js.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>浏览器事件循环 - zhaoShuoLin的博客</title>
+  <title>前端工程化 - zhaoShuoLin的博客</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -198,7 +198,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="浏览器事件循环"></span>
+            <span id="subtitle" data-typed-text="前端工程化"></span>
           
         </div>
 
@@ -214,8 +214,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2022-06-05 20:54" pubdate>
-          2022年6月5日 晚上
+        <time datetime="2022-06-07 15:00" pubdate>
+          2022年6月7日 下午
         </time>
       </span>
     
@@ -226,7 +226,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          549 字
+          398 字
         
       </span>
     
@@ -237,7 +237,7 @@
         
         
         
-          5 分钟
+          4 分钟
         
       </span>
     
@@ -283,63 +283,44 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">浏览器事件循环</h1>
+            <h1 style="display: none">前端工程化</h1>
             
               <p class="note note-info">
                 
                   
-                    本文最后更新于：2022年6月5日 晚上
+                    本文最后更新于：2022年6月7日 下午
                   
                 
               </p>
             
             <div class="markdown-body">
               
-              <h4 id="说说你对事件循环的理解"><a href="#说说你对事件循环的理解" class="headerlink" title="说说你对事件循环的理解"></a>说说你对事件循环的理解</h4><p>event loop过程1：</p>
+              <h4 id="什么是前端工程化？"><a href="#什么是前端工程化？" class="headerlink" title="什么是前端工程化？"></a>什么是前端工程化？</h4><h5 id="1-小白眼中的前端开发"><a href="#1-小白眼中的前端开发" class="headerlink" title="1.小白眼中的前端开发"></a>1.小白眼中的前端开发</h5><ul>
+<li>会写HTML+CSS+Javascript就会前端开发</li>
+<li>需要美化界面样式，就拽一个bootstrap组件过来</li>
+<li>需要操作DOM或者Ajax请求，就拽jQuery过来</li>
+<li>需要快死实现界面布局，就拽layUI过来</li>
+</ul>
+<h5 id="2-实际的前端开发"><a href="#2-实际的前端开发" class="headerlink" title="2.实际的前端开发"></a>2.实际的前端开发</h5><ul>
+<li>模块化（js模块化，css模块化，资源模块化）</li>
+<li>组件化（复用现有的UI结构，样式，行为）</li>
+<li>规范化（目录结构的划分，编码规范化，接口规范化，文档规范化）</li>
+<li>自动化（自动化构建，自动部署，自动化测试）</li>
+</ul>
+<h5 id="3-什么是前端工程化"><a href="#3-什么是前端工程化" class="headerlink" title="3.什么是前端工程化"></a>3.什么是前端工程化</h5><ul>
+<li>前端工程化是指：在企业的前端项目开发中，把前端开发所需的工具，技术，流程，经验等进行规范化，标准化。</li>
+<li>企业开发中的vue和react项目，都是基于工程化的方式进行开发的。</li>
+<li>好处：前端自成体系，有一套标准开发方案和流程。</li>
+</ul>
+<h5 id="4-前端工程化解决方案"><a href="#4-前端工程化解决方案" class="headerlink" title="4.前端工程化解决方案"></a>4.前端工程化解决方案</h5><p>早期的前端工程化解决方案</p>
 <ul>
-<li><p>同步代码，一行一行在call stack（执行栈）执行</p>
-</li>
-<li><p>遇到异步，会先“记录”下，等待时机（定时，网络请求等）</p>
-</li>
-<li><p>时机到了，就移动到 Callback Queue （回调队列）</p>
-</li>
+<li><a target="_blank" rel="noopener" href="https://www.gruntjs.net/">grund</a></li>
+<li><a target="_blank" rel="noopener" href="https://www.gulpjs.com.cn/">gulp</a></li>
 </ul>
-<p>event loop过程2：</p>
+<p>目前流行的前端工程化解决方案</p>
 <ul>
-<li><p>如Call Stack为空（及代码执行完）Event loop 开始工作</p>
-</li>
-<li><p>轮询查找Callback Queue，如有则移动到 Call Stack执行</p>
-</li>
-<li><p>然后继续轮询查找（永动机一样）</p>
-</li>
-</ul>
-<p><img src="/2022/06/05/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%A8%A1%E5%9D%97/%E6%B5%8F%E8%A7%88%E5%99%A8%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/69.png" srcset="/img/loading.gif" lazyload></p>
-<p><img src="/2022/06/05/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%A8%A1%E5%9D%97/%E6%B5%8F%E8%A7%88%E5%99%A8%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/70.png" srcset="/img/loading.gif" lazyload></p>
-<h5 id="宏任务："><a href="#宏任务：" class="headerlink" title="宏任务："></a>宏任务：</h5><ul>
-<li><p>我们可以将每次执行栈执行的代码当做是一个宏任务（包括每次从事件队列中获取一个事件回调并放到执行栈中执行）</p>
-</li>
-<li><p>每一个宏任务会从头到尾执行完毕，不会执行其他</p>
-<blockquote>
-<p>浏览器为了能够使js内部宏任务与dom任务有序的执行，会在一个宏任务执行结束后，在下一个宏任务执行开始前，对页面进行重新渲染。</p>
-<figure class="highlight text"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs text">// 宏任务--&gt;渲染--&gt;宏任务--&gt;渲染--&gt;渲染．．<br></code></pre></td></tr></table></figure>
-</blockquote>
-<ul>
-<li>js代码</li>
-<li>setTimeout</li>
-<li>Ajax</li>
-<li>Dom事件</li>
-</ul>
-</li>
-</ul>
-<h5 id="微任务："><a href="#微任务：" class="headerlink" title="微任务："></a>微任务：</h5><ul>
-<li>我们已经知道 宏任务结束后，会执行渲染，然后执行下一个 宏任务。</li>
-<li>而微任务可以理解成在当前 宏任务执行后立即执行的任务。</li>
-<li>也就是说，<strong>当 宏任务执行完，会在渲染前，将执行期间所产生的所有 微任务都执行完</strong>。<ul>
-<li>Promise async/</li>
-<li>nextTick（Node.js）</li>
-<li>MutaionObserver</li>
-</ul>
-</li>
+<li><a target="_blank" rel="noopener" href="https://www.webpackjs.com/">webpack</a></li>
+<li><a target="_blank" rel="noopener" href="https://zh.parceljs.org/">parcel</a></li>
 </ul>
 
               
@@ -348,6 +329,34 @@
             <div>
               <div class="post-metas my-3">
   
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/javascript/" class="category-chain-item">javascript</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E5%B7%A5%E7%A8%8B%E5%8C%96/">#工程化</a>
+      
+    </div>
   
 </div>
 
@@ -357,8 +366,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>浏览器事件循环</div>
-      <div>http://example.com/2022/06/05/浏览器模块/浏览器事件循环/</div>
+      <div>前端工程化</div>
+      <div>http://example.com/2022/06/07/前端工程化/</div>
     </div>
     <div class="license-meta">
       
@@ -370,13 +379,13 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2022年6月5日</div>
+          <div>2022年6月7日</div>
         </div>
       
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2022年6月5日</div>
+          <div>2022年6月7日</div>
         </div>
       
       <div class="license-meta-item">
@@ -405,9 +414,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2022/06/07/%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%8C%96/" title="前端工程化">
+                      <a href="/2022/06/13/react/%E8%99%9A%E6%8B%9Fdom%E6%8F%90%E9%AB%98%E6%80%A7%E8%83%BD/" title="虚拟dom提高性能">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">前端工程化</span>
+                        <span class="hidden-mobile">虚拟dom提高性能</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -415,8 +424,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2021/10/19/vue3%E9%9D%A2%E8%AF%95%E9%A2%98/" title="vue3系列面试题">
-                        <span class="hidden-mobile">vue3系列面试题</span>
+                      <a href="/2022/06/05/%E6%B5%8F%E8%A7%88%E5%99%A8%E6%A8%A1%E5%9D%97/%E6%B5%8F%E8%A7%88%E5%99%A8%E4%BA%8B%E4%BB%B6%E5%BE%AA%E7%8E%AF/" title="浏览器事件循环">
+                        <span class="hidden-mobile">浏览器事件循环</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
