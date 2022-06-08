@@ -431,6 +431,31 @@
   
   
   <entry>
+    <title>redux实现原理</title>
+    <link href="/2019/10/20/react/redux%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/"/>
+    <url>/2019/10/20/react/redux%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/</url>
+    
+    <content type="html"><![CDATA[<h4 id="redux实现原理解析"><a href="#redux实现原理解析" class="headerlink" title="redux实现原理解析"></a>redux实现原理解析</h4><h5 id="为什么要用redux？"><a href="#为什么要用redux？" class="headerlink" title="为什么要用redux？"></a>为什么要用redux？</h5><blockquote><p>在react中，数据在组件中是单向流动的，数据从一个方向父组件传给子组件，所以两个非父子之间通信就会相对麻烦，redux的出现就是为了解决state里面的数据问题。</p></blockquote><h5 id="redux设计理念"><a href="#redux设计理念" class="headerlink" title="redux设计理念"></a>redux设计理念</h5><blockquote><p>redux是将整个应用状态存储到一个地方称为store，里面保存着一个状态树store tree，组件可以通过dispatch派发action给store，而不是直接通知其他组件，组件内部通过订阅store中的状态来刷新自己的视图。</p></blockquote><p><img src="/2019/10/20/react/redux%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/68.png"></p><h5 id="redux三大原则"><a href="#redux三大原则" class="headerlink" title="redux三大原则"></a>redux三大原则</h5><ul><li>唯一数据源<ul><li>整个应用的state都被存储到redux仓库当中。只存在一个store。</li></ul></li><li>保持只读状态<ul><li>state是只读的，唯一改变state的方法就是触发action，action是一个动作对象，type类型，和data传递参数。</li></ul></li><li>只能通过纯函数改变状态</li></ul><h5 id="redux三大核心："><a href="#redux三大核心：" class="headerlink" title="redux三大核心："></a>redux三大核心：</h5><ul><li>action：    动作对象，两个参数type，和data</li><li>reducer：   用于初始化状态，加工状态</li><li>store：只存在一个store应用</li></ul><p>原理： 页面需要获取数据时，通过Action creates创建一个action动作对象，提交dispatch请求给store。store通知reducer进行匹配action的属性type。从而进行返回一个新的对象。</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>react</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>react</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>javascript几种继承方法</title>
     <link href="/2019/07/20/js/javascript%E5%87%A0%E7%A7%8D%E7%BB%A7%E6%89%BF%E6%96%B9%E6%B3%95/"/>
     <url>/2019/07/20/js/javascript%E5%87%A0%E7%A7%8D%E7%BB%A7%E6%89%BF%E6%96%B9%E6%B3%95/</url>
