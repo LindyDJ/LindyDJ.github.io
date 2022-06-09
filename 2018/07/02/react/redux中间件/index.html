@@ -16,12 +16,12 @@
   <meta name="author" content="温酒斩华雄">
   <meta name="keywords" content="">
   
-    <meta name="description" content="redux中间件 中间件提供第三方插件的模式，自定义拦截action    -&gt;    reducer  的过程。变成  action   -&gt;   middlewares     -&gt;     reducer。  这种机制可以让我们改变数据流，实现如异步  action，  action  过滤，日志输出，异常报告等功能。   redux-logger：提供日志输出 redux">
+    <meta name="description" content="redux中间件什么是redux中间件？中间件提供第三方插件的模式，自定义拦截action  –reducer 的过程。变为action  –middlewares（执行中间件代码）– reducer。这种机制可以让我们改变数据流，实现如异步action，日志输出，异常报告等。 为什么需要redux中间件？默认情况下，redux自身只能处理同步数据流。但是在实际项目开发中，状态的更新，获取，通常是">
 <meta property="og:type" content="article">
 <meta property="og:title" content="redux中间件">
 <meta property="og:url" content="http://example.com/2018/07/02/react/redux%E4%B8%AD%E9%97%B4%E4%BB%B6/index.html">
 <meta property="og:site_name" content="zhaoShuoLin的博客">
-<meta property="og:description" content="redux中间件 中间件提供第三方插件的模式，自定义拦截action    -&gt;    reducer  的过程。变成  action   -&gt;   middlewares     -&gt;     reducer。  这种机制可以让我们改变数据流，实现如异步  action，  action  过滤，日志输出，异常报告等功能。   redux-logger：提供日志输出 redux">
+<meta property="og:description" content="redux中间件什么是redux中间件？中间件提供第三方插件的模式，自定义拦截action  –reducer 的过程。变为action  –middlewares（执行中间件代码）– reducer。这种机制可以让我们改变数据流，实现如异步action，日志输出，异常报告等。 为什么需要redux中间件？默认情况下，redux自身只能处理同步数据流。但是在实际项目开发中，状态的更新，获取，通常是">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/img/react.png">
 <meta property="article:published_time" content="2018-07-02T01:23:28.000Z">
@@ -226,7 +226,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          218 字
+          288 字
         
       </span>
     
@@ -237,7 +237,7 @@
         
         
         
-          2 分钟
+          3 分钟
         
       </span>
     
@@ -295,11 +295,10 @@
             
             <div class="markdown-body">
               
-              <h4 id="redux中间件"><a href="#redux中间件" class="headerlink" title="redux中间件"></a>redux中间件</h4><blockquote>
-<p>中间件提供第三方插件的模式，自定义拦截<code>action</code>    -&gt;    <code>reducer</code>  的过程。变成  <code>action</code>   -&gt;   <code>middlewares</code>     -&gt;     <code>reducer</code>。  这种机制可以让我们改变数据流，实现如异步  <code>action</code>，  <code>action</code>  过滤，日志输出，异常报告等功能。</p>
-</blockquote>
+              <h4 id="redux中间件"><a href="#redux中间件" class="headerlink" title="redux中间件"></a>redux中间件</h4><h5 id="什么是redux中间件？"><a href="#什么是redux中间件？" class="headerlink" title="什么是redux中间件？"></a>什么是redux中间件？</h5><p>中间件提供第三方插件的模式，自定义拦截action  –reducer 的过程。变为action  –middlewares（执行中间件代码）– reducer。这种机制可以让我们改变数据流，实现如异步action，日志输出，异常报告等。</p>
+<h5 id="为什么需要redux中间件？"><a href="#为什么需要redux中间件？" class="headerlink" title="为什么需要redux中间件？"></a>为什么需要redux中间件？</h5><p>默认情况下，redux自身只能处理同步数据流。但是在实际项目开发中，状态的更新，获取，通常是使用异步操作来实现的。</p>
 <ul>
-<li><code>redux-logger</code>：提供日志输出</li>
+<li>redux-logger`：提供日志输出</li>
 <li><code>redux-thunk</code>：处理异步操作</li>
 <li><code>redux-promise</code>：处理异步操作，<code>actionCreator</code>的返回值是<code>promise</code></li>
 </ul>
