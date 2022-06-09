@@ -931,6 +931,56 @@
   
   
   <entry>
+    <title>react事件处理逻辑</title>
+    <link href="/2018/11/08/react/react%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86%E9%80%BB%E8%BE%91/"/>
+    <url>/2018/11/08/react/react%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86%E9%80%BB%E8%BE%91/</url>
+    
+    <content type="html"><![CDATA[<h4 id="概述下react中的事件处理逻辑？"><a href="#概述下react中的事件处理逻辑？" class="headerlink" title="概述下react中的事件处理逻辑？"></a>概述下react中的事件处理逻辑？</h4><p>为了解决跨浏览器兼容性问题，会将浏览器的原生事件封装成合并事件并且传入到事件处理器中。这里的合成事件提供了与原生事件相同的接口，它们都屏蔽了底层浏览器的细节差异，保证了行为的一致性。react并没有直接将事件绑定在子元素上，而是将所有的事件发送到顶层处理。这样在更新dom的时候就不需要考虑如何处理附着在dom上的事件，最终达到优化性能的目的。</p>]]></content>
+    
+    
+    <categories>
+      
+      <category>react</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>react</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>redux的缺点</title>
+    <link href="/2018/11/02/react/redux%E7%9A%84%E7%BC%BA%E7%82%B9/"/>
+    <url>/2018/11/02/react/redux%E7%9A%84%E7%BC%BA%E7%82%B9/</url>
+    
+    <content type="html"><![CDATA[<h4 id="redux的缺点？"><a href="#redux的缺点？" class="headerlink" title="redux的缺点？"></a>redux的缺点？</h4><ul><li>一个组件所需要的数据，必须从父组件传递过来，而不能像flux，直接从store中获取。</li><li>一个组件的数据发生了改变，即使父组件不需要用到这个组件，父组件也会重新render渲染。这样可能会造成效率问题。或者写复杂的shouldComponentUpdate进行判断。</li></ul><h5 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h5><hr><blockquote><ul><li><a href="https://interview2.poetries.top/excellent-docs/6-React.html">https://interview2.poetries.top/excellent-docs/6-React.html</a></li></ul></blockquote>]]></content>
+    
+    
+    <categories>
+      
+      <category>react</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>react</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>react中keys作用</title>
     <link href="/2018/10/19/react/react%E4%B8%ADkeys%E4%BD%9C%E7%94%A8/"/>
     <url>/2018/10/19/react/react%E4%B8%ADkeys%E4%BD%9C%E7%94%A8/</url>
