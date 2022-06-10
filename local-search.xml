@@ -1281,6 +1281,31 @@
   
   
   <entry>
+    <title>react坑点</title>
+    <link href="/2018/05/13/react/react%E5%9D%91%E7%82%B9/"/>
+    <url>/2018/05/13/react/react%E5%9D%91%E7%82%B9/</url>
+    
+    <content type="html"><![CDATA[<h4 id="说说你用react有什么坑点？"><a href="#说说你用react有什么坑点？" class="headerlink" title="#说说你用react有什么坑点？"></a><a href="https://interview2.poetries.top/excellent-docs/6-React.html#_17%E3%80%81%E8%AF%B4%E8%AF%B4%E4%BD%A0%E7%94%A8react%E6%9C%89%E4%BB%80%E4%B9%88%E5%9D%91%E7%82%B9">#</a><strong>说说你用react有什么坑点？</strong></h4><h5 id="1-jsx做表达式判断时候，需要强转为boolean类型。"><a href="#1-jsx做表达式判断时候，需要强转为boolean类型。" class="headerlink" title="1.jsx做表达式判断时候，需要强转为boolean类型。"></a>1.jsx做表达式判断时候，需要强转为boolean类型。</h5><blockquote><p>如果不使用 <code>!!b </code> 进行强转数据类型，会在页面输出 <code>0</code>。</p></blockquote><figure class="highlight jsx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs jsx"><span class="hljs-title function_">render</span>(<span class="hljs-params"></span>) &#123;<br>  <span class="hljs-keyword">const</span> b = <span class="hljs-number">0</span>;<br>  <span class="hljs-keyword">return</span> <span class="language-xml"><span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span></span><br><span class="language-xml">    &#123;</span><br><span class="language-xml">      !!b &amp;&amp; <span class="hljs-tag">&lt;<span class="hljs-name">div</span>&gt;</span>这是一段文本<span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><br><span class="language-xml">    &#125;</span><br><span class="language-xml">  <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span></span><br>&#125;<br></code></pre></td></tr></table></figure><h5 id="2-尽量不要再-componentWillReviceProps-里使用setState，如果一定要使用，那么需要判断结束条件，不然会出现无限重渲染，导致页面崩溃。"><a href="#2-尽量不要再-componentWillReviceProps-里使用setState，如果一定要使用，那么需要判断结束条件，不然会出现无限重渲染，导致页面崩溃。" class="headerlink" title="2.尽量不要再 componentWillReviceProps 里使用setState，如果一定要使用，那么需要判断结束条件，不然会出现无限重渲染，导致页面崩溃。"></a>2.尽量不要再 componentWillReviceProps 里使用setState，如果一定要使用，那么需要判断结束条件，不然会出现无限重渲染，导致页面崩溃。</h5><h5 id="3-给组件添加ref时候，尽量不要使用匿名函数，因为当组件更新的时候，匿名函数会被当做新的prop处理，让ref属性接受到性函数的时候，react内部会先清空ref，也就是会以null为回调参数先执行一次热风。这个props，然后在以该组件的实例执行一次ref，所以用匿名函数做ref的时候，有时候去ref赋值后的属性会取到null。"><a href="#3-给组件添加ref时候，尽量不要使用匿名函数，因为当组件更新的时候，匿名函数会被当做新的prop处理，让ref属性接受到性函数的时候，react内部会先清空ref，也就是会以null为回调参数先执行一次热风。这个props，然后在以该组件的实例执行一次ref，所以用匿名函数做ref的时候，有时候去ref赋值后的属性会取到null。" class="headerlink" title="3.给组件添加ref时候，尽量不要使用匿名函数，因为当组件更新的时候，匿名函数会被当做新的prop处理，让ref属性接受到性函数的时候，react内部会先清空ref，也就是会以null为回调参数先执行一次热风。这个props，然后在以该组件的实例执行一次ref，所以用匿名函数做ref的时候，有时候去ref赋值后的属性会取到null。"></a>3.给组件添加ref时候，尽量不要使用匿名函数，因为当组件更新的时候，匿名函数会被当做新的prop处理，让ref属性接受到性函数的时候，react内部会先清空ref，也就是会以null为回调参数先执行一次热风。这个props，然后在以该组件的实例执行一次ref，所以用匿名函数做ref的时候，有时候去ref赋值后的属性会取到null。</h5><h5 id="4-遍历子节点的时候，不要用index作为组件的key进行传入。"><a href="#4-遍历子节点的时候，不要用index作为组件的key进行传入。" class="headerlink" title="4.遍历子节点的时候，不要用index作为组件的key进行传入。"></a>4.遍历子节点的时候，不要用index作为组件的key进行传入。</h5>]]></content>
+    
+    
+    <categories>
+      
+      <category>react</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>react</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>var,let,const的区别</title>
     <link href="/2018/03/28/js/var-let-const%E7%9A%84%E5%8C%BA%E5%88%AB/"/>
     <url>/2018/03/28/js/var-let-const%E7%9A%84%E5%8C%BA%E5%88%AB/</url>
