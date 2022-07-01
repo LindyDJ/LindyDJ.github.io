@@ -221,6 +221,73 @@
     
     
       <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2019/04/08/webpack/%E4%BB%8B%E7%BB%8DTreeShaking/" target="_self">
+          <img src="/img/webpack.png" srcset="/img/loading.gif" lazyload alt="介绍TreeShaking">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2019/04/08/webpack/%E4%BB%8B%E7%BB%8DTreeShaking/" target="_self">
+          介绍TreeShaking
+        </a>
+      </h1>
+
+      <a class="index-excerpt" href="/2019/04/08/webpack/%E4%BB%8B%E7%BB%8DTreeShaking/" target="_self">
+        <div>
+          
+          介绍一下tree-shaking作用： 它表示在打包的时候会去除一些无用的代码  原理： ES6的模块引入是静态分析的，所以在编译时能正确判断到底加载了哪些模块 分析程序流，判断哪些变量未被使用、引用，进而删除此代码  特点： 在生产模式下它是默认开启的，但是由于经过babel编译全部模块被封装成IIFE，它存在副作用无法被tree-shaking掉 可以在package.json中配置sideE
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2019-04-08 16:23" pubdate>
+              2019-04-08
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/webpack/" class="category-chain-item">webpack</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/Three-Shaking/">#Three_Shaking</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
         <a href="/2019/04/06/webpack/webpack%E5%B1%82%E9%9D%A2%E5%A6%82%E4%BD%95%E5%81%9A%E4%BC%98%E5%8C%96/" target="_self">
           <img src="/img/webpack.png" srcset="/img/loading.gif" lazyload alt="webpack层面如何做优化">
         </a>
@@ -813,73 +880,6 @@
             <i class="iconfont icon-tags"></i>
             
               <a href="/tags/%E5%85%B3%E7%B3%BB/">#关系</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2018/11/08/react/react%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86%E9%80%BB%E8%BE%91/" target="_self">
-          <img src="/img/react.png" srcset="/img/loading.gif" lazyload alt="react事件处理逻辑">
-        </a>
-      </div>
-    
-    <article class="col-12 col-md-8 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2018/11/08/react/react%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86%E9%80%BB%E8%BE%91/" target="_self">
-          react事件处理逻辑
-        </a>
-      </h1>
-
-      <a class="index-excerpt" href="/2018/11/08/react/react%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86%E9%80%BB%E8%BE%91/" target="_self">
-        <div>
-          
-          概述下react中的事件处理逻辑？为了解决跨浏览器兼容性问题，会将浏览器的原生事件封装成合并事件并且传入到事件处理器中。这里的合成事件提供了与原生事件相同的接口，它们都屏蔽了底层浏览器的细节差异，保证了行为的一致性。react并没有直接将事件绑定在子元素上，而是将所有的事件发送到顶层处理。这样在更新dom的时候就不需要考虑如何处理附着在dom上的事件，最终达到优化性能的目的。
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2018-11-08 15:23" pubdate>
-              2018-11-08
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/react/" class="category-chain-item">react</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/react/">#react</a>
             
           </div>
         

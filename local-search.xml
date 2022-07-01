@@ -206,6 +206,31 @@
   
   
   <entry>
+    <title>inlin-block元素缝隙问题</title>
+    <link href="/2020/07/05/css3/inlin-block%E5%85%83%E7%B4%A0%E7%BC%9D%E9%9A%99%E9%97%AE%E9%A2%98/"/>
+    <url>/2020/07/05/css3/inlin-block%E5%85%83%E7%B4%A0%E7%BC%9D%E9%9A%99%E9%97%AE%E9%A2%98/</url>
+    
+    <content type="html"><![CDATA[<h4 id="display-inline-block元素之间空隙的产生原因和解决办法？"><a href="#display-inline-block元素之间空隙的产生原因和解决办法？" class="headerlink" title="display:inline-block元素之间空隙的产生原因和解决办法？"></a>display:inline-block元素之间空隙的产生原因和解决办法？</h4><h5 id="空隙产生原因"><a href="#空隙产生原因" class="headerlink" title="空隙产生原因"></a>空隙产生原因</h5><p>元素被当做行内元素进行排版布局的时候，元素之间的空格，换行符，空白会被浏览器处理，根据white-space的默认值 normal，合并多余的空白符。在html代码当中，换行符就会被当做是一处空白，当字体大小font-size不为零的情况下，两个元素之间就会有空隙。这些元素之间的间距会随着字体大小来变化，比如行内元素font-size：16px时，间距为8px。</p><h5 id="解决办法："><a href="#解决办法：" class="headerlink" title="解决办法："></a>解决办法：</h5><ul><li><p>将所有html标签写在一行    （代码可读性差）</p></li><li><p>给inline-block属性元素设置float：left   （造成高度塌陷）</p></li><li><p>设置inlin-block属性元素font-size为零，需重更新设置子元素大小。</p></li><li><p>设置子元素margin-left:-2px。</p></li><li><p>给父元素设置display：table。word-sapcing：-1em。（根据实际情况来）</p></li></ul>]]></content>
+    
+    
+    <categories>
+      
+      <category>css3</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>css3</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>css3新增的特性</title>
     <link href="/2020/07/01/css3/css3%E6%96%B0%E5%A2%9E%E7%9A%84%E7%89%B9%E6%80%A7/"/>
     <url>/2020/07/01/css3/css3%E6%96%B0%E5%A2%9E%E7%9A%84%E7%89%B9%E6%80%A7/</url>

@@ -221,6 +221,73 @@
     
     
       <div class="col-12 col-md-4 m-auto index-img">
+        <a href="/2018/11/08/react/react%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86%E9%80%BB%E8%BE%91/" target="_self">
+          <img src="/img/react.png" srcset="/img/loading.gif" lazyload alt="react事件处理逻辑">
+        </a>
+      </div>
+    
+    <article class="col-12 col-md-8 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2018/11/08/react/react%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86%E9%80%BB%E8%BE%91/" target="_self">
+          react事件处理逻辑
+        </a>
+      </h1>
+
+      <a class="index-excerpt" href="/2018/11/08/react/react%E4%BA%8B%E4%BB%B6%E5%A4%84%E7%90%86%E9%80%BB%E8%BE%91/" target="_self">
+        <div>
+          
+          概述下react中的事件处理逻辑？为了解决跨浏览器兼容性问题，会将浏览器的原生事件封装成合并事件并且传入到事件处理器中。这里的合成事件提供了与原生事件相同的接口，它们都屏蔽了底层浏览器的细节差异，保证了行为的一致性。react并没有直接将事件绑定在子元素上，而是将所有的事件发送到顶层处理。这样在更新dom的时候就不需要考虑如何处理附着在dom上的事件，最终达到优化性能的目的。
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2018-11-08 15:23" pubdate>
+              2018-11-08
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/react/" class="category-chain-item">react</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/react/">#react</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+      <div class="col-12 col-md-4 m-auto index-img">
         <a href="/2018/11/02/react/redux%E7%9A%84%E7%BC%BA%E7%82%B9/" target="_self">
           <img src="/img/react.png" srcset="/img/loading.gif" lazyload alt="redux的缺点">
         </a>
@@ -783,73 +850,6 @@
             <i class="iconfont icon-date"></i>
             <time datetime="2018-06-13 06:12" pubdate>
               2018-06-13
-            </time>
-          </div>
-        
-        
-          <div class="post-meta mr-3 d-flex align-items-center">
-            <i class="iconfont icon-category"></i>
-            
-
-<span class="category-chains">
-  
-  
-    
-      <span class="category-chain">
-        
-  <a href="/categories/react/" class="category-chain-item">react</a>
-  
-  
-
-      </span>
-    
-  
-</span>
-
-          </div>
-        
-        
-          <div class="post-meta">
-            <i class="iconfont icon-tags"></i>
-            
-              <a href="/tags/react/">#react</a>
-            
-          </div>
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-      <div class="col-12 col-md-4 m-auto index-img">
-        <a href="/2018/06/10/react/react%E7%9A%84diff%E7%AE%97%E6%B3%95/" target="_self">
-          <img src="/img/react.png" srcset="/img/loading.gif" lazyload alt="react的diff算法">
-        </a>
-      </div>
-    
-    <article class="col-12 col-md-8 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2018/06/10/react/react%E7%9A%84diff%E7%AE%97%E6%B3%95/" target="_self">
-          react的diff算法
-        </a>
-      </h1>
-
-      <a class="index-excerpt" href="/2018/06/10/react/react%E7%9A%84diff%E7%AE%97%E6%B3%95/" target="_self">
-        <div>
-          
-          react中的diff算法？ 把树形结构按照层级分解，只比较同级元素。 给列表结构的每个单元添加唯一的key属性，方便比较。 react只会匹配相同的class的component（这里面的class指的是组件的名字） 合并操作，调用component的setState方法的时候，react将其标记为 dirty。到每一个事件循环结束，react检查所有标记dirty的component重新绘制。
-        </div>
-      </a>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2018-06-10 21:03" pubdate>
-              2018-06-10
             </time>
           </div>
         

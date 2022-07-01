@@ -16,16 +16,16 @@
   <meta name="author" content="温酒斩华雄">
   <meta name="keywords" content="">
   
-    <meta name="description" content="css3新增那些新特性？选择器： :first-of-type   选择其父元素第一个子元素 :last-of-type     选择其父元素最后一个子元素 :nth-of-type(2)   选择父元素的第二个元素 :only-child    选择属于父元素的唯一一个子元素 :last-child   选择属于其父元素的最后一个子元素  新样式： 边框     border-radius：创建">
+    <meta name="description" content="display:inline-block元素之间空隙的产生原因和解决办法？空隙产生原因元素被当做行内元素进行排版布局的时候，元素之间的空格，换行符，空白会被浏览器处理，根据white-space的默认值 normal，合并多余的空白符。在html代码当中，换行符就会被当做是一处空白，当字体大小font-size不为零的情况下，两个元素之间就会有空隙。这些元素之间的间距会随着字体大小来变化，比如行内">
 <meta property="og:type" content="article">
-<meta property="og:title" content="css3新增的特性">
-<meta property="og:url" content="http://example.com/2020/07/01/css3/css3%E6%96%B0%E5%A2%9E%E7%9A%84%E7%89%B9%E6%80%A7/index.html">
+<meta property="og:title" content="inlin-block元素缝隙问题">
+<meta property="og:url" content="http://example.com/2020/07/05/css3/inlin-block%E5%85%83%E7%B4%A0%E7%BC%9D%E9%9A%99%E9%97%AE%E9%A2%98/index.html">
 <meta property="og:site_name" content="zhaoShuoLin的博客">
-<meta property="og:description" content="css3新增那些新特性？选择器： :first-of-type   选择其父元素第一个子元素 :last-of-type     选择其父元素最后一个子元素 :nth-of-type(2)   选择父元素的第二个元素 :only-child    选择属于父元素的唯一一个子元素 :last-child   选择属于其父元素的最后一个子元素  新样式： 边框     border-radius：创建">
+<meta property="og:description" content="display:inline-block元素之间空隙的产生原因和解决办法？空隙产生原因元素被当做行内元素进行排版布局的时候，元素之间的空格，换行符，空白会被浏览器处理，根据white-space的默认值 normal，合并多余的空白符。在html代码当中，换行符就会被当做是一处空白，当字体大小font-size不为零的情况下，两个元素之间就会有空隙。这些元素之间的间距会随着字体大小来变化，比如行内">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="http://example.com/img/css3.png">
-<meta property="article:published_time" content="2020-07-01T00:32:25.000Z">
-<meta property="article:modified_time" content="2020-07-01T00:32:25.000Z">
+<meta property="article:published_time" content="2020-07-05T00:32:25.000Z">
+<meta property="article:modified_time" content="2020-07-05T00:32:25.000Z">
 <meta property="article:author" content="温酒斩华雄">
 <meta property="article:tag" content="css3">
 <meta name="twitter:card" content="summary_large_image">
@@ -35,7 +35,7 @@
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>css3新增的特性 - zhaoShuoLin的博客</title>
+  <title>inlin-block元素缝隙问题 - zhaoShuoLin的博客</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -198,7 +198,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="css3新增的特性"></span>
+            <span id="subtitle" data-typed-text="inlin-block元素缝隙问题"></span>
           
         </div>
 
@@ -214,8 +214,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2020-07-01 08:32" pubdate>
-          2020年7月1日 早上
+        <time datetime="2020-07-05 08:32" pubdate>
+          2020年7月5日 早上
         </time>
       </span>
     
@@ -226,7 +226,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          550 字
+          397 字
         
       </span>
     
@@ -237,7 +237,7 @@
         
         
         
-          5 分钟
+          4 分钟
         
       </span>
     
@@ -283,64 +283,30 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">css3新增的特性</h1>
+            <h1 style="display: none">inlin-block元素缝隙问题</h1>
             
               <p class="note note-info">
                 
                   
-                    本文最后更新于：2020年7月1日 早上
+                    本文最后更新于：2020年7月5日 早上
                   
                 
               </p>
             
             <div class="markdown-body">
               
-              <h4 id="css3新增那些新特性？"><a href="#css3新增那些新特性？" class="headerlink" title="css3新增那些新特性？"></a>css3新增那些新特性？</h4><h5 id="选择器："><a href="#选择器：" class="headerlink" title="选择器："></a>选择器：</h5><ul>
-<li>:first-of-type   选择其父元素第一个子元素</li>
-<li>:last-of-type     选择其父元素最后一个子元素</li>
-<li>:nth-of-type(2)   选择父元素的第二个元素</li>
-<li>:only-child    选择属于父元素的唯一一个子元素</li>
-<li>:last-child   选择属于其父元素的最后一个子元素</li>
-</ul>
-<h5 id="新样式："><a href="#新样式：" class="headerlink" title="新样式："></a>新样式：</h5><ul>
-<li>边框     border-radius：创建圆角边框</li>
-<li>border-shadow：为元素添加阴影</li>
-<li>border-image：使用图片绘制边框</li>
-</ul>
-<ul>
-<li>背景   background-clip</li>
-<li>background-origin</li>
-<li>background-size</li>
-<li>background-break</li>
-</ul>
-<ul>
-<li>文字    word-warp：<ul>
-<li>narmal：使用浏览器默认换行</li>
-<li>break-all：允许在单词内换行</li>
-</ul>
+              <h4 id="display-inline-block元素之间空隙的产生原因和解决办法？"><a href="#display-inline-block元素之间空隙的产生原因和解决办法？" class="headerlink" title="display:inline-block元素之间空隙的产生原因和解决办法？"></a>display:inline-block元素之间空隙的产生原因和解决办法？</h4><h5 id="空隙产生原因"><a href="#空隙产生原因" class="headerlink" title="空隙产生原因"></a>空隙产生原因</h5><p>元素被当做行内元素进行排版布局的时候，元素之间的空格，换行符，空白会被浏览器处理，根据white-space的默认值 normal，合并多余的空白符。在html代码当中，换行符就会被当做是一处空白，当字体大小font-size不为零的情况下，两个元素之间就会有空隙。这些元素之间的间距会随着字体大小来变化，比如行内元素font-size：16px时，间距为8px。</p>
+<h5 id="解决办法："><a href="#解决办法：" class="headerlink" title="解决办法："></a>解决办法：</h5><ul>
+<li><p>将所有html标签写在一行    （代码可读性差）</p>
 </li>
-<li>text-shadow：设置字体的阴影，位置及阴影颜色</li>
-</ul>
-<ul>
-<li><p>颜色：增加了新的颜色表示方式</p>
-<ul>
-<li>rgba，rgb为颜色值，a为透明度</li>
-<li>hsla，h色相，s为饱和度，l为高度，a为透明度。</li>
-</ul>
+<li><p>给inline-block属性元素设置float：left   （造成高度塌陷）</p>
 </li>
-</ul>
-<h4 id="css3动画有那些？"><a href="#css3动画有那些？" class="headerlink" title="css3动画有那些？"></a>css3动画有那些？</h4><p>使用css动画的模块就是指元素从一种样式逐渐过渡为另一种样式的过程。</p>
-<p>常见的动画有 平移，旋转，缩放等等。</p>
-<ul>
-<li>transition  实现渐变动画</li>
-<li>transform  转变动画<ul>
-<li>translate 位移</li>
-<li>skew  倾斜</li>
-<li>rotate：旋转</li>
-<li>scale  缩放</li>
-</ul>
+<li><p>设置inlin-block属性元素font-size为零，需重更新设置子元素大小。</p>
 </li>
-<li>animation 实现自定义动画</li>
+<li><p>设置子元素margin-left:-2px。</p>
+</li>
+<li><p>给父元素设置display：table。word-sapcing：-1em。（根据实际情况来）</p>
+</li>
 </ul>
 
               
@@ -386,8 +352,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>css3新增的特性</div>
-      <div>http://example.com/2020/07/01/css3/css3新增的特性/</div>
+      <div>inlin-block元素缝隙问题</div>
+      <div>http://example.com/2020/07/05/css3/inlin-block元素缝隙问题/</div>
     </div>
     <div class="license-meta">
       
@@ -399,13 +365,13 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2020年7月1日</div>
+          <div>2020年7月5日</div>
         </div>
       
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2020年7月1日</div>
+          <div>2020年7月5日</div>
         </div>
       
       <div class="license-meta-item">
@@ -434,9 +400,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2020/07/05/css3/inlin-block%E5%85%83%E7%B4%A0%E7%BC%9D%E9%9A%99%E9%97%AE%E9%A2%98/" title="inlin-block元素缝隙问题">
+                      <a href="/2021/04/27/vue3/vue3%E6%80%A7%E8%83%BD%E6%8F%90%E5%8D%87/" title="vue3性能提升">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">inlin-block元素缝隙问题</span>
+                        <span class="hidden-mobile">vue3性能提升</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -444,8 +410,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2020/06/15/shujufenxi/pythonOpencv%E8%BF%9B%E9%98%B6%E7%AF%87%E8%A7%86%E9%A2%91/" title="pythonOpencv进阶篇视频">
-                        <span class="hidden-mobile">pythonOpencv进阶篇视频</span>
+                      <a href="/2020/07/01/css3/css3%E6%96%B0%E5%A2%9E%E7%9A%84%E7%89%B9%E6%80%A7/" title="css3新增的特性">
+                        <span class="hidden-mobile">css3新增的特性</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
