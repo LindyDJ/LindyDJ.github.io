@@ -16,26 +16,26 @@
   <meta name="author" content="温酒斩华雄">
   <meta name="keywords" content="">
   
-    <meta name="description" content="Vue3.0性能提升主要是通过哪几方面体现的？ 编译阶段 diff算法优化  vue3在diff算法中相比vue2增加了静态标记。作用：为了会发生变化的地方添加一个flag标记，下次发生变化的时候直接找该地方进行比较即可。 下图这里，已经标记静态节点的p标签在diff过程中则不会比较，把性能进一步提高。     静态提升  vue3中对不参与更新的元素，会做静态提升，只会被创建一次，在渲染时直接复">
+    <meta name="description" content="css3新增那些新特性？选择器： :first-of-type   选择其父元素第一个子元素 :last-of-type     选择其父元素最后一个子元素 :nth-of-type(2)   选择父元素的第二个元素 :only-child    选择属于父元素的唯一一个子元素 :last-child   选择属于其父元素的最后一个子元素  新样式： 边框     border-radius：创建">
 <meta property="og:type" content="article">
-<meta property="og:title" content="vue3性能提升">
-<meta property="og:url" content="http://example.com/2021/04/27/vue3/vue3%E6%80%A7%E8%83%BD%E6%8F%90%E5%8D%87/index.html">
+<meta property="og:title" content="css3新增的特性">
+<meta property="og:url" content="http://example.com/2020/07/01/css3/css3%E6%96%B0%E5%A2%9E%E7%9A%84%E7%89%B9%E6%80%A7/index.html">
 <meta property="og:site_name" content="zhaoShuoLin的博客">
-<meta property="og:description" content="Vue3.0性能提升主要是通过哪几方面体现的？ 编译阶段 diff算法优化  vue3在diff算法中相比vue2增加了静态标记。作用：为了会发生变化的地方添加一个flag标记，下次发生变化的时候直接找该地方进行比较即可。 下图这里，已经标记静态节点的p标签在diff过程中则不会比较，把性能进一步提高。     静态提升  vue3中对不参与更新的元素，会做静态提升，只会被创建一次，在渲染时直接复">
+<meta property="og:description" content="css3新增那些新特性？选择器： :first-of-type   选择其父元素第一个子元素 :last-of-type     选择其父元素最后一个子元素 :nth-of-type(2)   选择父元素的第二个元素 :only-child    选择属于父元素的唯一一个子元素 :last-child   选择属于其父元素的最后一个子元素  新样式： 边框     border-radius：创建">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/img/vuejs.png">
-<meta property="article:published_time" content="2021-04-27T08:50:05.000Z">
-<meta property="article:modified_time" content="2021-04-27T08:50:05.000Z">
+<meta property="og:image" content="http://example.com/img/css3.png">
+<meta property="article:published_time" content="2020-07-01T00:32:25.000Z">
+<meta property="article:modified_time" content="2020-07-01T00:32:25.000Z">
 <meta property="article:author" content="温酒斩华雄">
-<meta property="article:tag" content="性能提升">
+<meta property="article:tag" content="css3">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://example.com/img/vuejs.png">
+<meta name="twitter:image" content="http://example.com/img/css3.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>vue3性能提升 - zhaoShuoLin的博客</title>
+  <title>css3新增的特性 - zhaoShuoLin的博客</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -198,7 +198,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="vue3性能提升"></span>
+            <span id="subtitle" data-typed-text="css3新增的特性"></span>
           
         </div>
 
@@ -214,8 +214,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2021-04-27 16:50" pubdate>
-          2021年4月27日 下午
+        <time datetime="2020-07-01 08:32" pubdate>
+          2020年7月1日 早上
         </time>
       </span>
     
@@ -226,7 +226,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          974 字
+          550 字
         
       </span>
     
@@ -237,7 +237,7 @@
         
         
         
-          9 分钟
+          5 分钟
         
       </span>
     
@@ -283,69 +283,65 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">vue3性能提升</h1>
+            <h1 style="display: none">css3新增的特性</h1>
             
               <p class="note note-info">
                 
                   
-                    本文最后更新于：2021年4月27日 下午
+                    本文最后更新于：2020年7月1日 早上
                   
                 
               </p>
             
             <div class="markdown-body">
               
-              <h4 id="Vue3-0性能提升主要是通过哪几方面体现的？"><a href="#Vue3-0性能提升主要是通过哪几方面体现的？" class="headerlink" title="Vue3.0性能提升主要是通过哪几方面体现的？"></a>Vue3.0性能提升主要是通过哪几方面体现的？</h4><p><img src="/2021/04/27/vue3/vue3%E6%80%A7%E8%83%BD%E6%8F%90%E5%8D%87/tt.png" srcset="/img/loading.gif" lazyload></p>
-<h5 id="编译阶段"><a href="#编译阶段" class="headerlink" title="编译阶段"></a>编译阶段</h5><ul>
-<li><p>diff算法优化</p>
+              <h4 id="css3新增那些新特性？"><a href="#css3新增那些新特性？" class="headerlink" title="css3新增那些新特性？"></a>css3新增那些新特性？</h4><h5 id="选择器："><a href="#选择器：" class="headerlink" title="选择器："></a>选择器：</h5><ul>
+<li>:first-of-type   选择其父元素第一个子元素</li>
+<li>:last-of-type     选择其父元素最后一个子元素</li>
+<li>:nth-of-type(2)   选择父元素的第二个元素</li>
+<li>:only-child    选择属于父元素的唯一一个子元素</li>
+<li>:last-child   选择属于其父元素的最后一个子元素</li>
+</ul>
+<h5 id="新样式："><a href="#新样式：" class="headerlink" title="新样式："></a>新样式：</h5><ul>
+<li>边框     border-radius：创建圆角边框</li>
+<li>border-shadow：为元素添加阴影</li>
+<li>border-image：使用图片绘制边框</li>
+</ul>
 <ul>
-<li><p>vue3在diff算法中相比vue2增加了静态标记。作用：为了会发生变化的地方添加一个flag标记，下次发生变化的时候直接找该地方进行比较即可。</p>
-<p>下图这里，已经标记静态节点的p标签在diff过程中则不会比较，把性能进一步提高。</p>
-<p><img src="/2021/04/27/vue3/vue3%E6%80%A7%E8%83%BD%E6%8F%90%E5%8D%87/cc.png" srcset="/img/loading.gif" lazyload></p>
-</li>
+<li>背景   background-clip</li>
+<li>background-origin</li>
+<li>background-size</li>
+<li>background-break</li>
 </ul>
-</li>
-<li><p>静态提升</p>
 <ul>
-<li>vue3中对不参与更新的元素，会做静态提升，只会被创建一次，在渲染时直接复用。</li>
+<li>文字    word-warp：<ul>
+<li>narmal：使用浏览器默认换行</li>
+<li>break-all：允许在单词内换行</li>
 </ul>
 </li>
-<li><p>事件监听缓存</p>
-</li>
-<li><p>SSR优化</p>
+<li>text-shadow：设置字体的阴影，位置及阴影颜色</li>
+</ul>
 <ul>
-<li>当静态内容达到一定量度时，会使用服务端渲染。</li>
+<li><p>颜色：增加了新的颜色表示方式</p>
+<ul>
+<li>rgba，rgb为颜色值，a为透明度</li>
+<li>hsla，h色相，s为饱和度，l为高度，a为透明度。</li>
 </ul>
 </li>
 </ul>
-<h5 id="源码体积"><a href="#源码体积" class="headerlink" title="源码体积"></a>源码体积</h5><ul>
-<li><p>相比vue2，vue3整体体积变小了，除了移除一些不常用的API，在重要的是<code>Tree shanking</code>(树摇)。比如任何一个函数（ref，reactived，computed）等，仅用到的时候才打包，没用到的模块都被摇掉，打包的整体体积变小。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">import</span> &#123; computed, defineComponent, ref &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;vue&#x27;</span>;<br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> <span class="hljs-title function_">defineComponent</span>(&#123;<br>    <span class="hljs-title function_">setup</span>(<span class="hljs-params">props, context</span>) &#123;<br>        <span class="hljs-keyword">const</span> age = <span class="hljs-title function_">ref</span>(<span class="hljs-number">18</span>)<br><br>        <span class="hljs-keyword">let</span> state = <span class="hljs-title function_">reactive</span>(&#123;<br>            <span class="hljs-attr">name</span>: <span class="hljs-string">&#x27;test&#x27;</span><br>        &#125;)<br><br>        <span class="hljs-keyword">const</span> readOnlyAge = <span class="hljs-title function_">computed</span>(<span class="hljs-function">() =&gt;</span> age.<span class="hljs-property">value</span>++) <span class="hljs-comment">// 19</span><br><br>        <span class="hljs-keyword">return</span> &#123;<br>            age,<br>            state,<br>            readOnlyAge<br>        &#125;<br>    &#125;<br>&#125;);<br></code></pre></td></tr></table></figure></li>
-</ul>
-<h5 id="响应式系统"><a href="#响应式系统" class="headerlink" title="响应式系统"></a>响应式系统</h5><ul>
-<li>vue2中采用defineProerty来劫持整个对象，然后进行深度遍历所有属性，给每个属性添加getter和setter，实现响应式。</li>
-<li>vue3采用proxy代理对象，因为proxy可以对整个对象进行监听，所以不需要深度遍历。<ul>
-<li>可以监听整个对象的修改和添加</li>
-<li>可以监听数组的索引和数组length属性。</li>
+<h4 id="css3动画有那些？"><a href="#css3动画有那些？" class="headerlink" title="css3动画有那些？"></a>css3动画有那些？</h4><p>使用css动画的模块就是指元素从一种样式逐渐过渡为另一种样式的过程。</p>
+<p>常见的动画有 平移，旋转，缩放等等。</p>
+<ul>
+<li>transition  实现渐变动画</li>
+<li>transform  转变动画<ul>
+<li>translate 位移</li>
+<li>skew  倾斜</li>
+<li>rotate：旋转</li>
+<li>scale  缩放</li>
 </ul>
 </li>
+<li>animation 实现自定义动画</li>
 </ul>
-<br> 
-
-
-
-<h4 id="参考文献"><a href="#参考文献" class="headerlink" title="参考文献"></a>参考文献</h4><hr>
-
-<blockquote>
-<ul>
-<li><a target="_blank" rel="noopener" href="https://juejin.cn/post/6903171037211557895">https://juejin.cn/post/6903171037211557895</a></li>
-</ul>
-</blockquote>
-<blockquote>
-<ul>
-<li><a target="_blank" rel="noopener" href="https://vue3js.cn/interview/vue3/performance.html#%E4%B8%80%E3%80%81%E7%BC%96%E8%AF%91%E9%98%B6%E6%AE%B5">https://vue3js.cn/interview/vue3/performance.html#%E4%B8%80%E3%80%81%E7%BC%96%E8%AF%91%E9%98%B6%E6%AE%B5</a></li>
-</ul>
-</blockquote>
 
               
             </div>
@@ -363,7 +359,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/vue3/" class="category-chain-item">vue3</a>
+  <a href="/categories/css3/" class="category-chain-item">css3</a>
   
   
 
@@ -378,7 +374,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/%E6%80%A7%E8%83%BD%E6%8F%90%E5%8D%87/">#性能提升</a>
+        <a href="/tags/css3/">#css3</a>
       
     </div>
   
@@ -390,8 +386,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>vue3性能提升</div>
-      <div>http://example.com/2021/04/27/vue3/vue3性能提升/</div>
+      <div>css3新增的特性</div>
+      <div>http://example.com/2020/07/01/css3/css3新增的特性/</div>
     </div>
     <div class="license-meta">
       
@@ -403,13 +399,13 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2021年4月27日</div>
+          <div>2020年7月1日</div>
         </div>
       
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2021年4月27日</div>
+          <div>2020年7月1日</div>
         </div>
       
       <div class="license-meta-item">
@@ -438,9 +434,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2021/05/17/lin-first-blog/" title="面试题总结">
+                      <a href="/2021/04/27/vue3/vue3%E6%80%A7%E8%83%BD%E6%8F%90%E5%8D%87/" title="vue3性能提升">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">面试题总结</span>
+                        <span class="hidden-mobile">vue3性能提升</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -448,8 +444,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2020/07/01/css3/css3%E6%96%B0%E5%A2%9E%E7%9A%84%E7%89%B9%E6%80%A7/" title="css3新增的特性">
-                        <span class="hidden-mobile">css3新增的特性</span>
+                      <a href="/2020/06/15/shujufenxi/pythonOpencv%E8%BF%9B%E9%98%B6%E7%AF%87%E8%A7%86%E9%A2%91/" title="pythonOpencv进阶篇视频">
+                        <span class="hidden-mobile">pythonOpencv进阶篇视频</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>

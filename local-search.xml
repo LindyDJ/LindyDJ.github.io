@@ -206,6 +206,31 @@
   
   
   <entry>
+    <title>css3新增的特性</title>
+    <link href="/2020/07/01/css3/css3%E6%96%B0%E5%A2%9E%E7%9A%84%E7%89%B9%E6%80%A7/"/>
+    <url>/2020/07/01/css3/css3%E6%96%B0%E5%A2%9E%E7%9A%84%E7%89%B9%E6%80%A7/</url>
+    
+    <content type="html"><![CDATA[<h4 id="css3新增那些新特性？"><a href="#css3新增那些新特性？" class="headerlink" title="css3新增那些新特性？"></a>css3新增那些新特性？</h4><h5 id="选择器："><a href="#选择器：" class="headerlink" title="选择器："></a>选择器：</h5><ul><li>:first-of-type   选择其父元素第一个子元素</li><li>:last-of-type     选择其父元素最后一个子元素</li><li>:nth-of-type(2)   选择父元素的第二个元素</li><li>:only-child    选择属于父元素的唯一一个子元素</li><li>:last-child   选择属于其父元素的最后一个子元素</li></ul><h5 id="新样式："><a href="#新样式：" class="headerlink" title="新样式："></a>新样式：</h5><ul><li>边框     border-radius：创建圆角边框</li><li>border-shadow：为元素添加阴影</li><li>border-image：使用图片绘制边框</li></ul><ul><li>背景   background-clip</li><li>background-origin</li><li>background-size</li><li>background-break</li></ul><ul><li>文字    word-warp：<ul><li>narmal：使用浏览器默认换行</li><li>break-all：允许在单词内换行</li></ul></li><li>text-shadow：设置字体的阴影，位置及阴影颜色</li></ul><ul><li><p>颜色：增加了新的颜色表示方式</p><ul><li>rgba，rgb为颜色值，a为透明度</li><li>hsla，h色相，s为饱和度，l为高度，a为透明度。</li></ul></li></ul><h4 id="css3动画有那些？"><a href="#css3动画有那些？" class="headerlink" title="css3动画有那些？"></a>css3动画有那些？</h4><p>使用css动画的模块就是指元素从一种样式逐渐过渡为另一种样式的过程。</p><p>常见的动画有 平移，旋转，缩放等等。</p><ul><li>transition  实现渐变动画</li><li>transform  转变动画<ul><li>translate 位移</li><li>skew  倾斜</li><li>rotate：旋转</li><li>scale  缩放</li></ul></li><li>animation 实现自定义动画</li></ul>]]></content>
+    
+    
+    <categories>
+      
+      <category>css3</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>css3</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>pythonOpencv进阶篇视频</title>
     <link href="/2020/06/15/shujufenxi/pythonOpencv%E8%BF%9B%E9%98%B6%E7%AF%87%E8%A7%86%E9%A2%91/"/>
     <url>/2020/06/15/shujufenxi/pythonOpencv%E8%BF%9B%E9%98%B6%E7%AF%87%E8%A7%86%E9%A2%91/</url>
