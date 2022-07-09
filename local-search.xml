@@ -569,6 +569,31 @@
   
   
   <entry>
+    <title>vue生命周期的理解</title>
+    <link href="/2019/06/27/vue2/vue%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E7%9A%84%E7%90%86%E8%A7%A3/"/>
+    <url>/2019/06/27/vue2/vue%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E7%9A%84%E7%90%86%E8%A7%A3/</url>
+    
+    <content type="html"><![CDATA[<h4 id="vue生命周期的理解"><a href="#vue生命周期的理解" class="headerlink" title="vue生命周期的理解"></a><strong>vue生命周期的理解</strong></h4><p>vue生命周期主要分为8个阶段：创建前/后，载入前/后，更新前/后，销毁前/后。</p><p>vue实例有一个完整的生命周期，也就是从开始创建，初始化数据，编译模板，挂载Dom =》 渲染，更新   =》渲染，卸载这个过程。</p><table><thead><tr><th align="left">beforeCreate</th><th>组件实例被创建之初，组件的属性生效之前</th></tr></thead><tbody><tr><td align="left">created</td><td>组件实例已经完全创建，属性也绑定，但真实dom还没有生成，$el还不可用</td></tr><tr><td align="left">beforeMount</td><td>在挂载开始之前被调用：相关的 render 函数首次被调用</td></tr><tr><td align="left">mounted</td><td>el 被新创建的 vm.$el 替换，并挂载到实例上去之后调用该钩子</td></tr><tr><td align="left">beforeUpdate</td><td>组件数据更新之前调用，发生在虚拟 DOM 打补丁之前</td></tr><tr><td align="left">update</td><td>组件数据更新之后</td></tr><tr><td align="left">activated</td><td>keep-alive专属，组件被激活时调用</td></tr><tr><td align="left">deactivated</td><td>keep-alive专属，组件被销毁时调用</td></tr><tr><td align="left">beforeDestroy</td><td>组件销毁前调用</td></tr><tr><td align="left">destroyed</td><td>组件销毁后调用</td></tr></tbody></table><p><img src="/2019/06/27/vue2/vue%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E7%9A%84%E7%90%86%E8%A7%A3/61.png"></p><p><strong>什么是vue生命周期？</strong></p><ul><li>答： Vue 实例从创建到销毁的过程，就是生命周期。从开始创建、初始化数据、编译模板、挂载Dom→渲染、更新→渲染、销毁等一系列过程，称之为 Vue 的生命周期。</li></ul><p><strong>vue生命周期的作用是什么？</strong></p><ul><li>答：它的生命周期中有多个事件钩子，让我们在控制整个Vue实例的过程时更容易形成好的逻辑。</li></ul><p><strong>vue生命周期总共有几个阶段？</strong></p><ul><li>答：它可以总共分为<code>8</code>个阶段：创建前/后、载入前/后、更新前/后、销毁前/销毁后。</li></ul><p><strong>第一次页面加载会触发哪几个钩子？</strong></p><ul><li>答：会触发下面这几个<code>beforeCreate</code>、<code>created</code>、<code>beforeMount</code>、<code>mounted</code> 。</li></ul><p><strong>DOM 渲染在哪个周期中就已经完成？</strong></p><ul><li>答：<code>DOM</code> 渲染在 <code>mounted</code> 中就已经完成了</li></ul>]]></content>
+    
+    
+    <categories>
+      
+      <category>vue2</category>
+      
+    </categories>
+    
+    
+    <tags>
+      
+      <tag>生命周期</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>前端工程化</title>
     <link href="/2019/06/07/js/%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%8C%96/"/>
     <url>/2019/06/07/js/%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%8C%96/</url>

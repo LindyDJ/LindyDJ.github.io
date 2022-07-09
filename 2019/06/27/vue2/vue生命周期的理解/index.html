@@ -16,26 +16,26 @@
   <meta name="author" content="温酒斩华雄">
   <meta name="keywords" content="">
   
-    <meta name="description" content="redux实现原理解析为什么要用redux？ 在react中，数据在组件中是单向流动的，数据从一个方向父组件传给子组件，所以两个非父子之间通信就会相对麻烦，redux的出现就是为了解决state里面的数据问题。  redux设计理念 redux是将整个应用状态存储到一个地方称为store，里面保存着一个状态树store tree，组件可以通过dispatch派发action给store，而不是直接">
+    <meta name="description" content="vue生命周期的理解vue生命周期主要分为8个阶段：创建前&#x2F;后，载入前&#x2F;后，更新前&#x2F;后，销毁前&#x2F;后。 vue实例有一个完整的生命周期，也就是从开始创建，初始化数据，编译模板，挂载Dom &#x3D;》 渲染，更新   &#x3D;》渲染，卸载这个过程。    beforeCreate 组件实例被创建之初，组件的属性生效之前    created 组件实例已经完全创建，属性也绑定，但真实dom还没有生成，$el还不可用">
 <meta property="og:type" content="article">
-<meta property="og:title" content="redux实现原理">
-<meta property="og:url" content="http://example.com/2019/10/20/react/redux%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/index.html">
+<meta property="og:title" content="vue生命周期的理解">
+<meta property="og:url" content="http://example.com/2019/06/27/vue2/vue%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E7%9A%84%E7%90%86%E8%A7%A3/index.html">
 <meta property="og:site_name" content="zhaoShuoLin的博客">
-<meta property="og:description" content="redux实现原理解析为什么要用redux？ 在react中，数据在组件中是单向流动的，数据从一个方向父组件传给子组件，所以两个非父子之间通信就会相对麻烦，redux的出现就是为了解决state里面的数据问题。  redux设计理念 redux是将整个应用状态存储到一个地方称为store，里面保存着一个状态树store tree，组件可以通过dispatch派发action给store，而不是直接">
+<meta property="og:description" content="vue生命周期的理解vue生命周期主要分为8个阶段：创建前&#x2F;后，载入前&#x2F;后，更新前&#x2F;后，销毁前&#x2F;后。 vue实例有一个完整的生命周期，也就是从开始创建，初始化数据，编译模板，挂载Dom &#x3D;》 渲染，更新   &#x3D;》渲染，卸载这个过程。    beforeCreate 组件实例被创建之初，组件的属性生效之前    created 组件实例已经完全创建，属性也绑定，但真实dom还没有生成，$el还不可用">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="http://example.com/img/react.png">
-<meta property="article:published_time" content="2019-10-19T23:43:35.000Z">
-<meta property="article:modified_time" content="2019-10-19T23:52:54.000Z">
+<meta property="og:image" content="http://example.com/img/vuejs.png">
+<meta property="article:published_time" content="2019-06-27T10:57:43.000Z">
+<meta property="article:modified_time" content="2019-06-28T10:57:43.000Z">
 <meta property="article:author" content="温酒斩华雄">
-<meta property="article:tag" content="react">
+<meta property="article:tag" content="生命周期">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="http://example.com/img/react.png">
+<meta name="twitter:image" content="http://example.com/img/vuejs.png">
   
   
     <meta name="referrer" content="no-referrer-when-downgrade">
   
   
-  <title>redux实现原理 - zhaoShuoLin的博客</title>
+  <title>vue生命周期的理解 - zhaoShuoLin的博客</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -198,7 +198,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="redux实现原理"></span>
+            <span id="subtitle" data-typed-text="vue生命周期的理解"></span>
           
         </div>
 
@@ -214,8 +214,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2019-10-20 07:43" pubdate>
-          2019年10月20日 早上
+        <time datetime="2019-06-27 18:57" pubdate>
+          2019年6月27日 晚上
         </time>
       </span>
     
@@ -226,7 +226,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          540 字
+          715 字
         
       </span>
     
@@ -237,7 +237,7 @@
         
         
         
-          5 分钟
+          6 分钟
         
       </span>
     
@@ -283,42 +283,85 @@
         <div id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">redux实现原理</h1>
+            <h1 style="display: none">vue生命周期的理解</h1>
             
               <p class="note note-info">
                 
                   
-                    本文最后更新于：2019年10月20日 早上
+                    本文最后更新于：2019年6月28日 晚上
                   
                 
               </p>
             
             <div class="markdown-body">
               
-              <h4 id="redux实现原理解析"><a href="#redux实现原理解析" class="headerlink" title="redux实现原理解析"></a>redux实现原理解析</h4><h5 id="为什么要用redux？"><a href="#为什么要用redux？" class="headerlink" title="为什么要用redux？"></a>为什么要用redux？</h5><blockquote>
-<p>在react中，数据在组件中是单向流动的，数据从一个方向父组件传给子组件，所以两个非父子之间通信就会相对麻烦，redux的出现就是为了解决state里面的数据问题。</p>
-</blockquote>
-<h5 id="redux设计理念"><a href="#redux设计理念" class="headerlink" title="redux设计理念"></a>redux设计理念</h5><blockquote>
-<p>redux是将整个应用状态存储到一个地方称为store，里面保存着一个状态树store tree，组件可以通过dispatch派发action给store，而不是直接通知其他组件，组件内部通过订阅store中的状态来刷新自己的视图。</p>
-</blockquote>
-<p><img src="/2019/10/20/react/redux%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/68.png" srcset="/img/loading.gif" lazyload></p>
-<h5 id="redux三大原则"><a href="#redux三大原则" class="headerlink" title="redux三大原则"></a>redux三大原则</h5><ul>
-<li>唯一数据源<ul>
-<li>整个应用的state都被存储到redux仓库当中。只存在一个store。</li>
+              <h4 id="vue生命周期的理解"><a href="#vue生命周期的理解" class="headerlink" title="vue生命周期的理解"></a><strong>vue生命周期的理解</strong></h4><p>vue生命周期主要分为8个阶段：创建前/后，载入前/后，更新前/后，销毁前/后。</p>
+<p>vue实例有一个完整的生命周期，也就是从开始创建，初始化数据，编译模板，挂载Dom =》 渲染，更新   =》渲染，卸载这个过程。</p>
+<table>
+<thead>
+<tr>
+<th align="left">beforeCreate</th>
+<th>组件实例被创建之初，组件的属性生效之前</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="left">created</td>
+<td>组件实例已经完全创建，属性也绑定，但真实dom还没有生成，$el还不可用</td>
+</tr>
+<tr>
+<td align="left">beforeMount</td>
+<td>在挂载开始之前被调用：相关的 render 函数首次被调用</td>
+</tr>
+<tr>
+<td align="left">mounted</td>
+<td>el 被新创建的 vm.$el 替换，并挂载到实例上去之后调用该钩子</td>
+</tr>
+<tr>
+<td align="left">beforeUpdate</td>
+<td>组件数据更新之前调用，发生在虚拟 DOM 打补丁之前</td>
+</tr>
+<tr>
+<td align="left">update</td>
+<td>组件数据更新之后</td>
+</tr>
+<tr>
+<td align="left">activated</td>
+<td>keep-alive专属，组件被激活时调用</td>
+</tr>
+<tr>
+<td align="left">deactivated</td>
+<td>keep-alive专属，组件被销毁时调用</td>
+</tr>
+<tr>
+<td align="left">beforeDestroy</td>
+<td>组件销毁前调用</td>
+</tr>
+<tr>
+<td align="left">destroyed</td>
+<td>组件销毁后调用</td>
+</tr>
+</tbody></table>
+<p><img src="/2019/06/27/vue2/vue%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E7%9A%84%E7%90%86%E8%A7%A3/61.png" srcset="/img/loading.gif" lazyload></p>
+<p><strong>什么是vue生命周期？</strong></p>
+<ul>
+<li>答： Vue 实例从创建到销毁的过程，就是生命周期。从开始创建、初始化数据、编译模板、挂载Dom→渲染、更新→渲染、销毁等一系列过程，称之为 Vue 的生命周期。</li>
 </ul>
-</li>
-<li>保持只读状态<ul>
-<li>state是只读的，唯一改变state的方法就是触发action，action是一个动作对象，type类型，和data传递参数。</li>
+<p><strong>vue生命周期的作用是什么？</strong></p>
+<ul>
+<li>答：它的生命周期中有多个事件钩子，让我们在控制整个Vue实例的过程时更容易形成好的逻辑。</li>
 </ul>
-</li>
-<li>只能通过纯函数改变状态</li>
+<p><strong>vue生命周期总共有几个阶段？</strong></p>
+<ul>
+<li>答：它可以总共分为<code>8</code>个阶段：创建前/后、载入前/后、更新前/后、销毁前/销毁后。</li>
 </ul>
-<h5 id="redux三大核心："><a href="#redux三大核心：" class="headerlink" title="redux三大核心："></a>redux三大核心：</h5><ul>
-<li>action：    动作对象，两个参数type，和data</li>
-<li>reducer：   用于初始化状态，加工状态</li>
-<li>store：只存在一个store应用</li>
+<p><strong>第一次页面加载会触发哪几个钩子？</strong></p>
+<ul>
+<li>答：会触发下面这几个<code>beforeCreate</code>、<code>created</code>、<code>beforeMount</code>、<code>mounted</code> 。</li>
 </ul>
-<p>原理： 页面需要获取数据时，通过Action creates创建一个action动作对象，提交dispatch请求给store。store通知reducer进行匹配action的属性type。从而进行返回一个新的对象。</p>
+<p><strong>DOM 渲染在哪个周期中就已经完成？</strong></p>
+<ul>
+<li>答：<code>DOM</code> 渲染在 <code>mounted</code> 中就已经完成了</li>
+</ul>
 
               
             </div>
@@ -336,7 +379,7 @@
     
       <span class="category-chain">
         
-  <a href="/categories/react/" class="category-chain-item">react</a>
+  <a href="/categories/vue2/" class="category-chain-item">vue2</a>
   
   
 
@@ -351,7 +394,7 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/react/">#react</a>
+        <a href="/tags/%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F/">#生命周期</a>
       
     </div>
   
@@ -363,8 +406,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>redux实现原理</div>
-      <div>http://example.com/2019/10/20/react/redux实现原理/</div>
+      <div>vue生命周期的理解</div>
+      <div>http://example.com/2019/06/27/vue2/vue生命周期的理解/</div>
     </div>
     <div class="license-meta">
       
@@ -376,13 +419,13 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2019年10月20日</div>
+          <div>2019年6月27日</div>
         </div>
       
       
         <div class="license-meta-item license-meta-date">
           <div>更新于</div>
-          <div>2019年10月20日</div>
+          <div>2019年6月28日</div>
         </div>
       
       <div class="license-meta-item">
@@ -411,9 +454,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2020/02/19/shujufenxi/Pandas%E7%BB%9F%E8%AE%A1%E5%88%86%E6%9E%90/" title="Pandas统计分析">
+                      <a href="/2019/10/20/react/redux%E5%AE%9E%E7%8E%B0%E5%8E%9F%E7%90%86/" title="redux实现原理">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">Pandas统计分析</span>
+                        <span class="hidden-mobile">redux实现原理</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -421,8 +464,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2019/06/27/vue2/vue%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E7%9A%84%E7%90%86%E8%A7%A3/" title="vue生命周期的理解">
-                        <span class="hidden-mobile">vue生命周期的理解</span>
+                      <a href="/2019/06/07/js/%E5%89%8D%E7%AB%AF%E5%B7%A5%E7%A8%8B%E5%8C%96/" title="前端工程化">
+                        <span class="hidden-mobile">前端工程化</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
